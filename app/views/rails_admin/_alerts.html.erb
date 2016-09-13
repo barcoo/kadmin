@@ -1,0 +1,12 @@
+<div class='alerts'>
+  <%= alert('danger') do %>
+    <% Array.wrap(flash[:danger]).each do |danger| %>
+      <p><%= glyphicon('exclamation-sign') %> <%= danger&.html_safe %></p>
+    <% end %>
+  <% end %>
+  <%= alert('success') do %>
+    <% Array.wrap(flash[:success]).each do |success| %>
+      <p><%= glyphicon('ok-sign') %> <%= success&.html_safe %></p>
+    <% end %>
+  <% end %>
+</div>

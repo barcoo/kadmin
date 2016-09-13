@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Admin</title>
+
+    <%= stylesheet_link_tag "rails_admin/application", media: "all" %>
+    <%= javascript_include_tag "rails_admin/application" %>
+    <%= csrf_meta_tags %>
+
+    <!-- Additional CSS -->
+    <%= yield :stylesheets %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to('Admin', RailsAdmin.config.admin_path || admin_path, { class: 'navbar-brand' }) %>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <%= nav_link_to('Dashboard', admin_dash_path) %>
+            <%= nav_link_to('Notification templates', admin_notifications_path) %>
+            <%= nav_link_to('Notification targets', admin_jobs_path) %>
+            <%= nav_link_to('Sent & scheduled notifications', admin_runs_path) %>
+          </ul>
+        </div>
+    </nav>
+    <div class="container-fluid content">
+      <div class="row">
+        <% if content_for?(:sidebar) %>
+          <!-- main -->
+          <div class="col-sm-8 col-md-8 col-lg-9 main">
+            <%= render partial: 'rails_admin/alerts' %>
+            <%= yield %>
+          </div>
+          <!-- sidebar -->
+          <div class="col-sm-4 col-md-4 col-lg-3 sidebar hidden-xs">
+            <%= yield(:sidebar) %>
+          </div>
+        <% else %>
+          <div class="col-sm-12 col-md-12 main">
+            <%= render partial: 'rails_admin/alerts' %>
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Additional scripts -->
+    <%= yield :javascripts %>
+  </body>
+</html>

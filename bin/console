@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+cd test/dummy
+bundle exec rails c

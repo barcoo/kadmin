@@ -1,0 +1,20 @@
+development:
+  host: localhost
+  db: 1
+  port: 6379
+  timeout: 30
+  namespace: postman:rails
+
+test:
+  host: localhost
+  db: 2
+  port: 6379
+  timeout: 30
+  namespace: postman:rails
+
+production:
+  host: localhost
+  db: 3
+  port: 6379
+  timeout: 30
+  namespace: postman:rails
