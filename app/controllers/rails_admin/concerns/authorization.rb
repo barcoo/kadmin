@@ -8,27 +8,30 @@ module RailsAdmin
 
       included do
         helper_method :current_user
-        rescue_from RailsAdmin::Errors::Authorization, with: :unauthorized
       end
 
       # @return [String] identifier of the current user
       def current_user
-        return session[:admin_user]
+        return session['rails_admin.user']
       end
 
-      # Should return whether the user is authorized for this particular resource.
-      # Use current_user and #request method to figure out.
-      # Raise RailsAdmin::Errors::Authorization when unauthorized.
-      # @return [Boolean] true if the user is authorized, false otherwise
       def authorized?
-        true
+        if current_user.blank?
+          redirect_to auth_login_path
+          return
+        end
+
+        unless authorize
+          render template: 'rails_admin/unauthorized', layout: 'rails_admin/application'
+          return
+        end
       end
 
-      def unauthorized(error)
-        RailsAdmin.logger.error(error)
-        render template: 'rails_admin/unauthorized'
+      # Should overload to provide per-resource authorization
+      # Raise RailsAdmin::Errors::Authorization when unauthorized.
+      def authorize
       end
-      protected :unauthorized
+      protected :authorize
     end
   end
 end

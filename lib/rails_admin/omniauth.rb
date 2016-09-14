@@ -12,7 +12,6 @@ module RailsAdmin
       unless @enabled
         @enabled = true
 
-        options = options.merge(fields: [:email])
         Rails.application.config.middleware.use OmniAuth::Builder do
           provider :development, options
         end

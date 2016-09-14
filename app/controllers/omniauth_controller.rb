@@ -54,5 +54,20 @@ module RailsAdmin
       true
     end
     protected :authorized?
+
+    def omniauth_provider_link
+      base = RailsAdmin::Omniauth.provider_link
+      origin = params[:origin]
+
+      origin = if origin.blank?
+        request.referer
+      else
+        RailsAdmin.config.fallback_redirect_url
+      end
+
+      return "#{base}?origin=#{CGI.escape(origin)}"
+    end
+    protected :omniauth_provider_link
+    helper_method :omniauth_provider_link
   end
 end
