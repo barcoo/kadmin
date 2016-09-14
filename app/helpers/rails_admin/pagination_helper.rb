@@ -1,6 +1,6 @@
 module RailsAdmin
   module PaginationHelper
-    # @param [Postman::Web::Finder::Pager] Prefilled pager
+    # @param [RailsAdmin::Finder::Pager] Prefilled pager
     # @param [Array<Integer>] Optional array of page sizes
     def paginate(pager, sizes)
       return content_tag(:div, pagination_page_list(pager) + pagination_size_list(pager, sizes), class: 'btn-toolbar')
@@ -45,13 +45,13 @@ module RailsAdmin
 
     def pagination_non_link(text, css_classes = nil)
       classes = %w(btn btn-default) + Array.wrap(css_classes)
-      return content_tag(:div, text.to_s.safe_join, class: classes.join(' '))
+      return content_tag(:div, text.to_s.html_safe, class: classes.join(' '))
     end
     private :pagination_non_link
 
     def pagination_link(text, options = {}, css_classes = nil)
       classes = %w(btn btn-default) + Array.wrap(css_classes)
-      return link_to(text.to_s.safe_join, params.merge(options), class: classes.join(' '))
+      return link_to(text.to_s.html_safe, params.merge(options), class: classes.join(' '))
     end
     private :pagination_link
 

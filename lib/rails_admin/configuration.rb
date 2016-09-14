@@ -3,21 +3,20 @@ module RailsAdmin
     # @return [Logger] An instance of a Ruby compatible logger
     attr_accessor :logger
 
-    # @return [Loyalty::Concerns::Authorization] An object implementing the Loyalty::Concerns::Authorization interface
+    # @return [RailsAdmin::Concerns::Authorization] an object implementing the RailsAdmin::Concerns::Authorization interface
     attr_accessor :authorization_concern
 
-    # @return [String] Path to the main app's admin section
+    # @return [String] path to the main app's admin section
     attr_accessor :admin_path
 
-    # @return [String] Google client ID used for OAuth2 authorization
-    attr_accessor :google_client_id
-
-    # @return [String] Google secret key used for OAuth2 authorization
-    attr_accessor :google_secret_key
+    # @return [String] fallback URL to use when no redirect URL is provided on login/logout
+    attr_accessor :fallback_redirect_url
 
     def initialize
       @admin_path = '/admin'
-      @authorization_concern = Loyalty::Concerns::Authorization
+      @authorization_concern = RailsAdmin::Concerns::Authorization
+      @logger = Rails.logger
+      @fallback_redirect_url = '/'
     end
   end
 end

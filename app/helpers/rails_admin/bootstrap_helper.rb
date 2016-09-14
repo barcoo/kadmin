@@ -28,7 +28,7 @@ module RailsAdmin
       html = nil
       unless block_content.blank? && text.blank?
         html = content_tag(:div, '', class: css_classes.join(' '), role: 'alert') do
-          content = text.safe_join
+          content = text.html_safe
 
           if dismissible
             button = button_tag(type: 'button', class: 'close', 'data-dismiss': 'alert') do

@@ -1,6 +1,6 @@
-# Utility packages
-require 'rails_admin/utils'
+require 'rails_admin/configuration'
 require 'rails_admin/error'
+require 'rails_admin/engine'
 
 module RailsAdmin
   class << self

@@ -26,14 +26,13 @@
             <span class="icon-bar"></span>
           </button>
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <%= nav_link_to('Dashboard', admin_dash_path) %>
-            <%= nav_link_to('Notification templates', admin_notifications_path) %>
-            <%= nav_link_to('Notification targets', admin_jobs_path) %>
-            <%= nav_link_to('Sent & scheduled notifications', admin_runs_path) %>
-          </ul>
-        </div>
+        <% if content_for?(:navigation) %>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <%= yield(:navigation) %>
+            </ul>
+          </div>
+        <% end %>
     </nav>
     <div class="container-fluid content">
       <div class="row">

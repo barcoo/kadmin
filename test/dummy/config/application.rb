@@ -11,7 +11,7 @@ Kernel.silence_warnings do
   Bundler.require(*Rails.groups)
 end
 
-require 'postman/web'
+require 'rails_admin'
 
 module Dummy
   class Application < Rails::Application

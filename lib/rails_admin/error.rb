@@ -3,3 +3,5 @@ module RailsAdmin
   class Error < StandardError
   end
 end
+
+require 'rails_admin/errors/authorization'

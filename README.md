@@ -1,4 +1,4 @@
-# Postman
+# RailsAdmin
 
 [![Build Status](http://test.barcoo.de:8888/buildStatus/icon?job=RailsAdmin)](http://test.barcoo.de:8888/job/RailsAdmin/lastCompletedBuild/testReport/)
 [![Test Coverage](https://s3-eu-west-1.amazonaws.com/cim-jenkins/coverage/rails_admin-shield.png)](http://test.barcoo.de:8888/job/RailsAdmin/cobertura/)

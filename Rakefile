@@ -8,7 +8,7 @@ require 'rdoc/task'
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Postman'
+  rdoc.title    = 'RailsAdmin'
   rdoc.options << '--line-numbers'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
@@ -37,7 +37,7 @@ YARD::Rake::YardocTask.new do |t|
   t.files   = ['app/**/*.rb', 'lib/**/*.rb']
 end
 
-require 'postman/version'
+require 'rails_admin/version'
 
 namespace :cim do
   desc 'Tags, updates README, and CHANGELOG and pushes to Github. Requires ruby-git'
@@ -45,7 +45,7 @@ namespace :cim do
     tasks = ['cim:assert_clean_repo', 'cim:git_fetch', 'cim:set_new_version', 'cim:update_readme', 'cim:update_changelog', 'cim:commit_changes', 'cim:tag']
     begin
       tasks.each { |task| Rake::Task[task].invoke }
-      `git push && git push origin '#{Postman::VERSION}'`
+      `git push && git push origin '#{RailsAdmin::VERSION}'`
     rescue => error
       puts ">>> ERROR: #{error}; might want to reset your repository"
     end
@@ -76,11 +76,11 @@ namespace :cim do
 
   desc 'Requests the new version number'
   task :set_new_version do
-    STDOUT.print(">>> New version number (current: #{Postman::VERSION}; leave blank if already updated): ")
+    STDOUT.print(">>> New version number (current: #{RailsAdmin::VERSION}; leave blank if already updated): ")
     input = STDIN.gets.strip.tr("'", "\'")
 
     current = if input.empty?
-      Postman::VERSION
+      RailsAdmin::VERSION
     else
       unless input =~ /[0-9]+\.[0-9]+\.[0-9]+/
         puts '>>> Please use semantic versioning!'
@@ -97,9 +97,9 @@ namespace :cim do
     end
 
     if !input.empty?
-      `sed -i -u "s@VERSION = '#{Postman::VERSION}'@VERSION = '#{input}'@" #{File.expand_path('../lib/postman/version.rb', __FILE__)}`
+      `sed -i -u "s@VERSION = '#{RailsAdmin::VERSION}'@VERSION = '#{input}'@" #{File.expand_path('../lib/rails_admin/version.rb', __FILE__)}`
       $VERBOSE = nil
-      Postman.const_set('VERSION', input)
+      RailsAdmin.const_set('VERSION', input)
       $VERBOSE = false
 
       `bundle check` # force updating version
@@ -109,7 +109,7 @@ namespace :cim do
   desc 'Updates README with latest version'
   task :update_readme do
     puts '>>> Updating README.md'
-    replace = %([![GitHub release](https://img.shields.io/badge/release-#{Postman::VERSION}-blue.png)](https://github.com/offerista/PostmanRails/releases/tag/#{Postman::VERSION}))
+    replace = %([![GitHub release](https://img.shields.io/badge/release-#{RailsAdmin::VERSION}-blue.png)](https://github.com/offerista/RailsAdmin/releases/tag/#{RailsAdmin::VERSION}))
 
     `sed -i -u 's@^\\[\\!\\[GitHub release\\].*$@#{replace}@' README.md`
   end
@@ -118,10 +118,10 @@ namespace :cim do
   task :update_changelog do
     puts '>>> Updating CHANGELOG.md'
     latest = `git describe --abbrev=0`.chomp.strip
-    log = `git log --pretty=format:'- [%h](https://github.com/offerista/PostmanRails/commit/%h) *%ad* __%s__ (%an)' --date=short '#{latest}'..HEAD`.chomp
+    log = `git log --pretty=format:'- [%h](https://github.com/offerista/RailsAdmin/commit/%h) *%ad* __%s__ (%an)' --date=short '#{latest}'..HEAD`.chomp
 
     changelog = File.open('.CHANGELOG.md', 'w')
-    changelog.write("# Changelog\n\n###{Postman::VERSION}\n\n#{log}\n\n")
+    changelog.write("# Changelog\n\n###{RailsAdmin::VERSION}\n\n#{log}\n\n")
     File.open('CHANGELOG.md', 'r') do |file|
       begin
         file.readline # skip first two lines
@@ -148,6 +148,6 @@ namespace :cim do
     puts '>>> Tagging'
     STDOUT.print('>>> Please enter a tag message: ')
     input = STDIN.gets.strip.tr("'", "\'")
-    `git tag -a '#{Postman::VERSION}' -m '#{input}'`
+    `git tag -a '#{RailsAdmin::VERSION}' -m '#{input}'`
   end
 end
