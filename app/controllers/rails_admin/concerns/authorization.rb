@@ -12,7 +12,7 @@ module RailsAdmin
 
       # @return [String] identifier of the current user
       def current_user
-        return session['rails_admin.user']
+        return @current_user ||= session['rails_admin.user']
       end
 
       def authorized?
