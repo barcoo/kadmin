@@ -1,0 +1,7 @@
+rails_admin:
+  error: Fehler
+  auth:
+    error: Ein Fehler ist aufgetreten; bitte nochmal versuchen
+    unauthorized: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
+    please_login: Bitte melden Sie sich an
+    login_required: Ein gültiges E-Mail von Google ist erforderlich

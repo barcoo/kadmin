@@ -1,0 +1,7 @@
+rails_admin:
+  error: Error
+  auth:
+    error: An error occurred; please try again
+    unauthorized: You are not authorized to access this resource; if you think you should, contact the Apps & Services team
+    please_login: Please authenticate yourself
+    login_required: A valid Google enabled email is necessary to login

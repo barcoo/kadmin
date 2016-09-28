@@ -1,6 +1,7 @@
 require 'rails_admin/configuration'
 require 'rails_admin/error'
 require 'rails_admin/engine'
+require 'rails_admin/auth'
 
 module RailsAdmin
   class << self

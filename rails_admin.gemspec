@@ -22,7 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '>= 3.2'
   s.add_dependency 'jquery-rails', '~> 4.1.1'
   s.add_dependency 'select2-rails', '~> 4.0.3'
-
-  # For dummy app to use OmniAuth
-  s.add_development_dependency 'omniauth-identity', '~> 1.1.1'
+  s.add_dependency 'omniauth-google-oauth2', '~> 0.3.1'
 end

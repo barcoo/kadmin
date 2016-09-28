@@ -1,5 +1,5 @@
 module RailsAdmin
-  module Omniauth
+  module Auth
     class User
       attr_accessor :email
 
@@ -7,8 +7,8 @@ module RailsAdmin
         @email = email
       end
 
-      def to_h
-        return { email: @email }
+      def authorized?(_request)
+        return true
       end
     end
   end
