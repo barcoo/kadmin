@@ -1,5 +1,5 @@
 module RailsAdmin
-  class AuthController < ApplicationController
+  class AuthController < RailsAdmin::ApplicationController
     SESSION_KEY = 'rails_admin.user'.freeze
 
     # Don't try to authenticate user on the authentication controller...

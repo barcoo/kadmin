@@ -1,5 +1,5 @@
 module RailsAdmin
-  class DashController < ApplicationController
+  class DashController < RailsAdmin::ApplicationController
     # @!group Endpoints
 
     # GET /
