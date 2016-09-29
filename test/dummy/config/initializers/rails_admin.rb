@@ -26,3 +26,5 @@ RailsAdmin::Auth.config.user_class = Dummy::User
 RailsAdmin::Auth.config.user_store_class = Dummy::UserStore
 
 RailsAdmin::Auth.enable!
+
+RailsAdmin.config.navbar_links << RailsAdmin::Configuration::Link.new('Test', '/admin/test')

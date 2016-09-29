@@ -1,7 +1,5 @@
 RailsAdmin::Engine.routes.draw do
-  get '/', to: -> (_env) do
-    [200, { 'Content-Type' => 'text/plain' }, ['Test']]
-  end
+  get '/', controller: :dash, action: :index
 
   scope '/auth', controller: :auth, as: 'auth', defaults: { format: 'html' } do
     get '/login', action: :login

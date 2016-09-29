@@ -2,6 +2,7 @@
 require 'omniauth-google-oauth2'
 
 # Core files
+require 'rails_admin/auth/unauthorized_error'
 require 'rails_admin/auth/configuration'
 require 'rails_admin/auth/user'
 require 'rails_admin/auth/user_store'

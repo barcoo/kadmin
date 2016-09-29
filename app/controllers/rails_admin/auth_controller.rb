@@ -1,6 +1,6 @@
 module RailsAdmin
-  class AuthController < ActionController::Base
-    layout 'rails_admin/application'
+  class AuthController < ApplicationController
+    SESSION_KEY = 'rails_admin.user'.freeze
 
     # @!group Endpoints
     # GET /auth/login
@@ -11,7 +11,7 @@ module RailsAdmin
     # GET /auth/logout
     # DELETE /auth/logout
     def logout
-      session.delete('rails_admin.user')
+      session.delete(SESSION_KEY)
       redirect_to action: :login
     end
 
@@ -29,7 +29,7 @@ module RailsAdmin
 
       email = auth_hash.dig('info', 'email')
       if RailsAdmin::Auth.users.exists?(email)
-        session['rails_admin.user'] = email
+        session[SESSION_KEY] = email
         redirect_url = request.env['omniauth.origin']
         redirect_url = RailsAdmin.config.mount_path unless valid_redirect_url?(redirect_url)
       else

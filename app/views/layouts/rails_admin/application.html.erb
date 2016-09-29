@@ -19,7 +19,7 @@
     <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;">
       <div class="container-fluid">
         <div class="navbar-header">
-          <%= link_to('Admin', RailsAdmin.config.mount_path, { class: 'navbar-brand' }) %>
+          <%= link_to('Admin Dashboard', RailsAdmin.config.mount_path, { class: 'navbar-brand' }) %>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -27,9 +27,11 @@
           </button>
         </div>
         <div class="collapse navbar-collapse">
-          <% if content_for?(:navigation) %>
+          <% unless @layout_navbar_links.blank? %>
             <ul class="nav navbar-nav navbar-left">
-              <%= yield(:navigation) %>
+              <% @layout_navbar_links.each do |link| %>
+                <%= nav_link_to(link.title, link.path) %>
+              <% end %>
             </ul>
           <% end %>
           <ul class="nav navbar-nav navbar-right">
