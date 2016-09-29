@@ -7,9 +7,13 @@ module RailsAdmin
     helper RailsAdmin::NavigationHelper
     helper RailsAdmin::PaginationHelper
 
-    include RailsAdmin::Concerns::CurrentUser
+    include RailsAdmin::Concerns::AuthorizedUser
 
-    rescue_from RailsAdmin::Auth::UnauthorizedError, with: :handle_error
+    before_action :authorize
+    before_action :set_navbar_links
+
+    # @!group Error Handling
+
     rescue_from StandardError, with: :handle_error unless defined?(BetterErrors)
     def handle_error(error)
       locals = {
@@ -18,5 +22,15 @@ module RailsAdmin
       }
       render 'rails_admin/error', status: :internal_server_error, locals: locals
     end
+
+    # @!endgroup
+
+    # @!group Helpers
+
+    # Overload in the sub-controllers to set up the links in the layout
+    def set_navbar_links
+    end
+
+    # @!endgroup
   end
 end

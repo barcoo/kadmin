@@ -1,11 +1,16 @@
 module RailsAdmin
   class DashController < ApplicationController
-    helper ActionView::Helpers::OutputSafetyHelper
-
     # @!group Endpoints
 
     # GET /
     def index
+    end
+
+    # @!endgroup
+
+    # @!group Helpers
+
+    def set_navbar_links
       @layout_navbar_links = RailsAdmin.config.navbar_links
     end
 

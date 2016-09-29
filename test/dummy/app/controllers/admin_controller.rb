@@ -1,14 +1,4 @@
-class AdminController < ApplicationController
-  include RailsAdmin::Concerns::Authorization
-
-  before_action :authorized?
-
+class AdminController < RailsAdmin::ApplicationController
   def index
-    render plain: 'You are authorized'
-  end
-
-  def authorize
-    username = current_user.split('@').first
-    return username == 'admin'.freeze
   end
 end

@@ -2,9 +2,10 @@ de:
   rails_admin:
     auth:
       error: Ein Fehler ist aufgetreten; bitte nochmal versuchen
-      unauthorized: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
-      please_login: Bitte melden Sie sich an
       login_required: Ein gültiges E-Mail von Google ist erforderlich
+      please_login: Bitte melden Sie sich an
+      unauthorized: Unberechtigte Zugriff
+      unauthorized_message: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
     dash_message: Schaue Dir mal die Bereiche in der Navigationsleiste oben. Wenn es irgenwelche Probleme gibt, oder es fehlt Dir Zugriffsrechte, bitte das Apps & Services Team kontaktieren.
     error: Fehler
     welcome: Willkommen zurück, %{user}!

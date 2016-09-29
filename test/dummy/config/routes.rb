@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   get '/', to: -> (_env) do
     [200, { 'Content-Type' => 'text/plain' }, ['Sup my guy']]
   end
+
+  get '/admin', controller: :admin, action: :index
+  get '/authorized', controller: :authorized, action: :index
 end

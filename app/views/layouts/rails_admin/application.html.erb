@@ -35,7 +35,7 @@
             </ul>
           <% end %>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to(t('rails_admin.authorization.logout'), auth_logout_path) %></li>
+            <li><%= link_to(t('rails_admin.authorization.logout'), RailsAdmin::Engine.routes.url_helpers.auth_logout_path) %></li>
           </ul>
         </div>
     </nav>

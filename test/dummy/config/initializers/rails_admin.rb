@@ -20,7 +20,7 @@ module Dummy
 end
 
 RailsAdmin.config.logger = Rails.logger
-RailsAdmin.config.mount_path = '/admin'
+RailsAdmin.config.mount_path = '/rails_admin'
 
 RailsAdmin::Auth.config.user_class = Dummy::User
 RailsAdmin::Auth.config.user_store_class = Dummy::UserStore

@@ -2,6 +2,9 @@ module RailsAdmin
   class AuthController < ApplicationController
     SESSION_KEY = 'rails_admin.user'.freeze
 
+    # Don't try to authenticate user on the authentication controller...
+    skip_before_action :authorize
+
     # @!group Endpoints
     # GET /auth/login
     def login
@@ -33,8 +36,8 @@ module RailsAdmin
         redirect_url = request.env['omniauth.origin']
         redirect_url = RailsAdmin.config.mount_path unless valid_redirect_url?(redirect_url)
       else
-        flash.alert = I18n.t('rails_admin.auth.unauthorized')
-        redirect_url action: :login
+        flash.alert = I18n.t('rails_admin.auth.unauthorized_message')
+        redirect_url = url_for(action: :login)
       end
 
       redirect_to redirect_url
@@ -44,6 +47,13 @@ module RailsAdmin
     def failure
       flash.alert = params[:message]
       redirect_to action: :login
+    end
+
+    def unauthorized
+      render 'rails_admin/error', format: ['html'], locals: {
+        title: I18n.t('rails_admin.auth.unauthorized'),
+        message: I18n.t('rails_admin.auth.unauthorized_message')
+      }
     end
 
     # @!endgroup
@@ -63,13 +73,23 @@ module RailsAdmin
     protected :valid_redirect_url?
 
     def omniauth_provider_link
-      base = "#{RailsAdmin.config.mount_path}/auth/#{RailsAdmin::Auth.omniauth_provider}"
+      auth_prefix = "#{RailsAdmin.config.mount_path}/auth"
+      provider_link = "#{auth_prefix}/#{RailsAdmin::Auth.omniauth_provider}"
       origin = params[:origin]
 
-      origin = request.referer if origin.blank?
-      origin = RailsAdmin.config.mount_path if origin.blank?
+      # if the referer is a auth route, then we risk ending in an endless loop
+      if origin.blank?
+        referer = request.referer
+        if referer.blank?
+          origin = RailsAdmin.config.mount_path
+        else
+          uri = URI(referer)
+          origin = referer unless uri&.path&.start_with?(auth_prefix)
+        end
+      end
 
-      return "#{base}?origin=#{CGI.escape(origin)}"
+      provider_link = "#{provider_link}?origin=#{CGI.escape(origin)}" unless origin.blank?
+      return provider_link
     end
     helper_method :omniauth_provider_link
 
