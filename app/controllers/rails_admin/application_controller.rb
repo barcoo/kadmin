@@ -30,6 +30,7 @@ module RailsAdmin
 
     # Overload in the sub-controllers to set up the links in the layout
     def set_navbar_links
+      @layout_navbar_links = []
     end
     protected :set_navbar_links
 

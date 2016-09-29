@@ -30,7 +30,7 @@
           <% unless @layout_navbar_links.blank? %>
             <ul class="nav navbar-nav navbar-left">
               <% @layout_navbar_links.each do |link| %>
-                <%= nav_link_to(link.title, link.path) %>
+                <%= nav_link_to(link[:title], link[:path]) %>
               <% end %>
             </ul>
           <% end %>
