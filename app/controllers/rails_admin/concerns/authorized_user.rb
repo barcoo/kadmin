@@ -7,6 +7,8 @@ module RailsAdmin
         if respond_to?(:helper_method)
           helper_method :current_user
           helper_method :authorized_user
+          helper_method :logged_in?
+          helper_method :authorized?
         end
       end
 
