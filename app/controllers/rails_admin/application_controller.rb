@@ -11,6 +11,7 @@ module RailsAdmin
 
     before_action :authorize
     before_action :set_navbar_links
+    before_action :set_default_format
 
     # @!group Error Handling
 
@@ -30,6 +31,12 @@ module RailsAdmin
     # Overload in the sub-controllers to set up the links in the layout
     def set_navbar_links
     end
+    protected :set_navbar_links
+
+    def set_default_format
+      params[:format] = 'html' if params[:format].blank?
+    end
+    protected :set_default_format
 
     # @!endgroup
   end
