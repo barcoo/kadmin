@@ -8,4 +8,7 @@ de:
       unauthorized_message: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
     dash_message: Schaue Dir mal die Bereiche in der Navigationsleiste oben. Wenn es irgenwelche Probleme gibt, oder es fehlt Dir Zugriffsrechte, bitte das Apps & Services Team kontaktieren.
     error: Fehler
+    errors:
+      not_found: Objekt nicht gefunden
+      params_missing: Fehlenden erforderlichen Parameter
     welcome: Willkommen zurück, %{user}!

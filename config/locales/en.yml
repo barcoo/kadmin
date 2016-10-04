@@ -8,4 +8,7 @@ en:
       unauthorized_message: You are not authorized to access this resource; if you think you should be, contact the Apps & Services team
     dash_message: See the top navigation bar for the different admin sections. If you are missing authorizations, or if there is any issue at all, contact the Apps & Services team!
     error: Error
+    errors:
+      not_found: Requested object not found
+      params_missing: Missing required parameters
     welcome: Welcome %{user}!

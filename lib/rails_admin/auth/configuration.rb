@@ -24,6 +24,7 @@ module RailsAdmin
         return @enabled
       end
 
+      # Enables authentication and adds OmniAuth middlewares
       def enable!
         unless @enabled
           append_omniauth_middleware
@@ -31,6 +32,7 @@ module RailsAdmin
         end
       end
 
+      # Disables authentication and removes OmniAuth middlewares
       def disable!
         if @enabled
           delete_omniauth_middleware

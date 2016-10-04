@@ -15,13 +15,27 @@ module RailsAdmin
 
     # @!group Error Handling
 
-    rescue_from StandardError, with: :handle_error unless defined?(BetterErrors)
-    def handle_error(error)
-      locals = {
+    unless defined?(BetterErrors)
+      rescue_from StandardError, with: :handle_error
+      rescue_from ActiveRecord::RecordNotFound, with: :not_found
+      rescue_from ActionController::ParameterMissing, with: :params_missing
+    end
+
+    def params_missing(error)
+      handle_error(error, title: I18n.t('rails_admin.errors.params_missing'), status: :bad_request)
+    end
+
+    def not_found(error)
+      handle_error(error, title: I18n.t('rails_admin.errors.not_found'), status: :not_found)
+    end
+
+    def handle_error(error, options = {})
+      options = {
         title: error.try(:title) || error.class.name,
-        message: error.message
-      }
-      render 'rails_admin/error', status: :internal_server_error, locals: locals
+        message: error.message,
+        status: :internal_server_error
+      }.merge(options)
+      render 'rails_admin/error', status: options[:status], locals: options
     end
 
     # @!endgroup
