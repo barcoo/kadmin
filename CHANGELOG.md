@@ -1,5 +1,10 @@
 # Changelog
 
+##0.1.2
+
+- [66e9965](https://github.com/offerista/RailsAdmin/commit/66e9965) *2016-10-04* __corrected constant name__ (Nicolas Pepin-Perreault)
+- [480ebd8](https://github.com/offerista/RailsAdmin/commit/480ebd8) *2016-09-29* __updated changelog__ (Nicolas Pepin-Perreault)
+
 ##0.1.1
 - [4b4afbd](https://github.com/offerista/RailsAdmin/commit/4b4afbd) *2016-09-29* __Updated README.md and CHANGELOG.md on new release__ (Nicolas Pepin-Perreault)
 - [87c97fd](https://github.com/offerista/RailsAdmin/commit/87c97fd) *2016-09-29* __use hashes for links__ (Nicolas Pepin-Perreault)
