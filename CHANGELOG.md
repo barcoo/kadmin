@@ -1,5 +1,11 @@
 # Changelog
 
+##0.1.3
+
+- [ff220ee](https://github.com/offerista/RailsAdmin/commit/ff220ee) *2016-10-04* __updated auth mechanism, updated error handling__ (Nicolas Pepin-Perreault)
+- [3921f6a](https://github.com/offerista/RailsAdmin/commit/3921f6a) *2016-10-04* __moved enabling auth to configuration__ (Nicolas Pepin-Perreault)
+- [c572cbb](https://github.com/offerista/RailsAdmin/commit/c572cbb) *2016-10-04* __added enabled? flag__ (Nicolas Pepin-Perreault)
+
 ##0.1.2
 
 - [66e9965](https://github.com/offerista/RailsAdmin/commit/66e9965) *2016-10-04* __corrected constant name__ (Nicolas Pepin-Perreault)
