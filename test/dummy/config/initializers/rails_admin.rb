@@ -25,6 +25,6 @@ RailsAdmin.config.mount_path = '/rails_admin'
 RailsAdmin::Auth.config.user_class = Dummy::User
 RailsAdmin::Auth.config.user_store_class = Dummy::UserStore
 
-RailsAdmin::Auth.enable!
+RailsAdmin::Auth.config.enable!
 
 RailsAdmin.config.navbar_links << { title: 'Test', path: '/admin/test' }

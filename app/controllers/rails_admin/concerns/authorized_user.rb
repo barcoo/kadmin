@@ -20,12 +20,14 @@ module RailsAdmin
       # @example
       #   before_action :authorize, except: [:index] # exclude index from authorization
       def authorize
-        if logged_in?
-          unless authorized?
-            redirect_to RailsAdmin::Engine.routes.url_helpers.auth_unauthorized_path
+        if RailsAdmin::Auth.enabled?
+          if logged_in?
+            unless authorized?
+              redirect_to RailsAdmin::Engine.routes.url_helpers.auth_unauthorized_path
+            end
+          else
+            redirect_to RailsAdmin::Engine.routes.url_helpers.auth_login_path(origin: request.path)
           end
-        else
-          redirect_to RailsAdmin::Engine.routes.url_helpers.auth_login_path(origin: request.path)
         end
       end
 

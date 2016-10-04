@@ -16,6 +16,21 @@ module RailsAdmin
         @oauth_credentials = nil
         @user_class = RailsAdmin::Auth::User
         @user_store_class = RailsAdmin::Auth::UserStore
+        @enabled = false
+      end
+
+      # @return [Boolean] true if enabled, false otherwise
+      def enabled?
+        return @enabled
+      end
+
+      def enable!
+        RailsAdmin::Auth.enable!
+        @enabled = true
+      end
+
+      def disable!
+        @enabled = false
       end
     end
   end
