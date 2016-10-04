@@ -25,13 +25,40 @@ module RailsAdmin
       end
 
       def enable!
-        RailsAdmin::Auth.enable!
-        @enabled = true
+        unless @enabled
+          append_omniauth_middleware
+          @enabled = true
+        end
       end
 
       def disable!
-        @enabled = false
+        if @enabled
+          delete_omniauth_middleware
+          @enabled = false
+        end
       end
+
+      def append_omniauth_middleware
+        OmniAuth.config.logger = RailsAdmin.logger
+        OmniAuth.config.path_prefix = File.join(RailsAdmin.config.mount_path, OmniAuth.config.path_prefix)
+
+        provider_args = case RailsAdmin::Auth.omniauth_provider
+        when :google_oauth2
+          [:google_oauth2, @oauth_credentials.id, @oauth_credentials.secret]
+        else
+          [:developer, fields: [:email]]
+        end
+
+        Rails.application.config.middleware.use OmniAuth::Builder do
+          provider(*provider_args)
+        end
+      end
+      private :append_omniauth_middleware
+
+      def delete_omniauth_middleware
+        Rails.application.config.middleware.delete OmniAuth::Builder
+      end
+      private :delete_omniauth_middleware
     end
   end
 end
