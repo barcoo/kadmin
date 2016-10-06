@@ -15,15 +15,16 @@ module Kadmin
   # To use nested forms, you need to add a reader and a writer. For example,
   # for a form called Person, with potentially X nested Person forms as children,
   # you would have:
-  # class Person
-  #   def children
-  #     [@child1, @child2]
-  #   end
+  # @example
+  #   class PersonForm < Form
+  #     def children
+  #       [@child1, @child2]
+  #     end
   #
-  #   def children_attributes=(attributes)
-  #     ...instantiate subforms and pass attributes...
+  #     def children_attributes=(attributes)
+  #       ...instantiate subforms and pass attributes...
+  #     end
   #   end
-  # end
   class Form
     # Provides common validators and methods to add custom ones
     include ActiveModel::Validations
@@ -56,6 +57,61 @@ module Kadmin
       form_input.each do |attr, value|
         setter = "#{attr}="
         send(setter, value) if respond_to?(setter)
+      end
+    end
+
+    # @!endgroup
+
+    # @!group Validation
+
+    validates :model_valid?
+
+    # Validates the models and merge errors back into our own errors if they
+    # are invalid.
+    # Overload if you need to validate associations.
+    # @example
+    #   class PersonForm < Form
+    #     def model_valid?
+    #       super
+    #       if @model&.child&.changed? && !@model.child.valid?
+    #         @errors.add(:base, :invalid, message: 'child model is invalid')
+    #       end
+    #     end
+    #   end
+    def model_valid?
+      unless @model.valid?
+        @model.errors.each do |attribute, error|
+          @errors.add(attribute, error)
+        end
+      end
+    end
+
+    # @!endgroup
+
+    # @!group Helper methods
+
+    class << self
+      # Delegates the list of attributes to the model, both readers and writers.
+      # If the attribute value passed is a hash and not a symbol, assumes it is
+      # a hash of one key, whose value is an array contained :reader, :writer, or both.
+      # @example
+      #   delegate_attributes :first_name, { last_name: [:reader] }
+      # @param [Symbol, Hash<Symbol, Array<Symbol>>] attribute Attribute to delegate to the model
+      def delegate_attributes(*attributes)
+        delegates = attributes.reduce([]) do |acc, attribute|
+          case attribute
+          when Hash
+            key, value = attribute.first
+            acc << key if value.include?(:reader)
+            acc << "#{key}=" if value.include?(:writer)
+          when Symbol, String
+            acc << attribute
+          else
+            raise(ArgumentError, 'Attribute must be one of: Hash, Symbol, String')
+          end
+
+          delegate(*delegates, to: model)
+        end
       end
     end
 

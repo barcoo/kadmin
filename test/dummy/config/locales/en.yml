@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      person:
+        sex:
+          m: "Male"
+          f: "Female"
+          o: "Other"
