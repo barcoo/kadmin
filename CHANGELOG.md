@@ -1,5 +1,16 @@
 # Changelog
 
+##0.1.4
+
+- [d24012c](https://github.com/barcoo/kadmin/commit/d24012c) *2016-10-06* __fixed dependencies__ (Nicolas Pepin-Perreault)
+- [5e6f94e](https://github.com/barcoo/kadmin/commit/5e6f94e) *2016-10-06* __update gemspec to fix warnings__ (Nicolas Pepin-Perreault)
+- [fca468f](https://github.com/barcoo/kadmin/commit/fca468f) *2016-10-06* __renamed to kadmin__ (Nicolas Pepin-Perreault)
+- [1a9d0cf](https://github.com/barcoo/kadmin/commit/1a9d0cf) *2016-10-06* __ignore gem files__ (Nicolas Pepin-Perreault)
+- [07ce3b4](https://github.com/barcoo/kadmin/commit/07ce3b4) *2016-10-06* __wip__ (Nicolas Pepin-Perreault)
+- [2950ecc](https://github.com/barcoo/kadmin/commit/2950ecc) *2016-10-06* __update rake release tasks__ (Nicolas Pepin-Perreault)
+- [6a4fce2](https://github.com/barcoo/kadmin/commit/6a4fce2) *2016-10-06* __added doc, minor documentation fix__ (Nicolas Pepin-Perreault)
+- [8ba5f01](https://github.com/barcoo/kadmin/commit/8ba5f01) *2016-10-06* __added basic form object: wip__ (Nicolas Pepin-Perreault)
+
 ##0.1.3
 
 - [ff220ee](https://github.com/barcoo/kadmin/commit/ff220ee) *2016-10-04* __updated auth mechanism, updated error handling__ (Nicolas Pepin-Perreault)
