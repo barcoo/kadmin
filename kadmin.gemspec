@@ -19,8 +19,8 @@ Gem::Specification.new do |s|
 
   # Front-end stuff
   s.add_dependency 'bootstrap-sass', '~> 3.3'
-  s.add_dependency 'sass-rails', '~> 3.2'
+  s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'jquery-rails', '~> 4.1'
   s.add_dependency 'select2-rails', '~> 4.0'
-  s.add_dependency 'omniauth-google-oauth2', '~> 0.3'
+  s.add_dependency 'omniauth-google-oauth2', '~> 0.4'
 end
