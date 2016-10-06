@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     [200, { 'Content-Type' => 'text/plain' }, ['Howdy']]
   end
 
-  scope :admin, as: :admin do
+  namespace :admin do
     resources :persons
     resources :groups
   end

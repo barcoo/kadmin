@@ -64,7 +64,7 @@ module Kadmin
 
     # @!group Validation
 
-    validates :model_valid?
+    validate :model_valid?
 
     # Validates the models and merge errors back into our own errors if they
     # are invalid.

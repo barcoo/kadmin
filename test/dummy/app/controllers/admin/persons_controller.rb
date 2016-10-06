@@ -12,7 +12,6 @@ module Admin
       @persons = @finder.filter(name: :name, column: [:first_name, :last_name], value: params[:filter_name])
         .paginate(size: page_size, offset: params.fetch(:page_offset, 0))
         .find
-        .decorate
     end
 
     # GET /admin/persons/:id
@@ -75,7 +74,7 @@ module Admin
       id = params[:id].to_i
       return Person.includes(:groups, :owned_groups).find(id)
     end
-    private :load_job
+    private :load_person
 
     def person_form
       return Forms::PersonForm.new(@person)

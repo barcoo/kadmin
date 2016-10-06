@@ -2,6 +2,9 @@ require 'kadmin/configuration'
 require 'kadmin/error'
 require 'kadmin/engine'
 require 'kadmin/auth'
+require 'kadmin/form'
+require 'kadmin/finder'
+require 'kadmin/pager'
 
 module Kadmin
   class << self
