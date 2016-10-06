@@ -1,3 +1,5 @@
+require 'english'
+
 begin
   require 'bundler/setup'
 rescue LoadError
@@ -109,18 +111,18 @@ namespace :cim do
   task :update_changelog do
     puts '>>> Updating CHANGELOG.md'
     latest = `git describe --abbrev=0`.chomp.strip
-    log = `git log --pretty=format:'- [%h](https://github.com/offerista/RailsAdmin/commit/%h) *%ad* __%s__ (%an)' --date=short '#{latest}'..HEAD`.chomp
+    range = $CHILD_STATUS.success? && !latest.empty? ? "'#{latest}'..HEAD" : ''
+
+    log = `git log --pretty=format:'- [%h](https://github.com/offerista/RailsAdmin/commit/%h) *%ad* __%s__ (%an)' --date=short #{range}`.chomp
 
     changelog = File.open('.CHANGELOG.md', 'w')
     changelog.write("# Changelog\n\n###{RailsAdmin::VERSION}\n\n#{log}\n\n")
     File.open('CHANGELOG.md', 'r') do |file|
-      begin
-        file.readline # skip first two lines
-        file.readline
-        while buffer = file.read(2048)
-          changelog.write(buffer)
-        end
-      rescue => error
+      file.readline # skip first two lines
+      file.readline
+
+      while buffer = file.read(2048) # rubocop: disable Lint/AssignmentInCondition
+        changelog.write(buffer)
       end
     end
 
