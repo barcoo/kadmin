@@ -1,7 +1,7 @@
 module RailsAdmin
   module PaginationHelper
-    # @param [RailsAdmin::Finder::Pager] Prefilled pager
-    # @param [Array<Integer>] Optional array of page sizes
+    # @param [RailsAdmin::Finder::Pager] pager context to paginate
+    # @param [Array<Integer>] sizes array of page sizes
     def paginate(pager, sizes)
       return content_tag(:div, pagination_page_list(pager) + pagination_size_list(pager, sizes), class: 'btn-toolbar')
     end

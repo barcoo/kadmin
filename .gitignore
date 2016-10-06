@@ -11,7 +11,6 @@ Gemfile.lock
 test/reports
 test/reports/**/*
 coverage
-doc
 .yardoc
 .byebug_history
 *.md-u
