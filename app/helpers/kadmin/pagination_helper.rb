@@ -1,6 +1,6 @@
 module Kadmin
   module PaginationHelper
-    # @param [Kadmin::Finder::Pager] pager context to paginate
+    # @param [Kadmin::Pager] pager context to paginate
     # @param [Array<Integer>] sizes array of page sizes
     def paginate(pager, sizes)
       return content_tag(:div, pagination_page_list(pager) + pagination_size_list(pager, sizes), class: 'btn-toolbar')
