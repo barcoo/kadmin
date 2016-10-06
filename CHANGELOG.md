@@ -1,5 +1,9 @@
 # Changelog
 
+##0.1.6
+
+- [bb76567](https://github.com/barcoo/kadmin/commit/bb76567) *2016-10-06* __rename assets folder to kadmin__ (Nicolas Pepin-Perreault)
+
 ##0.1.5
 
 - [6320dd4](https://github.com/barcoo/kadmin/commit/6320dd4) *2016-10-06* __updated documentation__ (Nicolas Pepin-Perreault)
