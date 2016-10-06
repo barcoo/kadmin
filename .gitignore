@@ -14,3 +14,4 @@ coverage
 .yardoc
 .byebug_history
 *.md-u
+*.gem
