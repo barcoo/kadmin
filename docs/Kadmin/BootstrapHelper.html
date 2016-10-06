@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Module: RailsAdmin::BootstrapHelper
+  Module: Kadmin::BootstrapHelper
   
     &mdash; Documentation by YARD 0.9.5
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "RailsAdmin::BootstrapHelper";
+  pathId = "Kadmin::BootstrapHelper";
   relpath = '../';
 </script>
 
@@ -37,7 +37,7 @@
         <div id="menu">
   
     <a href="../_index.html">Index (B)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../RailsAdmin.html" title="RailsAdmin (module)">RailsAdmin</a></span></span>
+    <span class='title'><span class='object_link'><a href="../Kadmin.html" title="Kadmin (module)">Kadmin</a></span></span>
      &raquo; 
     <span class="title">BootstrapHelper</span>
   
@@ -61,7 +61,7 @@
 
       <iframe id="search_frame" src="../class_list.html"></iframe>
 
-      <div id="content"><h1>Module: RailsAdmin::BootstrapHelper
+      <div id="content"><h1>Module: Kadmin::BootstrapHelper
   
   
   
@@ -80,7 +80,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/helpers/rails_admin/bootstrap_helper.rb</dd>
+    <dd>app/helpers/kadmin/bootstrap_helper.rb</dd>
   </dl>
   
 </div>
@@ -331,7 +331,7 @@ alert-&lt;TYPE&gt; defined in your CSS</p>
 45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/rails_admin/bootstrap_helper.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/bootstrap_helper.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alert'>alert</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>dismissible:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_css_classes'>css_classes</span> <span class='op'>=</span> <span class='words_beg'>%W(</span><span class='tstring_content'>alert</span><span class='words_sep'> </span><span class='tstring_content'>alert-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='words_sep'>)</span>
@@ -418,7 +418,7 @@ alert-&lt;TYPE&gt; defined in your CSS</p>
 8</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/rails_admin/bootstrap_helper.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/bootstrap_helper.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_glyphicon'>glyphicon</span><span class='lparen'>(</span><span class='id identifier rubyid_icon'>icon</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_content_tag'>content_tag</span><span class='lparen'>(</span><span class='symbol'>:span</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>class:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>glyphicon glyphicon-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_icon'>icon</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>aria-hidden</span><span class='label_end'>&#39;:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -509,7 +509,7 @@ alert-&lt;TYPE&gt; defined in your CSS</p>
 15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/rails_admin/bootstrap_helper.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/bootstrap_helper.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_glyphicon_if_else'>glyphicon_if_else</span><span class='lparen'>(</span><span class='id identifier rubyid_condition'>condition</span><span class='comma'>,</span> <span class='id identifier rubyid_icon_true'>icon_true</span><span class='comma'>,</span> <span class='id identifier rubyid_icon_false'>icon_false</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_condition'>condition</span> <span class='op'>?</span> <span class='id identifier rubyid_glyphicon'>glyphicon</span><span class='lparen'>(</span><span class='id identifier rubyid_icon_true'>icon_true</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_glyphicon'>glyphicon</span><span class='lparen'>(</span><span class='id identifier rubyid_icon_false'>icon_false</span><span class='rparen'>)</span>
@@ -584,7 +584,7 @@ alert-&lt;TYPE&gt; defined in your CSS</p>
 51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/helpers/rails_admin/bootstrap_helper.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/bootstrap_helper.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_thumbnail_link'>thumbnail_link</span><span class='lparen'>(</span><span class='id identifier rubyid_url_options'>url_options</span><span class='comma'>,</span> <span class='id identifier rubyid_max_height'>max_height</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_link_to'>link_to</span><span class='lparen'>(</span><span class='id identifier rubyid_image_tag'>image_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_url_options'>url_options</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_url_options'>url_options</span><span class='comma'>,</span> <span class='label'>class:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>thumbnail</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>style:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>max-height: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max_height'>max_height</span><span class='embexpr_end'>}</span><span class='tstring_content'>px</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>target:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>new</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -599,7 +599,7 @@ alert-&lt;TYPE&gt; defined in your CSS</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  6 11:45:55 2016 by
+  Generated on Thu Oct  6 17:43:52 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

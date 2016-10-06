@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Module: RailsAdmin::Auth
+  Module: Kadmin::Auth
   
     &mdash; Documentation by YARD 0.9.5
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "RailsAdmin::Auth";
+  pathId = "Kadmin::Auth";
   relpath = '../';
 </script>
 
@@ -37,7 +37,7 @@
         <div id="menu">
   
     <a href="../_index.html">Index (A)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../RailsAdmin.html" title="RailsAdmin (module)">RailsAdmin</a></span></span>
+    <span class='title'><span class='object_link'><a href="../Kadmin.html" title="Kadmin (module)">Kadmin</a></span></span>
      &raquo; 
     <span class="title">Auth</span>
   
@@ -61,7 +61,7 @@
 
       <iframe id="search_frame" src="../class_list.html"></iframe>
 
-      <div id="content"><h1>Module: RailsAdmin::Auth
+      <div id="content"><h1>Module: Kadmin::Auth
   
   
   
@@ -80,8 +80,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/rails_admin/auth.rb<span class="defines">,<br />
-  lib/rails_admin/auth/user.rb,<br /> lib/rails_admin/auth/user_store.rb,<br /> lib/rails_admin/auth/configuration.rb,<br /> lib/rails_admin/auth/unauthorized_error.rb</span>
+    <dd>lib/kadmin/auth.rb<span class="defines">,<br />
+  lib/kadmin/auth/user.rb,<br /> lib/kadmin/auth/user_store.rb,<br /> lib/kadmin/auth/configuration.rb,<br /> lib/kadmin/auth/unauthorized_error.rb</span>
 </dd>
   </dl>
   
@@ -93,7 +93,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Auth/Configuration.html" title="RailsAdmin::Auth::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Auth/UnauthorizedError.html" title="RailsAdmin::Auth::UnauthorizedError (class)">UnauthorizedError</a></span>, <span class='object_link'><a href="Auth/User.html" title="RailsAdmin::Auth::User (class)">User</a></span>, <span class='object_link'><a href="Auth/UserStore.html" title="RailsAdmin::Auth::UserStore (class)">UserStore</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Auth/Configuration.html" title="Kadmin::Auth::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Auth/UnauthorizedError.html" title="Kadmin::Auth::UnauthorizedError (class)">UnauthorizedError</a></span>, <span class='object_link'><a href="Auth/User.html" title="Kadmin::Auth::User (class)">User</a></span>, <span class='object_link'><a href="Auth/UserStore.html" title="Kadmin::Auth::UserStore (class)">UserStore</a></span>
     
   
 </p>
@@ -229,10 +229,10 @@
 19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_admin/auth.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
-  <span class='kw'>return</span> <span class='ivar'>@config</span> <span class='op'>||=</span> <span class='const'>RailsAdmin</span><span class='op'>::</span><span class='const'>Auth</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>return</span> <span class='ivar'>@config</span> <span class='op'>||=</span> <span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Auth</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -262,7 +262,7 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="#config-class_method" title="RailsAdmin::Auth.config (method)">config</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="#config-class_method" title="Kadmin::Auth.config (method)">config</a></span></tt>)</span>
       
       
       
@@ -282,7 +282,7 @@
 24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_admin/auth.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -313,7 +313,7 @@
 28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_admin/auth.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_omniauth_provider'>omniauth_provider</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_oauth_credentials'>oauth_credentials</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span> <span class='op'>?</span> <span class='symbol'>:google_oauth2</span> <span class='op'>:</span> <span class='symbol'>:developer</span>
@@ -343,7 +343,7 @@
 15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_admin/auth.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_users'>users</span>
   <span class='ivar'>@users</span> <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_user_store_class'>user_store_class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -358,7 +358,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  6 11:45:55 2016 by
+  Generated on Thu Oct  6 17:43:52 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

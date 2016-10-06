@@ -96,7 +96,7 @@ module Kadmin
       # a hash of one key, whose value is an array contained :reader, :writer, or both.
       # @example
       #   delegate_attributes :first_name, { last_name: [:reader] }
-      # @param [Symbol, Hash<Symbol, Array<Symbol>>] attribute Attribute to delegate to the model
+      # @param [Array<Symbol, Hash<Symbol, Array<Symbol>>>] attributes list of attributes to delegate to the model
       def delegate_attributes(*attributes)
         delegates = attributes.reduce([]) do |acc, attribute|
           case attribute
