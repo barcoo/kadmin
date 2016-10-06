@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Admin</title>
+
+    <%= stylesheet_link_tag "kadmin/application", media: "all" %>
+    <%= javascript_include_tag "kadmin/application" %>
+    <%= csrf_meta_tags %>
+
+    <!-- Additional CSS -->
+    <%= yield :stylesheets %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to('Admin Dashboard', Kadmin.config.mount_path, { class: 'navbar-brand' }) %>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <% unless @layout_navbar_links.blank? %>
+            <ul class="nav navbar-nav navbar-left">
+              <% @layout_navbar_links.each do |link| %>
+                <%= nav_link_to(link[:title], link[:path]) %>
+              <% end %>
+            </ul>
+          <% end %>
+          <% if logged_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to(t('kadmin.authorization.logout'), Kadmin::Engine.routes.url_helpers.auth_logout_path) %></li>
+            </ul>
+          <% end %>
+        </div>
+    </nav>
+    <div class="container-fluid content">
+      <div class="row">
+        <% if content_for?(:sidebar) %>
+          <!-- main -->
+          <div class="col-sm-8 col-md-8 col-lg-9 main">
+            <%= render partial: 'kadmin/alerts' %>
+            <%= yield %>
+          </div>
+          <!-- sidebar -->
+          <div class="col-sm-4 col-md-4 col-lg-3 sidebar hidden-xs">
+            <%= yield(:sidebar) %>
+          </div>
+        <% else %>
+          <div class="col-sm-12 col-md-12 main">
+            <%= render partial: 'kadmin/alerts' %>
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Additional scripts -->
+    <%= yield :javascripts %>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 module Dummy
-  class User < RailsAdmin::Auth::User
+  class User < Kadmin::Auth::User
     def initialize(email, resources: [])
       super(email)
       @resources = resources
@@ -10,7 +10,7 @@ module Dummy
     end
   end
 
-  class UserStore < RailsAdmin::Auth::UserStore
+  class UserStore < Kadmin::Auth::UserStore
     def initialize
       super
 
@@ -19,12 +19,12 @@ module Dummy
   end
 end
 
-RailsAdmin.config.logger = Rails.logger
-RailsAdmin.config.mount_path = '/rails_admin'
+Kadmin.config.logger = Rails.logger
+Kadmin.config.mount_path = '/kadmin'
 
-RailsAdmin::Auth.config.user_class = Dummy::User
-RailsAdmin::Auth.config.user_store_class = Dummy::UserStore
+Kadmin::Auth.config.user_class = Dummy::User
+Kadmin::Auth.config.user_store_class = Dummy::UserStore
 
-RailsAdmin::Auth.config.enable!
+Kadmin::Auth.config.enable!
 
-RailsAdmin.config.navbar_links << { title: 'Test', path: '/admin/test' }
+Kadmin.config.navbar_links << { title: 'Test', path: '/admin/test' }

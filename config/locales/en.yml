@@ -1,5 +1,5 @@
 en:
-  rails_admin:
+  kadmin:
     auth:
       error: An error occurred; please try again
       login_required: A valid Google enabled email is necessary to login

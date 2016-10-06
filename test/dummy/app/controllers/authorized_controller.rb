@@ -1,5 +1,5 @@
 class AuthorizedController < ApplicationController
-  include RailsAdmin::Concerns::AuthorizedUser
+  include Kadmin::Concerns::AuthorizedUser
 
   before_action :authorize
 

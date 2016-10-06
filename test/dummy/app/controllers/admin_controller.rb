@@ -1,4 +1,4 @@
-class AdminController < RailsAdmin::ApplicationController
+class AdminController < Kadmin::ApplicationController
   def index
   end
 end

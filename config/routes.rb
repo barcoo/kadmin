@@ -1,4 +1,4 @@
-RailsAdmin::Engine.routes.draw do
+Kadmin::Engine.routes.draw do
   get '/', controller: :dash, action: :index
 
   scope '/auth', controller: :auth, as: 'auth', defaults: { format: 'html' } do

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => RailsAdmin.config.mount_path, as: :rails_admin
+  mount Kadmin::Engine => Kadmin.config.mount_path, as: :kadmin
 
   get '/', to: -> (_env) do
     [200, { 'Content-Type' => 'text/plain' }, ['Sup my guy']]

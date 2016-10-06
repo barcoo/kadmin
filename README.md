@@ -1,6 +1,6 @@
-# RailsAdmin
+# Kadmin
 
-[![GitHub release](https://img.shields.io/badge/release-0.1.3-blue.png)](https://github.com/offerista/RailsAdmin/releases/tag/0.1.3)
+[![GitHub release](https://img.shields.io/badge/release-0.1.3-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.1.3)
 
 Collection of utility, configuration, etc., for admin areas in different projects.
 
@@ -9,12 +9,12 @@ Collection of utility, configuration, etc., for admin areas in different project
 Add to your gemfile:
 
 ```ruby
-gem 'rails_admin', git: 'git@github.com:offerista/RailsAdmin.git'
+gem 'kadmin', git: 'git@github.com:barcoo/kadmin.git'
 ```
 
 ## Web
 
-If you wish to use the web front-end, make sure to ```require 'rails_admin'```
+If you wish to use the web front-end, make sure to ```require 'kadmin'```
 
 See the test application ```test/dummy``` for more info.
 

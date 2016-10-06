@@ -6,7 +6,7 @@ $VERBOSE = false
 require 'simplecov'
 require 'simplecov-cobertura'
 require 'simplecov-formatter-shield'
-SimpleCov::Formatter::ShieldFormatter.filename = 'rails_admin-shield.png'.freeze
+SimpleCov::Formatter::ShieldFormatter.filename = 'kadmin-shield.png'.freeze
 SimpleCov.formatters = [SimpleCov::Formatter::CoberturaFormatter, SimpleCov::Formatter::ShieldFormatter]
 SimpleCov.start
 
@@ -28,5 +28,5 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 # Setup Flexmock
 require 'flexmock/minitest'
 
-# Load RailsAdmin
-require 'rails_admin'
+# Load Kadmin
+require 'kadmin'

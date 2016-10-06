@@ -11,7 +11,7 @@ Kernel.silence_warnings do
   Bundler.require(*Rails.groups)
 end
 
-require 'rails_admin'
+require 'kadmin'
 
 module Dummy
   class Application < Rails::Application
