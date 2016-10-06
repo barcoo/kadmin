@@ -1,5 +1,11 @@
 # Changelog
 
+##0.1.5
+
+- [6320dd4](https://github.com/barcoo/kadmin/commit/6320dd4) *2016-10-06* __updated documentation__ (Nicolas Pepin-Perreault)
+- [7185076](https://github.com/barcoo/kadmin/commit/7185076) *2016-10-06* __added example forms__ (Nicolas Pepin-Perreault)
+- [96c6659](https://github.com/barcoo/kadmin/commit/96c6659) *2016-10-06* __added test models__ (Nicolas Pepin-Perreault)
+
 ##0.1.4
 
 - [d24012c](https://github.com/barcoo/kadmin/commit/d24012c) *2016-10-06* __fixed dependencies__ (Nicolas Pepin-Perreault)

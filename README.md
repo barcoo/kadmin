@@ -1,6 +1,6 @@
 # Kadmin
 
-[![GitHub release](https://img.shields.io/badge/release-0.1.4-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.1.4)
+[![GitHub release](https://img.shields.io/badge/release-0.1.5-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.1.5)
 
 Collection of utility, configuration, etc., for admin areas in different projects.
 
