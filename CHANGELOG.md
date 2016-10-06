@@ -1,5 +1,12 @@
 # Changelog
 
+##0.1.7
+
+- [ac75fc3](https://github.com/barcoo/kadmin/commit/ac75fc3) *2016-10-06* __remove old code__ (Nicolas Pepin-Perreault)
+- [7aecc83](https://github.com/barcoo/kadmin/commit/7aecc83) *2016-10-06* __fix routes and syntax errors in form__ (Nicolas Pepin-Perreault)
+- [6885b39](https://github.com/barcoo/kadmin/commit/6885b39) *2016-10-06* __added dummy routes__ (Nicolas Pepin-Perreault)
+- [46e7fa2](https://github.com/barcoo/kadmin/commit/46e7fa2) *2016-10-06* __added finder/pager__ (Nicolas Pepin-Perreault)
+
 ##0.1.6
 
 - [bb76567](https://github.com/barcoo/kadmin/commit/bb76567) *2016-10-06* __rename assets folder to kadmin__ (Nicolas Pepin-Perreault)
