@@ -36,7 +36,7 @@ module Kadmin
     # @return [ActiveModel::Model] underlying model to populate
     attr_reader :model
 
-    delegate :id, :persisted?, to: :model
+    delegate :id, :persisted?, :to_key, :to_query, :to_param, :type_for_attribute, to: :model
 
     def initialize(model)
       @errors = ActiveModel::Errors.new(self)
@@ -44,51 +44,22 @@ module Kadmin
       @form_input = {}
     end
 
-    # @!group Parsing/Deserialization
-
-    # Populates the model based on the form input. The input is typically obtained
-    # from the controller's params method, but can be any hash which conforms to
-    # whatever the form object is expecting.
-    # If some input was previously parsed, there is no "rollback" on the state
-    # of the model; it should be done prior to reparsing if it is necessary.
-    # @param [Hash<String, Object>] form_input a hash representing the raw form input
-    def assign_attributes(form_input)
-      @errors.clear
-      form_input.each do |attr, value|
-        setter = "#{attr}="
-        send(setter, value) if respond_to?(setter)
-      end
+    def to_model
+      return @model
     end
 
-    # @!endgroup
+    # @!group Attributes assignment/manipulation
 
-    # @!group Validation
+    # Allows parsing of multi parameter attributes, such as those returned by
+    # the form helpers date_select, datetime_select, etc.
+    # Also allows nested attributes, but this is not currently in use.
+    include ActiveRecord::AttributeAssignment
 
-    validate :model_valid?
-
-    # Validates the models and merge errors back into our own errors if they
-    # are invalid.
-    # Overload if you need to validate associations.
-    # @example
-    #   class PersonForm < Form
-    #     def model_valid?
-    #       super
-    #       if @model&.child&.changed? && !@model.child.valid?
-    #         @errors.add(:base, :invalid, message: 'child model is invalid')
-    #       end
-    #     end
-    #   end
-    def model_valid?
-      unless @model.valid?
-        @model.errors.each do |attribute, error|
-          @errors.add(attribute, error)
-        end
-      end
+    # For now, we overload the method to accept all attributes.
+    # This is removed in Rails 5, so once we upgrade we can remove the overload.
+    def sanitize_for_mass_assignment(attributes)
+      return attributes
     end
-
-    # @!endgroup
-
-    # @!group Helper methods
 
     class << self
       # Delegates the list of attributes to the model, both readers and writers.
@@ -98,21 +69,100 @@ module Kadmin
       #   delegate_attributes :first_name, { last_name: [:reader] }
       # @param [Array<Symbol, Hash<Symbol, Array<Symbol>>>] attributes list of attributes to delegate to the model
       def delegate_attributes(*attributes)
-        delegates = attributes.reduce([]) do |acc, attribute|
+        delegates = attributes.each_with_object([]) do |attribute, acc|
           case attribute
           when Hash
             key, value = attribute.first
             acc << key if value.include?(:reader)
             acc << "#{key}=" if value.include?(:writer)
           when Symbol, String
-            acc << attribute
+            acc.push(attribute, "#{attribute}=")
           else
             raise(ArgumentError, 'Attribute must be one of: Hash, Symbol, String')
           end
+        end
 
-          delegate(*delegates, to: model)
+        delegate(*delegates, to: :model)
+      end
+
+      # Delegates a specified associations to other another form object
+      # @example
+      #   delegate_associations :child, :parent, to: 'Forms::PersonForm'
+      cattr_accessor(:associations) { {} }
+      def delegate_association(association, to:)
+        self.associations[association] = to
+
+        # add a reader attribute
+        class_eval <<~METHOD, __FILE__, __LINE__ + 1
+          def #{association}
+            return self.associated_forms['#{association}']
+          end
+        METHOD
+      end
+    end
+
+    def associated_forms
+      return @associated_forms ||= begin
+        self.class.associations.map do |name, form_class_name|
+          form_class = form_class_name.constantize
+          form_class.new(@model.public_send(name))
         end
       end
+    end
+
+    # @!endgroup
+
+    # @!group Validation
+
+    validate :validate_model
+    def validate_model
+      unless @model.valid?
+        @model.errors.each do |attribute, error|
+          @errors.add(attribute, error)
+        end
+      end
+    end
+    protected :validate_model
+
+    validate :validate_associated_forms
+    def validate_associated_forms
+      self.associated_forms.each do |_name, form|
+        next if form.valid?
+        form.errors.each do |_attribute, _error|
+          @errors.add(:base, :association_error, "associated #{form.model_name.human} form has some errors")
+        end
+      end
+    end
+    protected :validate_associated_forms
+
+    # @!endgroup
+
+    # @!group Persistence
+
+    def save
+      saved = false
+      @model.class.transaction do
+        saved = @model.save
+        self.associated_forms.each do |_name, form|
+          saved &&= form.save
+        end
+
+        raise ActiveRecord::Rollback unless saved
+      end
+
+      return saved
+    end
+
+    def save!
+      saved = false
+      @model.class.transaction do
+        saved = @model.save!
+        self.associated_forms.each do |_name, form|
+          saved &&= form.save! # no need to raise anything, save! will do so
+        end
+      end
+
+      return saved
     end
 
     # @!endgroup

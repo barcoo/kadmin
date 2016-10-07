@@ -11,4 +11,6 @@ de:
     errors:
       not_found: Objekt nicht gefunden
       params_missing: Fehlenden erforderlichen Parameter
+    forms:
+      please_correct: "Bitte die folgende Felde korrigieren:"
     welcome: Willkommen zurück, %{user}!

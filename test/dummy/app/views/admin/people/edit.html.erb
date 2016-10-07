@@ -1,0 +1,4 @@
+<h2>Editing <%= @person.full_name(inversed: true) %></h2>
+<%= form_for [:admin, @person_form] do |form| %>
+  <%= render partial: 'admin/people/form', locals: { form: form } %>
+<% end %>

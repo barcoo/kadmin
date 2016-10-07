@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161006134746) do
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "sex",           limit: 1
+    t.string   "gender",        limit: 1
     t.date     "date_of_birth"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

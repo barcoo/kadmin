@@ -2,6 +2,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/**
+ * Highlights fields properly when they have errors
+ * Rails automatically appends .field_with_errors on any form element whose model
+ * attributes has an error (as marked in model.errors)
+ */
+.field_with_errors {
+  @extend .has-error;
+}
+
 a.thumbnail {
   max-width: 100%;
   overflow: hidden;

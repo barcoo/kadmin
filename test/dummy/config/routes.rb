@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :persons
+    resources :people
     resources :groups
   end
 
