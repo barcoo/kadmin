@@ -1,5 +1,9 @@
 # Changelog
 
+##0.2.5
+
+
+
 ##0.2.4
 
 - [6c8fe5a](https://github.com/barcoo/kadmin/commit/6c8fe5a) *2016-10-10* __updated i18n__ (Nicolas Pepin-Perreault)
