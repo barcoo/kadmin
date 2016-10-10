@@ -1,5 +1,9 @@
 # Changelog
 
+##0.2.3
+
+- [e2e891e](https://github.com/barcoo/kadmin/commit/e2e891e) *2016-10-10* __minor display fix to finder views__ (Nicolas Pepin-Perreault)
+
 ##0.2.2
 
 
