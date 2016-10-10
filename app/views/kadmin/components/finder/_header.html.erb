@@ -1,7 +1,8 @@
 <div class="page-header">
   <h2>
-    Showing <%= finder.resource_name.downcase %>
-    <%= finder.pager.page_start %> - <%= finder.pager.page_end %>
-    <small>out of <%= finder.pager.total %> <%= finder.applied_filters %></small>
+    Showing <%= finder.currently_showing %>
+    <% if finder.results.count.positive? %>
+      <small>out of <%= finder.pager.total %> <%= finder.applied_filters %></small>
+    <% end %>
   </h2>
 </div>

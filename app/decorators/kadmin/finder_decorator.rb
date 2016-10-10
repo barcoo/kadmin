@@ -9,6 +9,19 @@ module Kadmin
       @finder = finder
     end
 
+    def currently_showing
+      resource = resource_name.downcase
+      currently_showing_phrase = if finder.results.count.positive?
+        phrase = "#{pager.displayed_items} #{resource}"
+        phrase = "#{phrase} (#{pager.page_start} - #{pager.page_end})" if finder.results.count > 1
+        phrase
+      else
+        "no #{resource}"
+      end
+
+      return currently_showing_phrase
+    end
+
     # @return [String] human readable, singular/plural form of the finder's model
     def resource_name
       return @finder.scope.model_name.human(count: pager.displayed_items)
