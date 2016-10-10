@@ -9,15 +9,18 @@ module Kadmin
       @finder = finder
     end
 
+    # @return [Boolean] true if no results, false otherwise
+    def empty?
+      return finder.results.count.zero?
+    end
+
+    # @return [String] how many resources are being displayed (along with indices)
     def currently_showing
       resource = resource_name.downcase
-      currently_showing_phrase = if finder.results.count.positive?
-        phrase = "#{pager.displayed_items} #{resource}"
-        phrase = "#{phrase} (#{pager.page_start} - #{pager.page_end})" if finder.results.count > 1
-        phrase
-      else
-        "no #{resource}"
-      end
+      displayed = empty? ? 0 : pager.displayed_items
+
+      currently_showing_phrase = "#{displayed} #{resource}"
+      currently_showing_phrase = "#{phrase} (#{pager.page_start} - #{pager.page_end})" if finder.results.count > 1
 
       return currently_showing_phrase
     end
