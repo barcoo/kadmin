@@ -1,5 +1,9 @@
 # Changelog
 
+##0.2.2
+
+
+
 ##0.2.1
 
 - [731ee1d](https://github.com/barcoo/kadmin/commit/731ee1d) *2016-10-10* __do not instantiate results__ (Nicolas Pepin-Perreault)
