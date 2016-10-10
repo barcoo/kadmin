@@ -1,5 +1,11 @@
 # Changelog
 
+##0.2.0
+
+- [aee853d](https://github.com/barcoo/kadmin/commit/aee853d) *2016-10-10* __updated documentation__ (Nicolas Pepin-Perreault)
+- [64a81db](https://github.com/barcoo/kadmin/commit/64a81db) *2016-10-10* __wrapped up finder objects/view helpers__ (Nicolas Pepin-Perreault)
+- [d32b112](https://github.com/barcoo/kadmin/commit/d32b112) *2016-10-07* __almost finished form objects__ (Nicolas Pepin-Perreault)
+
 ##0.1.7
 
 - [ac75fc3](https://github.com/barcoo/kadmin/commit/ac75fc3) *2016-10-06* __remove old code__ (Nicolas Pepin-Perreault)
