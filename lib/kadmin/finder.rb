@@ -17,7 +17,7 @@ module Kadmin
       @scope = scope
       @pager = nil
       @filters = {}
-      @results = []
+      @results = nil
     end
 
     # @param [String] name the filter name (should be unique)
