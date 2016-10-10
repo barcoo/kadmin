@@ -33,3 +33,11 @@ When you want to create a new release, use the rake task ```cim:release``` (in t
 ```shell
 bundle exec rake cim:release
 ```
+
+## Roadmap
+
+TODOs:
+
+* [ ] Finish form objects (destruction and creation) + tests + examples
+* [ ] Make a generic typehead-select form object
+* [x] Wrap Finder objects + view helpers

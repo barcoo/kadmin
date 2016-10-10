@@ -7,7 +7,9 @@ en:
         last_name: "Last name"
         gender: Gender
     models:
-      person: Person
+      person:
+        one: Person
+        other: People
   person:
     genders:
       m: Male

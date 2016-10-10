@@ -1,0 +1,18 @@
+<%= render partial: 'kadmin/components/finder/header', locals: { finder: finder } %>
+
+<div class='container-fluid'>
+  <% if finder.filters.present? %>
+    <div class='row'>
+      <%= render partial: 'kadmin/components/finder/form', locals: { finder: finder } %>
+    </div>
+  <% end %>
+
+  <div class='row' style='padding-top: 15px'>
+    <% if finder.results.empty? %>
+      <%= render partial: 'kadmin/components/finder/empty', locals: { finder: finder } %>
+    <% else %>
+      <%= yield %>
+      <%= paginate(finder.pager, [15, 30, 50, 100]) %>
+    <% end %>
+  </div>
+</div>

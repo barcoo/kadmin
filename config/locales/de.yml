@@ -6,6 +6,9 @@ de:
       please_login: Bitte melden Sie sich an
       unauthorized: Unberechtigte Zugriff
       unauthorized_message: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
+    components:
+      finder:
+        empty: Nichts zu zeigen
     dash_message: Schaue Dir mal die Bereiche in der Navigationsleiste oben. Wenn es irgenwelche Probleme gibt, oder es fehlt Dir Zugriffsrechte, bitte das Apps & Services Team kontaktieren.
     error: Fehler
     errors:
