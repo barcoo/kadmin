@@ -1,5 +1,9 @@
 # Changelog
 
+##0.2.7
+
+- [8bb5511](https://github.com/barcoo/kadmin/commit/8bb5511) *2016-10-11* __better handling of errors (dont show errors directly to users)__ (Nicolas Pepin-Perreault)
+
 ##0.2.6
 
 - [1707b37](https://github.com/barcoo/kadmin/commit/1707b37) *2016-10-11* __rename initializer__ (Nicolas Pepin-Perreault)
