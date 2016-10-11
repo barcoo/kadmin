@@ -1,5 +1,11 @@
 # Changelog
 
+##0.2.6
+
+- [1707b37](https://github.com/barcoo/kadmin/commit/1707b37) *2016-10-11* __rename initializer__ (Nicolas Pepin-Perreault)
+- [24b7ba4](https://github.com/barcoo/kadmin/commit/24b7ba4) *2016-10-11* __fixed wrong var name after refactoring__ (Nicolas Pepin-Perreault)
+- [c66eb3f](https://github.com/barcoo/kadmin/commit/c66eb3f) *2016-10-10* __updated docs__ (Nicolas Pepin-Perreault)
+
 ##0.2.5
 
 
