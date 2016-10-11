@@ -20,7 +20,7 @@ module Kadmin
       displayed = empty? ? 0 : pager.displayed_items
 
       currently_showing_phrase = "#{displayed} #{resource}"
-      currently_showing_phrase = "#{phrase} (#{pager.page_start} - #{pager.page_end})" if finder.results.count > 1
+      currently_showing_phrase = "#{currently_showing_phrase} (#{pager.page_start} - #{pager.page_end})" if finder.results.count > 1
 
       return currently_showing_phrase
     end
