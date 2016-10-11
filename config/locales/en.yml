@@ -18,6 +18,8 @@ en:
     errors:
       not_found: Requested object not found
       params_missing: Missing required parameters
+      unexpected: Unexpected error
+      unexpected_message: An unexpected error occurred; you can try again, or contact a member of the Apps & Services team.
     forms:
       please_correct: "Please correct the following:"
     welcome: Welcome %{user}!
