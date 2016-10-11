@@ -1,26 +1,20 @@
 module Dummy
   class User < Kadmin::Auth::User
-    def initialize(email, resources: [])
-      super(email)
-      @resources = resources
-    end
-
     def authorized?(_request)
       return true
     end
   end
 
   class UserStore < Kadmin::Auth::UserStore
-    def initialize
-      super
-
-      set('admin@test.com', Dummy::User.new('admin@test.com', resources: [:posts]))
+    def get(email)
+      set(email, Dummy::User.new(email)) unless exists?(email)
+      return @store[email.downcase]
     end
   end
 end
 
 Kadmin.config.logger = Rails.logger
-Kadmin.config.mount_path = '/kadmin'
+Kadmin.config.mount_path = '/admin'
 
 Kadmin::Auth.config.user_class = Dummy::User
 Kadmin::Auth.config.user_store_class = Dummy::UserStore
