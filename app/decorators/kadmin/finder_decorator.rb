@@ -34,11 +34,11 @@ module Kadmin
     def applied_filters
       filters = @finder.filters.reduce([]) do |acc, (name, filter)|
         next(acc) if filter.value.blank?
-        acc << %(<strong>#{filter.value}</strong> on <em>#{name}</em>).html_safe
+        acc << %(<strong>#{filter.value}</strong> on <em>#{name}</em>)
       end
       applied_filters = "(filtering: #{filters.join('; ')})" unless filters.empty?
 
-      return applied_filters
+      return applied_filters.html_safe
     end
 
     # @return [Kadmin::PagerDecorator] decorated pager of the underlying finder
