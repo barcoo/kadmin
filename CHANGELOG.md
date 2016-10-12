@@ -1,5 +1,10 @@
 # Changelog
 
+##0.2.8
+
+- [59783fd](https://github.com/barcoo/kadmin/commit/59783fd) *2016-10-12* __require explicitly form objects dependencies otherwise projects including kadmin will not work until rails has been fully loaded__ (Nicolas Pepin-Perreault)
+- [dd67d62](https://github.com/barcoo/kadmin/commit/dd67d62) *2016-10-12* __move html safe on output string as opposed to single parts__ (Nicolas Pepin-Perreault)
+
 ##0.2.7
 
 - [8bb5511](https://github.com/barcoo/kadmin/commit/8bb5511) *2016-10-11* __better handling of errors (dont show errors directly to users)__ (Nicolas Pepin-Perreault)
