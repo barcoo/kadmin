@@ -1,3 +1,12 @@
+# TODO: Figure out a way to not have to require ActiveModel/ActiveRecord preemptively
+# perhaps by making Kadmin::Form optionally requireable?
+require 'active_model/naming'
+require 'active_model/callbacks'
+require 'active_model/translation'
+require 'active_model/validator'
+require 'active_model/validations'
+require 'active_record/attribute_assignment'
+
 module Kadmin
   # Parsing is done by using attribute setters. If you have an attribute called
   # name, then add a reader/writer for it, name and name=, and perform the
