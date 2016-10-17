@@ -1,5 +1,10 @@
 # Changelog
 
+##0.3.0
+
+- [76d6034](https://github.com/barcoo/kadmin/commit/76d6034) *2016-10-17* __turns out osx is case insensitive when requiring gems...__ (Nicolas Pepin-Perreault)
+- [e41c668](https://github.com/barcoo/kadmin/commit/e41c668) *2016-10-17* __alerts more flexible, fixed a few nil accesses__ (Nicolas Pepin-Perreault)
+
 ##0.2.8
 
 - [59783fd](https://github.com/barcoo/kadmin/commit/59783fd) *2016-10-12* __require explicitly form objects dependencies otherwise projects including kadmin will not work until rails has been fully loaded__ (Nicolas Pepin-Perreault)
