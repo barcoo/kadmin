@@ -1,4 +1,4 @@
-require 'english'
+require 'English'
 
 begin
   require 'bundler/setup'
