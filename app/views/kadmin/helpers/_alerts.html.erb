@@ -1,14 +1,4 @@
-<% if flash.notice.present? || flash.alert.present? %>
-  <div class='alerts'>
-    <%= alert('danger') do %>
-      <% Array.wrap(flash.alert).each do |danger| %>
-        <p><%= glyphicon('exclamation-sign') %> <%= danger&.html_safe %></p>
-      <% end %>
-    <% end %>
-    <%= alert('success') do %>
-      <% Array.wrap(flash.notice).each do |success| %>
-        <p><%= glyphicon('ok-sign') %> <%= success&.html_safe %></p>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<div class='alerts'>
+  <%= render_flash_alerts %>
+  <%= yield :flash_alerts %>
+</div>

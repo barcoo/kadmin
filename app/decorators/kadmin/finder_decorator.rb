@@ -32,6 +32,7 @@ module Kadmin
 
     # @return [String] a description of the current applied filters
     def applied_filters
+      applied_filters = ''
       filters = @finder.filters.reduce([]) do |acc, (name, filter)|
         next(acc) if filter.value.blank?
         acc << %(<strong>#{filter.value}</strong> on <em>#{name}</em>)
