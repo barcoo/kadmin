@@ -11,4 +11,4 @@ en:
     errors:
       not_found: Requested object not found
       params_missing: Missing required parameters
-    welcome: Welcome %{user}!
+    welcome: Moin, moin %{user}!
