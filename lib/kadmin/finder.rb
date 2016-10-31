@@ -17,16 +17,19 @@ module Kadmin
       @scope = scope
       @pager = nil
       @filters = {}
+      @results = nil
     end
 
     # @param [String] name the filter name (should be unique)
     # @param [String, Array<String>] column the column(s) name to filter on
     # @param [String, Array<String>] value the value or values to look for (OR'd)
     def filter(name:, column:, value:)
-      if column.present? && value.present? && !@filters.key?(name)
+      if column.present? && !@filters.key?(name)
         @filters[name] = Kadmin::Finder::Filter.new(column, value)
-        @scope = @scope.where("#{@scope.table_name}.`#{column}` LIKE ?", value.tr('*', '%'))
-        @pager&.total = @scope.count
+        if value.present?
+          @scope = @scope.where("#{@scope.table_name}.`#{column}` LIKE ?", value.tr('*', '%'))
+          @pager&.total = @scope.count
+        end
       end
 
       return self
@@ -47,10 +50,16 @@ module Kadmin
     end
 
     # @return [ActiveRecord::Relation] the filtered (and optionally paginated) results
-    def find
-      results = @scope
-      results = @pager.page(results) unless @pager.nil?
+    def results
+      return @results ||= begin
+        results = @scope
+        results = @pager.page(results) unless @pager.nil?
+        results
+      end
+    end
 
+    def find!
+      @results = nil
       return results
     end
   end

@@ -1,0 +1,3 @@
+<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do %>
+  <%= render partial: 'admin/people/table', locals: { people: @finder.results } %>
+<% end %>

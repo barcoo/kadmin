@@ -4,6 +4,7 @@ module Kadmin
 
     helper Kadmin::ApplicationHelper
     helper Kadmin::BootstrapHelper
+    helper Kadmin::AlertHelper
     helper Kadmin::NavigationHelper
     helper Kadmin::PaginationHelper
 
@@ -16,7 +17,7 @@ module Kadmin
     # @!group Error Handling
 
     unless defined?(BetterErrors)
-      rescue_from StandardError, with: :handle_error
+      rescue_from StandardError, with: :handle_unexpected_error
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::ParameterMissing, with: :params_missing
     end
@@ -27,6 +28,11 @@ module Kadmin
 
     def not_found(error)
       handle_error(error, title: I18n.t('kadmin.errors.not_found'), status: :not_found)
+    end
+
+    def handle_unexpected_error(error)
+      Rails.logger.error(error)
+      handle_error(error, title: I18n.t('kadmin.errors.unexpected'), message: I18n.t('kadmin.errors.unexpected_message'))
     end
 
     def handle_error(error, options = {})

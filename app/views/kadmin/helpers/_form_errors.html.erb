@@ -1,0 +1,10 @@
+<% if model.errors.present? %>
+  <%= alert('danger') do %>
+    <p><%= glyphicon('exclamation-sign') %> <%= t('kadmin.forms.please_correct') %></p>
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message.html_safe %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

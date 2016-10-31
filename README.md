@@ -1,6 +1,6 @@
 # Kadmin
 
-[![GitHub release](https://img.shields.io/badge/release-0.1.7-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.1.7)
+[![GitHub release](https://img.shields.io/badge/release-0.3.0-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.3.0)
 
 Collection of utility, configuration, etc., for admin areas in different projects.
 
@@ -33,3 +33,11 @@ When you want to create a new release, use the rake task ```cim:release``` (in t
 ```shell
 bundle exec rake cim:release
 ```
+
+## Roadmap
+
+TODOs:
+
+* [ ] Finish form objects (destruction and creation) + tests + examples
+* [ ] Make a generic typehead-select form object
+* [x] Wrap Finder objects + view helpers

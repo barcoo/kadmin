@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h2>
+    <%= finder.currently_showing %>
+    <% unless finder.empty? %>
+      <small>
+        <%= t('kadmin.components.finder.out_of', total: finder.pager.total) %>
+        <%= finder.applied_filters %>
+      </small>
+    <% end %>
+  </h2>
+</div>

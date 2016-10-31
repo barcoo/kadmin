@@ -81,7 +81,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/kadmin.rb<span class="defines">,<br />
-  lib/kadmin/auth.rb,<br /> lib/kadmin/form.rb,<br /> lib/kadmin/error.rb,<br /> lib/kadmin/engine.rb,<br /> lib/kadmin/version.rb,<br /> lib/kadmin/auth/user.rb,<br /> lib/kadmin/configuration.rb,<br /> lib/kadmin/auth/user_store.rb,<br /> lib/kadmin/auth/configuration.rb,<br /> lib/kadmin/errors/authorization.rb,<br /> lib/kadmin/auth/unauthorized_error.rb,<br /> app/helpers/kadmin/form_builder.rb,<br /> app/helpers/kadmin/bootstrap_helper.rb,<br /> app/helpers/kadmin/pagination_helper.rb,<br /> app/helpers/kadmin/navigation_helper.rb,<br /> app/helpers/kadmin/application_helper.rb,<br /> app/controllers/kadmin/dash_controller.rb,<br /> app/controllers/kadmin/auth_controller.rb,<br /> app/helpers/kadmin/forms/inverted_check_box.rb,<br /> app/controllers/kadmin/application_controller.rb,<br /> app/controllers/kadmin/concerns/authorized_user.rb,<br /> app/controllers/rails_admin/application_controller.rb</span>
+  lib/kadmin/auth.rb,<br /> lib/kadmin/form.rb,<br /> lib/kadmin/error.rb,<br /> lib/kadmin/pager.rb,<br /> lib/kadmin/finder.rb,<br /> lib/kadmin/engine.rb,<br /> lib/kadmin/version.rb,<br /> lib/kadmin/auth/user.rb,<br /> lib/kadmin/configuration.rb,<br /> lib/kadmin/auth/user_store.rb,<br /> lib/kadmin/auth/configuration.rb,<br /> lib/kadmin/errors/authorization.rb,<br /> lib/kadmin/auth/unauthorized_error.rb,<br /> app/helpers/kadmin/form_builder.rb,<br /> app/helpers/kadmin/bootstrap_helper.rb,<br /> app/helpers/kadmin/pagination_helper.rb,<br /> app/helpers/kadmin/navigation_helper.rb,<br /> app/helpers/kadmin/application_helper.rb,<br /> app/decorators/kadmin/pager_decorator.rb,<br /> app/decorators/kadmin/finder_decorator.rb,<br /> app/controllers/kadmin/dash_controller.rb,<br /> app/controllers/kadmin/auth_controller.rb,<br /> app/helpers/kadmin/forms/inverted_check_box.rb,<br /> app/controllers/kadmin/application_controller.rb,<br /> app/controllers/kadmin/concerns/authorized_user.rb</span>
 </dd>
   </dl>
   
@@ -95,7 +95,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Kadmin/ApplicationController.html" title="Kadmin::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Kadmin/AuthController.html" title="Kadmin::AuthController (class)">AuthController</a></span>, <span class='object_link'><a href="Kadmin/Configuration.html" title="Kadmin::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Kadmin/DashController.html" title="Kadmin::DashController (class)">DashController</a></span>, <span class='object_link'><a href="Kadmin/Engine.html" title="Kadmin::Engine (class)">Engine</a></span>, <span class='object_link'><a href="Kadmin/Error.html" title="Kadmin::Error (class)">Error</a></span>, <span class='object_link'><a href="Kadmin/Form.html" title="Kadmin::Form (class)">Form</a></span>, <span class='object_link'><a href="Kadmin/FormBuilder.html" title="Kadmin::FormBuilder (class)">FormBuilder</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Kadmin/ApplicationController.html" title="Kadmin::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Kadmin/AuthController.html" title="Kadmin::AuthController (class)">AuthController</a></span>, <span class='object_link'><a href="Kadmin/Configuration.html" title="Kadmin::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Kadmin/DashController.html" title="Kadmin::DashController (class)">DashController</a></span>, <span class='object_link'><a href="Kadmin/Engine.html" title="Kadmin::Engine (class)">Engine</a></span>, <span class='object_link'><a href="Kadmin/Error.html" title="Kadmin::Error (class)">Error</a></span>, <span class='object_link'><a href="Kadmin/Finder.html" title="Kadmin::Finder (class)">Finder</a></span>, <span class='object_link'><a href="Kadmin/FinderDecorator.html" title="Kadmin::FinderDecorator (class)">FinderDecorator</a></span>, <span class='object_link'><a href="Kadmin/Form.html" title="Kadmin::Form (class)">Form</a></span>, <span class='object_link'><a href="Kadmin/FormBuilder.html" title="Kadmin::FormBuilder (class)">FormBuilder</a></span>, <span class='object_link'><a href="Kadmin/Pager.html" title="Kadmin::Pager (class)">Pager</a></span>, <span class='object_link'><a href="Kadmin/PagerDecorator.html" title="Kadmin::PagerDecorator (class)">PagerDecorator</a></span>
     
   
 </p>
@@ -106,7 +106,7 @@
       <dt id="VERSION-constant" class="">VERSION =
         
       </dt>
-      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.1.4</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.2.5</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
     
   </dl>
 
@@ -192,12 +192,12 @@
       <pre class="lines">
 
 
-10
-11
-12</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
   <span class='kw'>return</span> <span class='ivar'>@config</span> <span class='op'>||=</span> <span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -244,13 +244,13 @@
       <pre class="lines">
 
 
-14
-15
-16
-17</pre>
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -266,7 +266,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct  6 17:43:52 2016 by
+  Generated on Mon Oct 10 17:58:29 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

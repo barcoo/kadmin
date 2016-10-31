@@ -40,10 +40,11 @@ module Kadmin
       return collection
     end
 
-    # @param [Integer] page the page to get the offset for
+    # @param [Integer] page the page to get the offset for; if not given, uses the current page
     # @return [Integer] start offset for the given page
-    def offset_at(page)
-      return @size * page
+    def offset_at(page = nil)
+      page ||= @current_page
+      return @size * page.to_i
     end
 
     # @param [Integer] page the page to check for
@@ -62,6 +63,16 @@ module Kadmin
     def total=(total)
       @total = total
       @pages = (@total / @size.to_f).ceil
+    end
+
+    # @param [Integer] page optional; if not given, uses the current page
+    # @return [Integer] the number of items that are on this page
+    def page_size(page = nil)
+      page ||= @current_page
+      page_start = offset_at(page)
+      page_end = [offset_at(page.to_i + 1), @total].min
+
+      return page_end - page_start
     end
 
     # @param [Integer] page optional; if given, checks if the page after would have any data, otherwise checks based on the current page

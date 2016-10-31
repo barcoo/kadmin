@@ -3,7 +3,7 @@ module Admin
     def set_navbar_links
       super
       @layout_navbar_links += [
-        { title: 'Persons', path: admin_persons_path },
+        { title: 'People', path: admin_people_path },
         { title: 'Groups', path: admin_groups_path }
       ]
     end

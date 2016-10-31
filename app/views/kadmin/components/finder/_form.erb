@@ -1,0 +1,10 @@
+<%= form_tag(request.path, method: 'get', class: 'form-inline') do %>
+  <div class='form-group'>
+    <%= link_to(t('kadmin.components.finder.create'), url_for(action: :new), class: 'btn btn-primary') %>
+    <% finder.filters.each do |name, filter| %>
+      <%= text_field_tag("filter_#{name}", filter&.value, class: 'form-control', placeholder: "Filter by #{name}...") %>
+    <% end %>
+    <%= submit_tag(t('kadmin.components.finder.filter'), class: 'btn btn-default form-control') %>
+    <%= link_to(t('kadmin.components.finder.clear'), request.path, class: 'btn btn-danger form-control') %>
+  </div>
+<% end %>

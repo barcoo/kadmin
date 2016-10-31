@@ -1,3 +1,9 @@
+<%
+# Requires the following helpers:
+#  - Kadmin::NavigationHelper
+#  - Kadmin::BootstrapHelper
+#  - Kadmin::AlertHelper
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -46,7 +52,7 @@
         <% if content_for?(:sidebar) %>
           <!-- main -->
           <div class="col-sm-8 col-md-8 col-lg-9 main">
-            <%= render partial: 'kadmin/alerts' %>
+            <%= render partial: 'kadmin/helpers/alerts' %>
             <%= yield %>
           </div>
           <!-- sidebar -->
@@ -55,7 +61,7 @@
           </div>
         <% else %>
           <div class="col-sm-12 col-md-12 main">
-            <%= render partial: 'kadmin/alerts' %>
+            <%= render partial: 'kadmin/helpers/alerts' %>
             <%= yield %>
           </div>
         <% end %>

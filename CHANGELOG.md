@@ -1,5 +1,51 @@
 # Changelog
 
+##0.3.0
+
+- [76d6034](https://github.com/barcoo/kadmin/commit/76d6034) *2016-10-17* __turns out osx is case insensitive when requiring gems...__ (Nicolas Pepin-Perreault)
+- [e41c668](https://github.com/barcoo/kadmin/commit/e41c668) *2016-10-17* __alerts more flexible, fixed a few nil accesses__ (Nicolas Pepin-Perreault)
+
+##0.2.8
+
+- [59783fd](https://github.com/barcoo/kadmin/commit/59783fd) *2016-10-12* __require explicitly form objects dependencies otherwise projects including kadmin will not work until rails has been fully loaded__ (Nicolas Pepin-Perreault)
+- [dd67d62](https://github.com/barcoo/kadmin/commit/dd67d62) *2016-10-12* __move html safe on output string as opposed to single parts__ (Nicolas Pepin-Perreault)
+
+##0.2.7
+
+- [8bb5511](https://github.com/barcoo/kadmin/commit/8bb5511) *2016-10-11* __better handling of errors (dont show errors directly to users)__ (Nicolas Pepin-Perreault)
+
+##0.2.6
+
+- [1707b37](https://github.com/barcoo/kadmin/commit/1707b37) *2016-10-11* __rename initializer__ (Nicolas Pepin-Perreault)
+- [24b7ba4](https://github.com/barcoo/kadmin/commit/24b7ba4) *2016-10-11* __fixed wrong var name after refactoring__ (Nicolas Pepin-Perreault)
+- [c66eb3f](https://github.com/barcoo/kadmin/commit/c66eb3f) *2016-10-10* __updated docs__ (Nicolas Pepin-Perreault)
+
+##0.2.5
+
+
+
+##0.2.4
+
+- [6c8fe5a](https://github.com/barcoo/kadmin/commit/6c8fe5a) *2016-10-10* __updated i18n__ (Nicolas Pepin-Perreault)
+
+##0.2.3
+
+- [e2e891e](https://github.com/barcoo/kadmin/commit/e2e891e) *2016-10-10* __minor display fix to finder views__ (Nicolas Pepin-Perreault)
+
+##0.2.2
+
+
+
+##0.2.1
+
+- [731ee1d](https://github.com/barcoo/kadmin/commit/731ee1d) *2016-10-10* __do not instantiate results__ (Nicolas Pepin-Perreault)
+
+##0.2.0
+
+- [aee853d](https://github.com/barcoo/kadmin/commit/aee853d) *2016-10-10* __updated documentation__ (Nicolas Pepin-Perreault)
+- [64a81db](https://github.com/barcoo/kadmin/commit/64a81db) *2016-10-10* __wrapped up finder objects/view helpers__ (Nicolas Pepin-Perreault)
+- [d32b112](https://github.com/barcoo/kadmin/commit/d32b112) *2016-10-07* __almost finished form objects__ (Nicolas Pepin-Perreault)
+
 ##0.1.7
 
 - [ac75fc3](https://github.com/barcoo/kadmin/commit/ac75fc3) *2016-10-06* __remove old code__ (Nicolas Pepin-Perreault)
