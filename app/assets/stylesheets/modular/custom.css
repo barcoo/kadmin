@@ -5,3 +5,15 @@
 .btn {
     margin-bottom: 0;
 }
+
+a.titlelink {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+.helpsidebar img.img-responsive {
+    max-width: 100%;
+}
