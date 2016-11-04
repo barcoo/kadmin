@@ -1,11 +1,11 @@
 de:
   kadmin:
     auth:
-      error: Ein Fehler ist aufgetreten; bitte nochmal versuchen
-      login_required: Ein gültiges E-Mail von Google ist erforderlich
-      please_login: Bitte melden Sie sich an
-      unauthorized: Unberechtigte Zugriff
-      unauthorized_message: Sie haben für die gewünschte Seite leider keine Zugriffsrechte; falls Sie haben sollten, bitte das Apps & Services Team kontaktieren
+      error: Ein Fehler ist aufgetreten; bitte versuche es noch einmal
+      login_required: Eine gültige E-Mail Adresse von Google (@offerista.com) ist erforderlich
+      please_login: Bitte melde Dich an
+      unauthorized: Unberechtigter Zugriff
+      unauthorized_message: Du hast für die gewünschte Seite leider keine Zugriffsrechte; falls Du dies anders siehst, wende Dich bitte an das Apps & Services Team
     components:
       finder:
         clear: Löschen
@@ -13,11 +13,11 @@ de:
         empty: Nichts zu zeigen
         filter: Suchen
         out_of: von %{total}
-    dash_message: Schaue Dir mal die Bereiche in der Navigationsleiste oben. Wenn es irgenwelche Probleme gibt, oder es fehlt Dir Zugriffsrechte, bitte das Apps & Services Team kontaktieren.
+    dash_message: Schaue Dir die Bereiche in der Navigationsleiste oben an. Sollte es irgenwelche Probleme geben, oder es Dir im Leben an Zugriffsrechten fehlen, wende Dich bitte an das Apps & Services Team
     error: Fehler
     errors:
       not_found: Objekt nicht gefunden
-      params_missing: Fehlenden erforderlichen Parameter
+      params_missing: Fehlender erforderlicher Parameter
       unexpected: Unerwartete Fehler
       unexpected_message: Bei dem Betrieb ist ein unerwarteter Fehler aufgetreten. Bitte entweder nochmal versuchen, oder die Apps & Services Team kontaktieren.
     forms:

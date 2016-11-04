@@ -22,4 +22,4 @@ en:
       unexpected_message: An unexpected error occurred; you can try again, or contact a member of the Apps & Services team.
     forms:
       please_correct: "Please correct the following:"
-    welcome: Welcome %{user}!
+    welcome: Moin, moin %{user}!

@@ -1,6 +1,6 @@
 module Kadmin
   class ApplicationController < ActionController::Base
-    layout 'kadmin/application'
+    layout 'modular/application'
 
     helper Kadmin::ApplicationHelper
     helper Kadmin::BootstrapHelper

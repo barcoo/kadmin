@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Apps/Services Admin</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <%= stylesheet_link_tag "modular/vendor.css", media: "all" %>
+        <%= stylesheet_link_tag "modular/app-blue.css", media: "all" %>
+        <%= stylesheet_link_tag "modular/custom.css", media: "all" %>
+        <%= csrf_meta_tags %>
+        <!-- Additional scripts -->
+        <%= javascript_include_tag "modular/application.js" %>
+        <%= javascript_include_tag "modular/custom.js" %>
+    </head>
+
+    <body>
+        <div class="main-wrapper">
+            <div class="app" id="app">
+                <header class="header">
+                    <h3 class="title" style="margin-left: 40px;"> Moin, moin! </h3>
+                    <div class="header-block header-block-nav">
+                        <ul class="nav-profile">
+                            <% if logged_in? %>
+                                <%= link_to(t('kadmin.authorization.logout'), Kadmin::Engine.routes.url_helpers.auth_logout_path) %>
+                            <% end %>
+                            <li class="profile dropdown">
+
+                                <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div>
+                                    <span class="name">John Doe</span>
+                                </a>
+                                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Profile </a>
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notifications </a>
+                                    <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i> Settings </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="login.html"> <i class="fa fa-power-off icon"></i> Logout </a>
+                                </div>-->
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <div class="sidebar-header">
+                            <div class="brand">
+                                <!--<div class="logo"> <span class="l l1"></span> <span class="l l2"></span> <span class="l l3"></span> <span class="l l4"></span> <span class="l l5"></span> </div>-->
+                                <a class="titlelink" href="/admin">Apps&amp;Services Admin</a> </div>
+                        </div>
+                        <nav class="menu">
+                            <ul class="nav metismenu" id="sidebar-menu">
+
+                                <% unless @layout_navbar_links.blank? %>
+                                    <% @layout_navbar_links.each do |link| %>
+                                        <%= nav_link_to(link[:title], link[:path]) %>
+                                    <% end %>
+                                <% end %>
+                                <!--<li class="active">
+                                    <a href="index.html"> <i class="fa fa-home"></i> Dashboard </a>
+                                </li>
+                                <li>
+                                    <a href=""> <i class="fa fa-th-large"></i> Items Manager <i class="fa arrow"></i> </a>
+                                    <ul>
+                                        <li> <a href="items-list.html">
+    								Items List
+    							</a> </li>
+                                        <li> <a href="item-editor.html">
+    								Item Editor
+    							</a> </li>
+                                    </ul>
+                                </li>-->
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <article class="content dashboard-page">
+                    <div class="row">
+                        <% if content_for?(:sidebar) %>
+                        <div class="col-xl-8">
+                            <!-- main -->
+                            <%= render partial: 'kadmin/helpers/alerts' %>
+                            <%= yield %>
+                        </div>
+                        <div class="col-xl-4 helpsidebar">
+                            <!-- sidebar -->
+                            <div class="card card-default">
+                                <div class="card-header">
+                                    <div class="header-block">
+                                        <p class="title">Help</p>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <%= yield(:sidebar) %>
+                                </div>
+                                <!--<div class="card-footer"> Card Footer </div>-->
+                            </div>
+                        </div>
+                        <% else %>
+                        <div class="col-sm-12">
+                            <%= render partial: 'kadmin/helpers/alerts' %>
+                            <%= yield %>
+                        </div>
+                        <% end %>
+                    </div>
+                </article>
+                <footer class="footer">
+                    <div class="footer-block buttons">  </div>
+                    <div class="footer-block author">
+                        <ul>
+                            <li> Problems? <a href="https://redmine.offerista.com/projects/apps-services/issues/new">Create a Ticket</a> </li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
+        <%= yield :javascripts %>
+    </body>
+
+</html>
