@@ -1,5 +1,15 @@
 # Changelog
 
+##0.3.1
+
+- [63aef74](https://github.com/barcoo/kadmin/commit/63aef74) *2016-11-04* __version bump__ (Sergio Medina)
+- [893edb2](https://github.com/barcoo/kadmin/commit/893edb2) *2016-11-04* __Merge pull request #1 from barcoo/modular-theme__ (Sergio Medina)
+- [c0a1d13](https://github.com/barcoo/kadmin/commit/c0a1d13) *2016-10-31* __mention modular theme in readme__ (Hinnerk Bruegmann)
+- [bb80fd1](https://github.com/barcoo/kadmin/commit/bb80fd1) *2016-10-31* __remove old kadmin css and js__ (Hinnerk Bruegmann)
+- [54d4cdd](https://github.com/barcoo/kadmin/commit/54d4cdd) *2016-10-31* __javascript for modular theme__ (Hinnerk Bruegmann)
+- [d3eee5c](https://github.com/barcoo/kadmin/commit/d3eee5c) *2016-10-31* __merge master__ (Hinnerk Bruegmann)
+- [f0265c4](https://github.com/barcoo/kadmin/commit/f0265c4) *2016-10-18* __modular theme__ (Hinnerk Bruegmann)
+
 ##0.3.0
 
 - [76d6034](https://github.com/barcoo/kadmin/commit/76d6034) *2016-10-17* __turns out osx is case insensitive when requiring gems...__ (Nicolas Pepin-Perreault)
