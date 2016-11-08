@@ -15,6 +15,7 @@
         <%= yield :stylesheets %>
         <%= csrf_meta_tags %>
         <!-- Additional scripts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <%= javascript_include_tag "modular/application.js" %>
         <%= javascript_include_tag "modular/custom.js" %>
     </head>
@@ -23,7 +24,7 @@
         <div class="main-wrapper">
             <div class="app" id="app">
                 <header class="header">
-                    <h3 class="title" style="margin-left: 40px;"> Moin, moin! </h3>
+                    <h3 class="title" style="margin-left: 40px;"> <!--Moin, moin!--> </h3>
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
                             <% if logged_in? %>
