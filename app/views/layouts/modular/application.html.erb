@@ -12,6 +12,7 @@
         <%= stylesheet_link_tag "modular/vendor.css", media: "all" %>
         <%= stylesheet_link_tag "modular/app-blue.css", media: "all" %>
         <%= stylesheet_link_tag "modular/custom.css", media: "all" %>
+        <%= yield :stylesheets %>
         <%= csrf_meta_tags %>
         <!-- Additional scripts -->
         <%= javascript_include_tag "modular/application.js" %>
