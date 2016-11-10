@@ -1,5 +1,9 @@
 # Changelog
 
+##0.3.2
+
+- [e239675](https://github.com/barcoo/kadmin/commit/e239675) *2016-11-10* __Kadmin modulartheme styles changes (#3)__ (Hinnerk Bruegmann)
+
 ##0.3.1
 
 - [63aef74](https://github.com/barcoo/kadmin/commit/63aef74) *2016-11-04* __version bump__ (Sergio Medina)
