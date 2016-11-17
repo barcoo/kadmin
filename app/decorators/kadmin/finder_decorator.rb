@@ -42,9 +42,9 @@ module Kadmin
       return applied_filters.html_safe
     end
 
-    # @return [Kadmin::PagerDecorator] decorated pager of the underlying finder
+    # @return [Kadmin::Pagination::Presenter] decorated pager of the underlying finder
     def pager
-      return @pager ||= Kadmin::PagerDecorator.new(@finder.pager)
+      return @pager ||= Kadmin::Pagination::Presenter.new(@finder.pager)
     end
   end
 end

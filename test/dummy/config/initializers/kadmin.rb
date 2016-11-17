@@ -7,8 +7,12 @@ module Dummy
 
   class UserStore < Kadmin::Auth::UserStore
     def get(email)
-      set(email, Dummy::User.new(email)) unless exists?(email)
+      set(email, Dummy::User.new(email))
       return @store[email.downcase]
+    end
+
+    def exists?(_email)
+      true
     end
   end
 end
@@ -21,4 +25,13 @@ Kadmin::Auth.config.user_store_class = Dummy::UserStore
 
 Kadmin::Auth.config.enable!
 
-Kadmin.config.navbar_links << { title: 'Test', path: '/admin/test' }
+Kadmin.config.navbar_items = [
+  Kadmin::Navigation::Section.new(
+    text: 'People',
+    links: [
+      Kadmin::Navigation::Link.new(text: 'People list', path: '/admin/people'),
+      Kadmin::Navigation::Link.new(text: 'Register new person', path: '/admin/people/new')
+    ]
+  ),
+  Kadmin::Navigation::Link.new(text: 'Groups', path: '/admin/groups')
+]

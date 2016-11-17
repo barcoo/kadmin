@@ -7,7 +7,7 @@
     <% else %>
       <%= yield %>
       <% if finder.results.size > 50 %>
-        <%= paginate(finder.pager, [50, 100, 1000]) %>
+        <%= finder.pager.present(self, [50, 100, 1000]) %>
       <% end %>
     <% end %>
   </div>

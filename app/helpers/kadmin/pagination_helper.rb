@@ -3,7 +3,7 @@ module Kadmin
     # @param [Kadmin::Pager] pager context to paginate
     # @param [Array<Integer>] sizes array of page sizes
     def paginate(pager, sizes)
-      return content_tag(:div, pagination_page_list(pager) + pagination_size_list(pager, sizes), class: 'btn-toolbar')
+      return "<div class='btn-toolbar'>#{pagination_page_list(pager) + pagination_size_list(pager, sizes)}</div>".html_safe
     end
 
     # Page Links
@@ -39,13 +39,13 @@ module Kadmin
       links << next_link
       links << last_link
 
-      return content_tag(:div, links.reduce(&:+), class: 'btn-group')
+      return "<div class='btn-group'>#{links.reduce(&:+)}</div>".html_safe
     end
     private :pagination_page_list
 
     def pagination_non_link(text, css_classes = nil)
       classes = %w(btn btn-default) + Array.wrap(css_classes)
-      return content_tag(:div, text.to_s.html_safe, class: classes.join(' '))
+      return "<div class='#{classes.join(' ')}'>#{text}</div>".html_safe
     end
     private :pagination_non_link
 
@@ -88,7 +88,7 @@ module Kadmin
         end
       end.reduce(&:+)
 
-      return content_tag(:div, label + links, class: 'btn-group')
+      return "<div class='btn-group'>#{label + links}</div>".html_safe
     end
     private :pagination_size_list
   end

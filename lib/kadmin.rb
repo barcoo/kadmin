@@ -1,10 +1,16 @@
+# Core
 require 'kadmin/configuration'
 require 'kadmin/error'
-require 'kadmin/engine'
 require 'kadmin/auth'
+
+# Rails
+require 'kadmin/engine'
+
+# Components
 require 'kadmin/form'
 require 'kadmin/finder'
-require 'kadmin/pager'
+require 'kadmin/pagination'
+require 'kadmin/navigation'
 
 module Kadmin
   class << self

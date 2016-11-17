@@ -1,6 +1,6 @@
 module Kadmin
   class Finder
-    # @return [Kadmin::Pager] the pager to use (if any)
+    # @return [Kadmin::Pagination::Pager] the pager to use (if any)
     attr_reader :pager
 
     # @return [Array<Kadmin::Finder::Filter>] array of filters applied to the finder
@@ -43,7 +43,7 @@ module Kadmin
       size = size.to_i
 
       if size.positive? && offset >= 0
-        @pager = Kadmin::Pager.new(size: size, offset: offset)
+        @pager = Kadmin::Pagination::Pager.new(size: size, offset: offset)
       end
 
       return self

@@ -1,2 +1,4 @@
 inherit_from:
   - https://raw.githubusercontent.com/barcoo/barcoop/master/rubocop.yml
+Rails/OutputSafety:
+  Enabled: false

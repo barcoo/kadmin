@@ -4,7 +4,7 @@ module Kadmin
     # @see http://getbootstrap.com/components/#glyphicons-glyphs
     # @param [String] icon the part after glyphicon-
     def glyphicon(icon)
-      return content_tag(:span, ' ', class: "glyphicon glyphicon-#{icon}", 'aria-hidden': 'true')
+      return "<span class='glyphicon glyphicon-#{icon}' aria-hidden='true'> </span>".html_safe
     end
 
     # @param [Boolean] condition condition of evaluate

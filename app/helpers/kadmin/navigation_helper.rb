@@ -1,15 +1,5 @@
 module Kadmin
   module NavigationHelper
-    # Generates HTML for a bootstrap navigation link
-    # @param [String] title the navigation text
-    # @param [Hash, String] path the path for the link
-    # @param [Proc] block optional block to include content within the link
-    def nav_link_to(title, path, &block)
-      css_classes = []
-      css_classes << 'active' if request.path.starts_with?(path)
-      return content_tag(:li, link_to(title, path, &block), class: css_classes.join(' '))
-    end
-
     # Generates a navigation drop down for bootstrap
     # @param [String] prompt dropdown prompt
     # @param [Array<Hash,String>] links list of links to add within the dropdown

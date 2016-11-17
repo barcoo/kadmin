@@ -11,7 +11,6 @@ module Kadmin
     include Kadmin::Concerns::AuthorizedUser
 
     before_action :authorize
-    before_action :set_navbar_links
     before_action :set_default_format
 
     # @!group Error Handling
@@ -47,12 +46,6 @@ module Kadmin
     # @!endgroup
 
     # @!group Helpers
-
-    # Overload in the sub-controllers to set up the links in the layout
-    def set_navbar_links
-      @layout_navbar_links = []
-    end
-    protected :set_navbar_links
 
     def set_default_format
       params[:format] = 'html' if params[:format].blank?

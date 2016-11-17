@@ -6,8 +6,8 @@ module Kadmin
     # @return [String] the path the engine is mounted at (used for authentication routes)
     attr_accessor :mount_path
 
-    # @return [Array<Hash<Symbol, String>] list of admin links, format: { title: '', path: '' }
-    attr_accessor :navbar_links
+    # @return [Array<Kadmin::Navigation::Section, Kadmin::Navigation::Link>] list of admin links or sections
+    attr_accessor :navbar_items
 
     def initialize
       @mount_path = '/admin'
