@@ -25,13 +25,13 @@ Kadmin::Auth.config.user_store_class = Dummy::UserStore
 
 Kadmin::Auth.config.enable!
 
-Kadmin.config.navbar_items = [
+Kadmin.config.add_navbar_items(
   Kadmin::Navigation::Section.new(
-    title: 'People',
+    text: 'People',
     links: [
-      Kadmin::Navigation::Link.new(text: 'People list', path: '/admin/people'),
-      Kadmin::Navigation::Link.new(text: 'Register new person', path: '/admin/people/new')
+      Kadmin::Navigation::Link.new(text: 'People list', path: -> (view) { view.admin_people_path }),
+      Kadmin::Navigation::Link.new(text: 'Register new person', path: -> (view) { view.new_admin_person_path })
     ]
   ),
   Kadmin::Navigation::Link.new(text: 'Groups', path: '/admin/groups')
-]
+)

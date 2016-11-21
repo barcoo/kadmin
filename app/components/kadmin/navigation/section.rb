@@ -6,22 +6,15 @@ module Kadmin
       include Kadmin::Presentable
 
       # @return [String] title displayed for the section (or HTML)
-      attr_reader :title
+      attr_reader :text
 
       # @return [Hash<String, Kadmin::Navigation::Link>] links in the section, with keys being the link's path
       attr_reader :links
 
-      def initialize(title:, links:)
-        @title = title.freeze
-        @links = create_links_hash(links).freeze
+      def initialize(text:, links:)
+        @text = text.freeze
+        @links = links.freeze
       end
-
-      def create_links_hash(links)
-        return Array.wrap(links).each_with_object({}) do |link, hash|
-          hash[link.path] = link.freeze
-        end
-      end
-      private :create_links_hash
 
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
       class Presenter < Kadmin::Presenter
@@ -29,10 +22,16 @@ module Kadmin
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
         def generate(**)
           request_path = @view.controller.request.path
-          css_class = 'active open' if self.links.key?(request_path)
-          section_links = @view.safe_join(self.links.values.map { |link| link.present(@view).render })
+          section_links = ActiveSupport::SafeBuffer.new
+          css_class = nil
 
-          return "<li class='#{css_class}'><a>#{self.title} <i class='fa arrow'></i></a><ul>#{section_links}</ul></li>".html_safe
+          self.links.each do |link|
+            link_presenter = link.present(@view)
+            section_links << link_presenter.render
+            css_class = 'active open' if css_class.nil? && link_presenter.path == request_path
+          end
+
+          return "<li class='#{css_class}'><a>#{self.text} <i class='fa arrow'></i></a><ul>#{section_links}</ul></li>".html_safe
         end
       end
     end

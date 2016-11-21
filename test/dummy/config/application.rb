@@ -31,17 +31,9 @@ module Dummy
     config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += Dir['../../lib/**/'] # add gem lib folder for auto reload
 
     config.watchable_dirs['lib'] = [:rb, :erb]
     config.watchable_dirs['../../app'] = [:rb, :erb]
-
-    # Add all paths from the lib directory
     config.watchable_dirs['../../lib'] = [:rb, :erb]
-    Dir['../../lib/**/*'].each do |file_or_dir|
-      if File.directory?(file_or_dir)
-        config.watchable_dirs[file_or_dir] = [:rb, :erb]
-      end
-    end
   end
 end

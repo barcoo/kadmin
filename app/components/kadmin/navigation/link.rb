@@ -8,12 +8,15 @@ module Kadmin
       # @return [String] text of the link
       attr_reader :text
 
-      # @return [String, URL] path/URL for the given link
+      # @return [String] path for the given link
       attr_reader :path
 
       # @return [Array<String>] list of additional CSS classes
       attr_reader :css_classes
 
+      # @param [String] text the link text; can be HTML
+      # @param [String, Proc] path the linked path; if a Proc, will get evaluated everytime when calling the reader
+      # @param [Array<String>] css_classes list of additional CSS classes
       def initialize(text:, path:, css_classes: [])
         @text = text.freeze
         @path = path.freeze
@@ -27,10 +30,18 @@ module Kadmin
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
         def generate(**)
           css_classes = self.css_classes
-          css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == @path
-          contents = @view.link_to(self.text, self.path)
+          css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == self.path
+          contents = @view.link_to(self.text.to_s.html_safe, self.path)
 
           return %(<li class="#{css_classes.join(' ')}">#{contents}</li>).html_safe
+        end
+
+        # @return [String] path for the given link
+        def path
+          return @path ||= begin
+            path = __getobj__.path
+            path.respond_to?(:call) ? path.call(@view) : path
+          end
         end
       end
     end
