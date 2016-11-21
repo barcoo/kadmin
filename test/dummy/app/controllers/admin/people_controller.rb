@@ -12,7 +12,7 @@ module Admin
         .filter(name: :name, column: [:first_name, :last_name], value: params[:filter_name])
         .paginate(size: page_size, offset: params.fetch(:page_offset, 0))
       finder.find!
-      @finder = Kadmin::FinderDecorator.new(finder)
+      @finder = finder.present
     end
 
     # GET /admin/people/:id

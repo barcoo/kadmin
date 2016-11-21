@@ -7,7 +7,7 @@
     <% else %>
       <%= yield %>
       <% if finder.pager.pages > 1 %>
-        <%= Kadmin::Pagination::Presenter.new(finder.pager, view: self).present(page_sizes: [50, 100, 1000]) %>
+        <%= finder.pager.present(self).render(page_sizes: [50, 100, 1000]) %>
       <% end %>
     <% end %>
   </div>

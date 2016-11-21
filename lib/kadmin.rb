@@ -3,15 +3,13 @@ require 'kadmin/configuration'
 require 'kadmin/error'
 require 'kadmin/auth'
 require 'kadmin/presenter'
+require 'kadmin/presentable'
 
 # Rails
 require 'kadmin/engine'
 
 # Components
 require 'kadmin/form'
-require 'kadmin/finder'
-require 'kadmin/pagination'
-require 'kadmin/navigation'
 
 module Kadmin
   class << self

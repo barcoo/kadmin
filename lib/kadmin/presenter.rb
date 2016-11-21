@@ -12,14 +12,14 @@ module Kadmin
     # @param [ActiveView::Base] view optionally render in a different view
     # @param [Hash] options additional options passed to the render method
     # @return [Object] rendered representation of the wrapped object, typically a string
-    def present(view: nil, **options)
+    def render(view: nil, **options)
       previous_view = @view
       rendered = nil
 
       begin
         @view = view unless view.nil?
         raise Kadmin::Presenter::NoViewContext if @view.nil?
-        rendered = render(**options)
+        rendered = generate(**options)
       ensure
         @view = previous_view
       end
@@ -29,10 +29,10 @@ module Kadmin
 
     # Generates the representation of the wrapped object.
     # Should be overloaded and implemented by a concrete class.
-    def render(**)
+    def generate(**)
       return "<div>#{__getobj__.inspect}</div>".html_safe
     end
-    protected :render
+    protected :generate
 
     class NoViewContext < Kadmin::Error
       def initialize(message = nil)

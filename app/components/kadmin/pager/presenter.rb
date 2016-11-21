@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Kadmin
-  module Pagination
+  class Pager
     # Generates HTML code to present the given pager
     class Presenter < Kadmin::Presenter
       # @return [String] HTML glyph representing 'navigate to first page'
@@ -21,17 +21,10 @@ module Kadmin
       # @return [Array<Integer>] default page size controls
       DEFAULT_SIZES = [50, 100, 500, 1000].freeze
 
-      # @param [Kadmin::Pagination::Pager] pager pager to presenter
-      # @param [ActiveView::Base] view_context the context to present in; optional, can be provided later
-      def initialize(pager, view: nil)
-        super(pager)
-        @view = view
-      end
-
       # Generates HTML controls to change page, and pager behaviour.
       # @param [Array<Integer>] page_sizes list of page sizes for the controls
       # @return [ActiveSupport::SafeBuffer] 'safe' HTML representing the navigation and page size controls
-      def render(page_sizes: DEFAULT_SIZES)
+      def generate(page_sizes: DEFAULT_SIZES)
         navigation = page_list
         controls = size_list(page_sizes)
 

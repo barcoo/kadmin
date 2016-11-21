@@ -27,7 +27,7 @@ Kadmin::Auth.config.enable!
 
 Kadmin.config.navbar_items = [
   Kadmin::Navigation::Section.new(
-    text: 'People',
+    title: 'People',
     links: [
       Kadmin::Navigation::Link.new(text: 'People list', path: '/admin/people'),
       Kadmin::Navigation::Link.new(text: 'Register new person', path: '/admin/people/new')
