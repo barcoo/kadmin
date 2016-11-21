@@ -1,69 +1,82 @@
+# frozen_string_literal: true
 module Kadmin
   module Pagination
-    class Presenter < SimpleDelegator
-      def present(view_context, sizes)
-        page_links = page_list(view_context)
-        size_links = size_list(view_context, sizes)
+    # Generates HTML code to present the given pager
+    class Presenter < Kadmin::Presenter
+      # @return [String] HTML glyph representing 'navigate to first page'
+      FIRST_PAGE_SYMBOL = '&laquo;'
 
-        return "<div class='btn-toolbar'>#{page_links + size_links}</div>".html_safe
+      # @return [String] HTML glyph representing 'navigate to previous page'
+      PREVIOUS_PAGE_SYMBOL = '&lsaquo;'
+
+      # @return [String] HTML glyph representing 'navigate to last page'
+      LAST_PAGE_SYMBOL = '&raquo;'
+
+      # @return [String] HTML glyph representing 'navigate to next page'
+      NEXT_PAGE_SYMBOL = '&rsaquo;'
+
+      # @return [String] HTML glyph used to indicate skipped page numbers
+      SEPARATOR_SYMBOL = '&hellip;'
+
+      # @return [Array<Integer>] default page size controls
+      DEFAULT_SIZES = [50, 100, 500, 1000].freeze
+
+      # @param [Kadmin::Pagination::Pager] pager pager to presenter
+      # @param [ActiveView::Base] view_context the context to present in; optional, can be provided later
+      def initialize(pager, view: nil)
+        super(pager)
+        @view = view
       end
 
-      # @return [Integer] the current number of items displayed for this page
-      def displayed_items
-        return page_end - self.offset
+      # Generates HTML controls to change page, and pager behaviour.
+      # @param [Array<Integer>] page_sizes list of page sizes for the controls
+      # @return [ActiveSupport::SafeBuffer] 'safe' HTML representing the navigation and page size controls
+      def render(page_sizes: DEFAULT_SIZES)
+        navigation = page_list
+        controls = size_list(page_sizes)
+
+        return "<div class='btn-toolbar'>#{navigation + controls}</div>".html_safe
       end
 
-      # @return [Integer] the index number of the last item for this page
-      def page_end
-        return [next_page_offset, self.total].min
-      end
+      def page_list
+        first_link = navigate_link(0, FIRST_PAGE_SYMBOL)
+        previous_link = navigate_link(self.current_page - 1, PREVIOUS_PAGE_SYMBOL)
+        last_link = navigate_link(self.pages - 1, LAST_PAGE_SYMBOL)
+        next_link = navigate_link(self.current_page + 1, NEXT_PAGE_SYMBOL)
 
-      # @return [Integer] the index number of the start item for this page
-      def page_start
-        return self.offset + 1
-      end
+        page_list_html = first_link + previous_link + page_links + next_link + last_link
 
-      def next_page_offset
-        return self.offset_at(self.current_page + 1)
-      end
-
-      def page_list(view_context)
-        links = []
-        window = page_window
-
-        first_link = navigate_link(view_context, 0, '&laquo;')
-        previous_link = navigate_link(view_context, self.current_page - 1, '&lsaquo;')
-        last_link = navigate_link(view_context, self.pages - 1, '&raquo;')
-        next_link = navigate_link(view_context, self.current_page + 1, '&rsaquo;')
-
-        if self.previous_page?(window.begin)
-          links << list_text('&hellip;', 'disabled')
-        end
-
-        window.each do |number|
-          links << page_link(view_context, number)
-        end
-
-        if self.next_page?(window.end)
-          links << list_text('&hellip;', 'disabled')
-        end
-
-        links.unshift(first_link, previous_link)
-        links << next_link
-        links << last_link
-
-        return "<div class='btn-group'>#{links.reduce(&:+)}</div>".html_safe
+        return "<div class='btn-group'>#{page_list_html}</div>"
       end
       private :page_list
 
-      def page_window
-        window = (current_page - 2)..(current_page + 2)
-        window = Range.new(0, window.end - window.begin) if window.begin.negative?
-        window = Range.new(window.begin, pages - 1) if window.end >= pages
+      def page_links
+        page_links_html = ActiveSupport::SafeBuffer.new
+        page_numbers = (self.current_page - 2)..(self.current_page + 2)
+        page_numbers = Range.new(0, page_numbers.end - page_numbers.begin) if page_numbers.begin.negative?
+        page_numbers = Range.new(page_numbers.begin, self.pages - 1) if page_numbers.end >= self.pages
 
-        return window
+        if self.previous_page?(page_numbers.begin)
+          page_links_html += list_text(SEPARATOR_SYMBOL, 'disabled')
+        end
+
+        page_numbers.each do |page_number|
+          link = if self.current_page?(page_number)
+            list_text(page_number + 1, css_classes: 'active')
+          else
+            list_link(page_number + 1, page_offset: self.offset_at(page_number))
+          end
+
+          page_links_html += link
+        end
+
+        if self.next_page?(page_numbers.end)
+          page_links_html += list_text(SEPARATOR_SYMBOL, 'disabled')
+        end
+
+        return page_links_html
       end
-      private :page_window
+      private :page_links
 
       def list_text(text, css_classes = nil)
         classes = %w(btn btn-default) + Array.wrap(css_classes)
@@ -71,46 +84,34 @@ module Kadmin
       end
       private :list_text
 
-      def list_link(view_context, text, options = {}, css_classes = nil)
-        classes = %w(btn btn-default) + Array.wrap(css_classes)
-        link_options = view_context.controller.request.query_parameters.merge(options)
-        return view_context.link_to(text.to_s.html_safe, link_options, class: classes.join(' '))
+      def list_link(text, options = {})
+        link_options = @view.controller.request.query_parameters.merge(options)
+        return @view.link_to(text.to_s.html_safe, link_options, class: %w(btn btn-default).join(' '))
       end
       private :list_link
 
-      def page_link(page)
-        link = if self.current_page?(page)
-          list_text(page + 1, 'active')
-        else
-          list_link(page + 1, page_offset: self.offset_at(page))
-        end
-
-        return link
-      end
-      private :page_link
-
-      def navigate_link(view_context, page, text)
-        link = if self.contains?(page)
-          list_link(view_context, text, page_offset: self.offset_at(page))
-        else
+      def navigate_link(page_number, text)
+        link = if self.current_page?(page_number) || !self.contains?(page_number)
           list_text(text, 'disabled')
+        else
+          list_link(text, page_offset: self.offset_at(page_number))
         end
 
         return link
       end
       private :navigate_link
 
-      def size_list(view_context, sizes)
+      def size_list(sizes)
         label = "<div class='btn'>Per page: </div>"
         links = sizes.map do |size|
           if self.size == size
             list_text(size, 'active')
           else
-            list_link(view_context, size, page_size: size)
+            list_link(size, page_size: size)
           end
         end.reduce(&:+)
 
-        return "<div class='btn-group'>#{label + links}</div>".html_safe
+        return "<div class='btn-group'>#{label + links}</div>"
       end
       private :size_list
     end

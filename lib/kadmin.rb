@@ -2,6 +2,7 @@
 require 'kadmin/configuration'
 require 'kadmin/error'
 require 'kadmin/auth'
+require 'kadmin/presenter'
 
 # Rails
 require 'kadmin/engine'

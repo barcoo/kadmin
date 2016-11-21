@@ -6,7 +6,6 @@ module Kadmin
     helper Kadmin::BootstrapHelper
     helper Kadmin::AlertHelper
     helper Kadmin::NavigationHelper
-    helper Kadmin::PaginationHelper
 
     include Kadmin::Concerns::AuthorizedUser
 

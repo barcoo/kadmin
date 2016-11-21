@@ -38,7 +38,10 @@ module Dummy
     # Add all paths from the lib directory
     config.watchable_dirs['../../lib'] = [:rb, :erb]
     Dir['../../lib/**/*'].each do |file_or_dir|
-      config.watchable_files << file_or_dir if File.file?(file_or_dir)
+      if File.directory?(file_or_dir)
+        config.watchable_dirs[file_or_dir] = [:rb, :erb]
+        config.autoload_paths << config.root.join(file_or_dir).to_s
+      end
     end
   end
 end
