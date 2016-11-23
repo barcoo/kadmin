@@ -4,7 +4,7 @@ module Kadmin
     class Presenter < Kadmin::Presenter
       # @return [Boolean] true if no results, false otherwise
       def empty?
-        return self.results.count.zero?
+        return self.results.empty?
       end
 
       # @return [String] how many resources are being displayed (along with indices)
@@ -13,7 +13,7 @@ module Kadmin
         displayed = empty? ? 0 : displayed_items
 
         currently_showing_phrase = "#{displayed} #{resource}"
-        currently_showing_phrase = "#{currently_showing_phrase} (#{offset_start} - #{offset_end})" if self.results.count > 1
+        currently_showing_phrase = "#{currently_showing_phrase} (#{offset_start} - #{offset_end})" if self.results.size > 1
 
         return currently_showing_phrase
       end

@@ -21,6 +21,7 @@ module Kadmin
       @pager = nil
       @filters = {}
       @results = nil
+      @filtering = false
     end
 
     # @param [String] name the filter name (should be unique)
@@ -30,12 +31,16 @@ module Kadmin
       if column.present? && !@filters.key?(name)
         @filters[name] = Kadmin::Finder::Filter.new(column, value)
         if value.present?
-          @scope = @scope.where("#{@scope.table_name}.`#{column}` LIKE ?", value.tr('*', '%'))
-          @pager&.total = @scope.count
+          @scope = @scope.where("#{@scope.table_name}.`#{column}` LIKE ?", "%#{value}%".squeeze('%'))
+          @filtering = true
         end
       end
 
       return self
+    end
+
+    def filtering?
+      return @filtering
     end
 
     # @param [Integer] offset optional; offset/index for the current page
@@ -56,12 +61,16 @@ module Kadmin
     def results
       return @results ||= begin
         results = @scope
-        results = @pager.page(results) unless @pager.nil?
+        results = @pager.paginate(results) unless @pager.nil?
+        Rails.logger.info('Right before loading')
+        results.load
+        Rails.logger.info('Right after loading')
         results
       end
     end
 
     def find!
+      @total_found = 0
       @results = nil
       return results
     end

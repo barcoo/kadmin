@@ -15,7 +15,7 @@ module Kadmin
       attr_reader :links
 
       def initialize(id:, text:, links:)
-        @id = id
+        @id = id.to_s.freeze
         @text = text.freeze
         @links = links.freeze
       end
@@ -26,7 +26,7 @@ module Kadmin
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
         def generate(**)
           request_path = @view.controller.request.path
-          current_section_id = @view.controller.class.try(:navbar_section)
+          current_section_id = @view.controller.class.try(:navbar_section).to_s
           section_links = ActiveSupport::SafeBuffer.new
           css_class = 'active open' if !current_section_id.nil? && current_section_id == self.id
 
