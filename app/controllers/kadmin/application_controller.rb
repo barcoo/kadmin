@@ -5,7 +5,6 @@ module Kadmin
     helper Kadmin::ApplicationHelper
     helper Kadmin::BootstrapHelper
     helper Kadmin::AlertHelper
-    helper Kadmin::NavigationHelper
 
     include Kadmin::Concerns::AuthorizedUser
 

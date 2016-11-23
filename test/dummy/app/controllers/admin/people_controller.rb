@@ -1,12 +1,16 @@
+# frozen_string_literal: true
 module Admin
   class PeopleController < Admin::ApplicationController
-    MAX_PAGE_SIZE = 200
+    # Maximum page size for a given pager
+    MAX_PAGE_SIZE = 1000
+
+    self.navbar_section = ''
 
     # GET /admin/people
     def index
       params.permit(:page_size, :page_offset, :filter_name, :format)
 
-      page_size = [params.fetch(:page_size, 15).to_i, MAX_PAGE_SIZE].min # fix 200 as maximum size
+      page_size = [params.fetch(:page_size, 50).to_i, MAX_PAGE_SIZE].min
 
       finder = Kadmin::Finder.new(Person.includes(:groups, :owned_groups).order(created_at: :desc))
         .filter(name: :name, column: [:first_name, :last_name], value: params[:filter_name])
@@ -18,6 +22,7 @@ module Admin
     # GET /admin/people/:id
     def show
       @person = load_person
+      @section = 'Yo fine mama'
     end
 
     # GET /admin/people/edit/:id

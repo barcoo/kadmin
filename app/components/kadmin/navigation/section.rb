@@ -25,6 +25,8 @@ module Kadmin
           section_links = ActiveSupport::SafeBuffer.new
           css_class = nil
 
+          binding.pry
+
           self.links.each do |link|
             link_presenter = link.present(@view)
             section_links << link_presenter.render
