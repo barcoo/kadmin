@@ -26,13 +26,13 @@ Kadmin::Auth.config.user_store_class = Dummy::UserStore
 Kadmin::Auth.config.enable!
 
 Kadmin.config.add_navbar_items(
-  Kadmin::Navigation::Section.new(
+  Kadmin::Navbar::Section.new(
     id: Admin::PeopleController,
     text: 'People',
     links: [
-      Kadmin::Navigation::Link.new(text: 'People list', path: -> { Rails.application.routes.url_helpers.admin_people_path }),
-      Kadmin::Navigation::Link.new(text: 'Register new person', path: -> { Rails.application.routes.url_helpers.new_admin_person_path })
+      Kadmin::Navbar::Link.new(text: 'People list', path: -> { Rails.application.routes.url_helpers.admin_people_path }),
+      Kadmin::Navbar::Link.new(text: 'Register new person', path: -> { Rails.application.routes.url_helpers.new_admin_person_path })
     ]
   ),
-  Kadmin::Navigation::Link.new(text: 'Groups', path: -> { Rails.application.routes.url_helpers.admin_groups_path })
+  Kadmin::Navbar::Link.new(text: 'Groups', path: -> { Rails.application.routes.url_helpers.admin_groups_path })
 )

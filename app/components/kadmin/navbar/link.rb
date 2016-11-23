@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Kadmin
-  module Navigation
+  module Navbar
     # A navigation link for use with the navbar items
     class Link
       include Kadmin::Presentable
@@ -20,7 +20,13 @@ module Kadmin
       def initialize(text:, path:, css_classes: [])
         @text = text.freeze
         @path = path.freeze
-        @css_classes = Array.wrap(css_classes).freeze
+        @css_classes = Array.wrap(css_classes).dup.freeze
+      end
+
+      # Supports dynamic paths by setting the base property as a Proc
+      # @return [String] path for the given link
+      def path
+        return @path.respond_to?(:call) ? @path.call : @path
       end
 
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
@@ -34,14 +40,6 @@ module Kadmin
           contents = @view.link_to(self.text.to_s.html_safe, self.path)
 
           return %(<li class="#{css_classes.join(' ')}">#{contents}</li>).html_safe
-        end
-
-        # @return [String] path for the given link
-        def path
-          return @path ||= begin
-            path = __getobj__.path
-            path.respond_to?(:call) ? path.call : path
-          end
         end
       end
     end
