@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   # Core
   s.add_dependency 'rails', '~> 4.2'
+  s.add_dependency 'i18n', '~> 0.7'
 
   # Front-end stuff
   s.add_dependency 'bootstrap-sass', '~> 3.3'

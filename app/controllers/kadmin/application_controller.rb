@@ -43,7 +43,8 @@ module Kadmin
       options = {
         title: error.try(:title) || error.class.name,
         message: error.message,
-        status: :internal_server_error
+        status: :internal_server_error,
+        error: error
       }.merge(options)
       render 'kadmin/error', status: options[:status], locals: options
     end
