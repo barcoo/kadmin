@@ -40,7 +40,7 @@ module Kadmin
         def path
           return @path ||= begin
             path = __getobj__.path
-            path.respond_to?(:call) ? path.call(@view) : path
+            path.respond_to?(:call) ? path.call : path
           end
         end
       end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Kadmin
   class ApplicationController < ActionController::Base
     layout 'modular/application'
@@ -10,6 +11,12 @@ module Kadmin
 
     before_action :authorize
     before_action :set_default_format
+
+    # Each controller should specify which navbar section they
+    # belong to, if any.
+    class << self
+      attr_accessor :navbar_section
+    end
 
     # @!group Error Handling
 

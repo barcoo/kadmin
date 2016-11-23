@@ -4,7 +4,7 @@ module Admin
     # Maximum page size for a given pager
     MAX_PAGE_SIZE = 1000
 
-    self.navbar_section = ''
+    self.navbar_section = self
 
     # GET /admin/people
     def index
@@ -22,7 +22,6 @@ module Admin
     # GET /admin/people/:id
     def show
       @person = load_person
-      @section = 'Yo fine mama'
     end
 
     # GET /admin/people/edit/:id

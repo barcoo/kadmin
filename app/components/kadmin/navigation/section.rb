@@ -5,13 +5,17 @@ module Kadmin
     class Section
       include Kadmin::Presentable
 
+      # @return [Object] unique ID for the section; for a gem, it is recommended to use the top level namespace
+      attr_reader :id
+
       # @return [String] title displayed for the section (or HTML)
       attr_reader :text
 
       # @return [Hash<String, Kadmin::Navigation::Link>] links in the section, with keys being the link's path
       attr_reader :links
 
-      def initialize(text:, links:)
+      def initialize(id:, text:, links:)
+        @id = id
         @text = text.freeze
         @links = links.freeze
       end
@@ -22,16 +26,11 @@ module Kadmin
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
         def generate(**)
           request_path = @view.controller.request.path
+          current_section_id = @view.controller.class.try(:navbar_section)
           section_links = ActiveSupport::SafeBuffer.new
-          css_class = nil
+          css_class = 'active open' if !current_section_id.nil? && current_section_id == self.id
 
-          binding.pry
-
-          self.links.each do |link|
-            link_presenter = link.present(@view)
-            section_links << link_presenter.render
-            css_class = 'active open' if css_class.nil? && link_presenter.path == request_path
-          end
+          self.links.each { |link| section_links << link.present(@view).render }
 
           return "<li class='#{css_class}'><a>#{self.text} <i class='fa arrow'></i></a><ul>#{section_links}</ul></li>".html_safe
         end
