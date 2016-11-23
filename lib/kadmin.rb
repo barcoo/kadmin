@@ -8,9 +8,6 @@ require 'kadmin/presentable'
 # Rails
 require 'kadmin/engine'
 
-# Components
-require 'kadmin/form'
-
 module Kadmin
   class << self
     delegate :logger, :logger=, to: :config

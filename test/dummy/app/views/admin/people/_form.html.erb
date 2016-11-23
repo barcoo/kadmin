@@ -1,34 +1,40 @@
-<div class='container-fluid'>
-  <div class="row">
+<section class="section">
+  <div class="row sameheight-container">
     <%= form.hidden_field :id %>
-    <div class='col-xs-12 col-sm-8 col-md-4'>
-      <div class="form-group">
-        <%= form.label :first_name, class: 'control-label' %>
-        <%= form.text_field :first_name, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= form.label :last_name, class: 'control-label' %>
-        <%= form.text_field :last_name, class: 'form-control' %>
-      </div>
-    </div>
-    <div class='col-xs-12 col-sm-8 col-md-4'>
-      <div class="form-group">
-        <%= form.label :date_of_birth, class: 'control-label' %>
-        <div class="form-group form-inline">
-          <%= form.date_select :date_of_birth, { start_year: 100.years.ago.year, end_year: Date.today.year }, class: 'form-control' %>
+    <div class='col-xs-12 col-sm-8 col-md-6'>
+      <div class="card card-block sameheight-item">
+        <div class="form-group">
+          <%= form.label :first_name, class: 'control-label' %>
+          <%= form.text_field :first_name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :last_name, class: 'control-label' %>
+          <%= form.text_field :last_name, class: 'form-control' %>
         </div>
       </div>
-      <div class="form-group">
-        <%= form.label :gender, class: 'control-label' %>
-        <%= form.select :gender, [['Male', 'm'], ['Female', 'f'], ['Other', 'o']], { prompt: 'Select one of...' }, class: 'form-control' %>
+    </div>
+    <div class='col-xs-12 col-sm-8 col-md-6'>
+      <div class="card card-block sameheight-item">
+        <div class="form-group">
+          <%= form.label :date_of_birth, class: 'control-label' %>
+          <div class="form-group form-inline">
+            <%= form.date_select :date_of_birth, { start_year: 100.years.ago.year, end_year: Date.today.year }, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= form.label :gender, class: 'control-label' %>
+          <%= form.select :gender, [['Male', 'm'], ['Female', 'f'], ['Other', 'o']], { prompt: 'Select one of...' }, class: 'form-control' %>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row">
-    <%= form.button(type: 'submit', data: { 'disable-with': 'Saving...' }, class: 'btn btn-primary btn-lg') do %>
-      <%= glyphicon('floppy-save') %>
-      Save
-    <% end %>
+    <div class="col-xs-12">
+      <%= form.button(type: 'submit', data: { 'disable-with': 'Saving...' }, class: 'btn btn-primary btn-lg') do %>
+        <%= glyphicon('floppy-save') %>
+        Save
+      <% end %>
+    </div>
   </div>
-</div>
+</section>

@@ -27,6 +27,17 @@ a.titlelink {
     padding: 0px;
 }
 
+.field_with_errors {
+  color: #FF4444;
+  font-size: 13px;
+  display: block !important;
+}
+
+.field_with_errors .form-control {
+  box-shadow: none;
+  border-color: #FF4444;
+}
+
 /* -------------------------------------------
     MISC
 ------------------------------------------- */

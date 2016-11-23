@@ -82,7 +82,7 @@ module Admin
     private :load_person
 
     def person_form
-      form = Forms::PersonForm.new(@person)
+      form = PersonForm.new(@person)
       form.assign_attributes(params.fetch(:person, {}).except(:id))
       return form
     end
