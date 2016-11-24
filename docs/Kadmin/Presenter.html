@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Kadmin::Presenter
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Kadmin::Presenter";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Kadmin.html" title="Kadmin (module)">Kadmin</a></span></span>
+     &raquo; 
+    <span class="title">Presenter</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src="../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Kadmin::Presenter
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">SimpleDelegator</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SimpleDelegator</li>
+          
+            <li class="next">Kadmin::Presenter</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/kadmin/presenter.rb<span class="defines">,<br />
+  lib/kadmin/presenter/test_case.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Base presenter class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="Finder/Presenter.html" title="Kadmin::Finder::Presenter (class)">Finder::Presenter</a></span>, <span class='object_link'><a href="Navbar/Link/Presenter.html" title="Kadmin::Navbar::Link::Presenter (class)">Navbar::Link::Presenter</a></span>, <span class='object_link'><a href="Navbar/Section/Presenter.html" title="Kadmin::Navbar::Section::Presenter (class)">Navbar::Section::Presenter</a></span>, <span class='object_link'><a href="Pager/Presenter.html" title="Kadmin::Pager::Presenter (class)">Kadmin::Pager::Presenter</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Presenter/NoViewContext.html" title="Kadmin::Presenter::NoViewContext (class)">NoViewContext</a></span>, <span class='object_link'><a href="Presenter/TestCase.html" title="Kadmin::Presenter::TestCase (class)">TestCase</a></span>
+    
+  
+</p>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(object, view: nil)  &#x21d2; Presenter </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Presenter.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#render-instance_method" title="#render (instance method)">#<strong>render</strong>(view: nil, **options)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Renders the wrapped object into the given view.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(object, view: nil)  &#x21d2; <tt><span class='object_link'><a href="" title="Kadmin::Presenter (class)">Presenter</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Presenter</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>object</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the object to present</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>view</span>
+      
+      
+        <span class='type'>(<tt>ActiveView::Base</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the view to present in; can be provided later on</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/presenter.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='comma'>,</span> <span class='label'>view:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
+  <span class='ivar'>@view</span> <span class='op'>=</span> <span class='id identifier rubyid_view'>view</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="render-instance_method">
+  
+    #<strong>render</strong>(view: nil, **options)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Renders the wrapped object into the given view</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>view</span>
+      
+      
+        <span class='type'>(<tt>ActiveView::Base</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>optionally render in a different view</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>additional options passed to the render method</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>rendered representation of the wrapped object, typically a string</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/presenter.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='label'>view:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_previous_view'>previous_view</span> <span class='op'>=</span> <span class='ivar'>@view</span>
+  <span class='id identifier rubyid_rendered'>rendered</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>begin</span>
+    <span class='ivar'>@view</span> <span class='op'>=</span> <span class='id identifier rubyid_view'>view</span> <span class='kw'>unless</span> <span class='id identifier rubyid_view'>view</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Presenter</span><span class='op'>::</span><span class='const'>NoViewContext</span> <span class='kw'>if</span> <span class='ivar'>@view</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_rendered'>rendered</span> <span class='op'>=</span> <span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>ensure</span>
+    <span class='ivar'>@view</span> <span class='op'>=</span> <span class='id identifier rubyid_previous_view'>previous_view</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_rendered'>rendered</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Nov 24 12:48:35 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>

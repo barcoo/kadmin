@@ -348,7 +348,8 @@ provider.</p>
 17
 18
 19
-20</pre>
+20
+21</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 15</span>
@@ -358,6 +359,7 @@ provider.</p>
   <span class='ivar'>@user_class</span> <span class='op'>=</span> <span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Auth</span><span class='op'>::</span><span class='const'>User</span>
   <span class='ivar'>@user_store_class</span> <span class='op'>=</span> <span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Auth</span><span class='op'>::</span><span class='const'>UserStore</span>
   <span class='ivar'>@enabled</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@__omniauth_appended</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -588,21 +590,15 @@ authorization)</p>
       <pre class="lines">
 
 
-36
 37
 38
-39
-40
-41</pre>
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disable!'>disable!</span>
-  <span class='kw'>if</span> <span class='ivar'>@enabled</span>
-    <span class='id identifier rubyid_delete_omniauth_middleware'>delete_omniauth_middleware</span>
-    <span class='ivar'>@enabled</span> <span class='op'>=</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@enabled</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -635,15 +631,15 @@ authorization)</p>
       <pre class="lines">
 
 
-28
 29
 30
 31
 32
-33</pre>
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enable!'>enable!</span>
   <span class='kw'>unless</span> <span class='ivar'>@enabled</span>
@@ -700,12 +696,12 @@ authorization)</p>
       <pre class="lines">
 
 
-23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/kadmin/auth/configuration.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enabled?'>enabled?</span>
   <span class='kw'>return</span> <span class='ivar'>@enabled</span>
@@ -720,7 +716,7 @@ authorization)</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Oct 10 17:58:30 2016 by
+  Generated on Thu Nov 24 12:48:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

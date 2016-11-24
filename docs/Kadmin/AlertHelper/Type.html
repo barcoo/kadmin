@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Class: Kadmin::Finder::Filter
+  Class: Kadmin::AlertHelper::Type
   
     &mdash; Documentation by YARD 0.9.5
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Kadmin::Finder::Filter";
+  pathId = "Kadmin::AlertHelper::Type";
   relpath = '../../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../../_index.html">Index (F)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../Kadmin.html" title="Kadmin (module)">Kadmin</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Finder.html" title="Kadmin::Finder (class)">Finder</a></span></span>
+    <a href="../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Kadmin.html" title="Kadmin (module)">Kadmin</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../AlertHelper.html" title="Kadmin::AlertHelper (module)">AlertHelper</a></span></span>
      &raquo; 
-    <span class="title">Filter</span>
+    <span class="title">Type</span>
   
 </div>
 
@@ -61,7 +61,7 @@
 
       <iframe id="search_frame" src="../../class_list.html"></iframe>
 
-      <div id="content"><h1>Class: Kadmin::Finder::Filter
+      <div id="content"><h1>Class: Kadmin::AlertHelper::Type
   
   
   
@@ -78,7 +78,7 @@
           
             <li class="next">Struct</li>
           
-            <li class="next">Kadmin::Finder::Filter</li>
+            <li class="next">Kadmin::AlertHelper::Type</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -98,23 +98,12 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>app/components/kadmin/finder.rb</dd>
+    <dd>app/helpers/kadmin/alert_helper.rb</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
-  <div class="discussion">
-    
-<p>Simple filter structure</p>
 
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
 
 
 
@@ -124,7 +113,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#column-instance_method" title="#column (instance method)">#<strong>column</strong>  &#x21d2; Object </a>
+      <a href="#css_class-instance_method" title="#css_class (instance method)">#<strong>css_class</strong>  &#x21d2; Object </a>
     
 
     
@@ -142,7 +131,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute column.</p>
+<p>Returns the value of attribute css_class.</p>
 </div></span>
   
 </li>
@@ -151,7 +140,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value-instance_method" title="#value (instance method)">#<strong>value</strong>  &#x21d2; Object </a>
+      <a href="#flash_keys-instance_method" title="#flash_keys (instance method)">#<strong>flash_keys</strong>  &#x21d2; Object </a>
     
 
     
@@ -169,7 +158,34 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute value.</p>
+<p>Returns the value of attribute flash_keys.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#glyphicon-instance_method" title="#glyphicon (instance method)">#<strong>glyphicon</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute glyphicon.</p>
 </div></span>
   
 </li>
@@ -186,11 +202,11 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="column=-instance_method"></span>
+      <span id="css_class=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="column-instance_method">
+  <h3 class="signature first" id="css_class-instance_method">
   
-    #<strong>column</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>css_class</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -199,7 +215,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute column</p>
+<p>Returns the value of attribute css_class</p>
 
 
   </div>
@@ -218,7 +234,7 @@
       
         &mdash;
         <div class='inline'>
-<p>the current value of column</p>
+<p>the current value of css_class</p>
 </div>
       
     </li>
@@ -231,15 +247,15 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/components/kadmin/finder.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/alert_helper.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_column'>column</span>
-  <span class='ivar'>@column</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_css_class'>css_class</span>
+  <span class='ivar'>@css_class</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -247,11 +263,11 @@
 </div>
     
       
-      <span id="value=-instance_method"></span>
+      <span id="flash_keys=-instance_method"></span>
       <div class="method_details ">
-  <h3 class="signature " id="value-instance_method">
+  <h3 class="signature " id="flash_keys-instance_method">
   
-    #<strong>value</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>flash_keys</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -260,7 +276,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute value</p>
+<p>Returns the value of attribute flash_keys</p>
 
 
   </div>
@@ -279,7 +295,7 @@
       
         &mdash;
         <div class='inline'>
-<p>the current value of value</p>
+<p>the current value of flash_keys</p>
 </div>
       
     </li>
@@ -292,15 +308,76 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/components/kadmin/finder.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/alert_helper.rb', line 35</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
-  <span class='ivar'>@value</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_flash_keys'>flash_keys</span>
+  <span class='ivar'>@flash_keys</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="glyphicon=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="glyphicon-instance_method">
+  
+    #<strong>glyphicon</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute glyphicon</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the current value of glyphicon</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/kadmin/alert_helper.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_glyphicon'>glyphicon</span>
+  <span class='ivar'>@glyphicon</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>

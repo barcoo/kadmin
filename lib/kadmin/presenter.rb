@@ -29,7 +29,7 @@ module Kadmin
 
     # Generates the representation of the wrapped object.
     # Should be overloaded and implemented by a concrete class.
-    def generate(**)
+    def generate(**_options)
       return "<div>#{__getobj__.inspect}</div>".html_safe
     end
     protected :generate

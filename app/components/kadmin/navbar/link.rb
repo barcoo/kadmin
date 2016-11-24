@@ -32,9 +32,8 @@ module Kadmin
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
       class Presenter < Kadmin::Presenter
         # Generates HTML to present the section
-        # @param [ActiveView::Base] view_context the context to present the section in
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
-        def generate(**)
+        def generate(**_options)
           css_classes = self.css_classes
           css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == self.path
           contents = @view.link_to(self.text.to_s.html_safe, self.path)

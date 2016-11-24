@@ -8,7 +8,7 @@ module Dummy
   class UserStore < Kadmin::Auth::UserStore
     def get(email)
       set(email, Dummy::User.new(email))
-      return @store[email.downcase]
+      return super
     end
 
     def exists?(_email)

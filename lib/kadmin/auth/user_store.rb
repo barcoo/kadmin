@@ -6,15 +6,15 @@ module Kadmin
       end
 
       def get(email)
-        return @store[email.downcase]
+        return @store[email.to_s.downcase]
       end
 
       def set(email, user)
-        @store[email.downcase] = user
+        @store[email.to_s.downcase] = user
       end
 
       def exists?(email)
-        @store.key?(email.downcase)
+        @store.key?(email.to_s.downcase)
       end
     end
   end
