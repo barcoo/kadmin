@@ -56,11 +56,6 @@ module Kadmin
         end
       end
       private :append_omniauth_middleware
-
-      def delete_omniauth_middleware
-        Rails.application.config.middleware.delete OmniAuth::Builder
-      end
-      private :delete_omniauth_middleware
     end
   end
 end

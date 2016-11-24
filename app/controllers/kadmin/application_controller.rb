@@ -20,7 +20,7 @@ module Kadmin
 
     # @!group Error Handling
 
-    unless defined?(BetterErrors)
+    if Kadmin.config.handle_errors && !defined?(BetterErrors)
       rescue_from StandardError, with: :handle_unexpected_error
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::ParameterMissing, with: :params_missing

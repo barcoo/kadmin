@@ -8,14 +8,18 @@ module Kadmin
     # @!group Endpoints
     # GET /auth/login
     def login
-      render 'kadmin/auth/login'
+      if logged_in? && authorized?
+        redirect_to dash_path
+      else
+        render 'kadmin/auth/login'
+      end
     end
 
     # GET /auth/logout
     # DELETE /auth/logout
     def logout
       session.delete(SESSION_KEY)
-      redirect_to action: :login
+      redirect_to auth_login_path
     end
 
     # GET /auth/:provider/callback
@@ -26,7 +30,7 @@ module Kadmin
       if auth_hash.blank?
         Kadmin.logger.error('No authorization hash provided')
         flash.alert = I18n.t('kadmin.auth.error')
-        redirect_to action: :login
+        redirect_to auth_login_path(origin: request.env['omniauth.origin'])
         return
       end
 
@@ -37,7 +41,7 @@ module Kadmin
         redirect_url = Kadmin.config.mount_path unless valid_redirect_url?(redirect_url)
       else
         flash.alert = I18n.t('kadmin.auth.unauthorized_message')
-        redirect_url = url_for(action: :login)
+        redirect_url = auth_login_path(origin: request.env['omniauth.origin'])
       end
 
       redirect_to redirect_url
@@ -46,7 +50,7 @@ module Kadmin
     # GET /auth/failure
     def failure
       flash.alert = params[:message]
-      redirect_to action: :login
+      redirect_to auth_login_path(origin: request.env['omniauth.origin'])
     end
 
     def unauthorized
@@ -64,7 +68,7 @@ module Kadmin
       valid = false
 
       unless url.blank?
-        paths = [url_for(action: :login), url_for(action: :logout)]
+        paths = [auth_login_path, auth_logout_path]
         valid = paths.none? { |invalid| url == invalid }
       end
 
@@ -73,7 +77,7 @@ module Kadmin
     protected :valid_redirect_url?
 
     def omniauth_provider_link
-      auth_prefix = "#{Kadmin.config.mount_path}/auth"
+      auth_prefix = auth_path
       provider_link = "#{auth_prefix}/#{Kadmin::Auth.omniauth_provider}"
       origin = params[:origin]
 

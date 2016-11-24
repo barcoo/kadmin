@@ -10,10 +10,14 @@ module Kadmin
     # @return [Array<Kadmin::Navbar::Section, Kadmin::Navbar::Link>] list of admin links or sections
     attr_accessor :navbar_items
 
+    # @return [Boolean] if true, any Kadmin::ApplicationController will catch errors and display a custom page
+    attr_accessor :handle_errors
+
     def initialize
       @mount_path = '/admin'
       @logger = Rails.logger
       @navbar_items = []
+      @handle_errors = false
     end
 
     def add_navbar_items(*items)
