@@ -29,7 +29,7 @@ module Kadmin
       raise(Kadmin::Error, 'Offset must be at least 0!') unless @offset >= 0
 
       @current_page = (@offset / @size.to_f).floor
-      self.total = @size # assume page size is maximum initially
+      self.total = @offset # assume offset is maximum initially
     end
 
     # @param [ActiveRecord::Relation] collection relation to paginate
@@ -72,6 +72,8 @@ module Kadmin
     # @return [Integer] the number of items that are on this page
     def page_size(page = nil)
       page ||= @current_page
+      return 0 unless contains?(page)
+
       page_start = offset_at(page)
       page_end = [offset_at(page.to_i + 1), @total].min
 
