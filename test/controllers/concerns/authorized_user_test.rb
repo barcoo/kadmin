@@ -8,9 +8,27 @@ module Kadmin
     class AuthorizedUserTest < ActionController::TestCase
       tests AuthorizedController
 
+      def setup
+        super
+        @routes = Rails.application.routes # reenable normal routes here
+      end
+
       def test_authorize
         Kadmin::Auth.config.disable!
-        @controller.authorize
+        get :index
+        assert_template 'authorized/index'
+
+        Kadmin::Auth.config.enable!
+        get :index
+        assert_redirected_to Kadmin::Engine.routes.url_helpers.auth_login_path(origin: authorized_path)
+
+        session[Kadmin::AuthController::SESSION_KEY] = 'test'
+        get :index
+        assert_template 'authorized/index'
+
+        flexmock(Kadmin::Auth::User).new_instances.should_receive(:authorized?).and_return(false)
+        get :index
+        assert_redirected_to Kadmin::Engine.routes.url_helpers.auth_unauthorized_path
       end
 
       # @!group Helpers
