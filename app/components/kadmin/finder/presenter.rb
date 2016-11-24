@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Kadmin
-  class Finder::Presenter < Kadmin::Presenter
+  class Finder
+    class Presenter < Kadmin::Presenter
       # @return [Boolean] true if no results, false otherwise
       def empty?
         return self.results.empty?
@@ -54,4 +55,5 @@ module Kadmin
 
       # @!endgroup
     end
+  end
 end

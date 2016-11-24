@@ -1,9 +1,8 @@
+# frozen_string_literal: true
 require 'test_helper'
 
 module Kadmin
-  class Finder
-    class PresenterTest < ActionView::TestCase
+  class FinderPresenterTest < ActionView::TestCase
 
-    end
   end
 end
