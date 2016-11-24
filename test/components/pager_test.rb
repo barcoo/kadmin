@@ -7,7 +7,7 @@ module Kadmin
       @pager = Kadmin::Pager.new(size: 10, offset: 10)
     end
 
-    def test_initialize
+    def test_initialization
       assert_raises(Kadmin::Error, 'offset must be >= 0') { Kadmin::Pager.new(size: 1, offset: -1) }
       assert_raises(Kadmin::Error, 'size must be > 0') { Kadmin::Pager.new(size: 0, offset: 1) }
 
@@ -18,6 +18,15 @@ module Kadmin
     end
 
     def test_paginate
+      assert_nil @pager.paginate(nil)
+
+      Person.create(first_name: 'John', last_name: 'Doe', gender: 'm', date_of_birth: 25.years.ago)
+      Person.create(first_name: 'Jane', last_name: 'Doe', gender: 'f', date_of_birth: 25.years.ago)
+      collection = Person.all
+      paginated = @pager.paginate(collection)
+      assert_equal 2, @pager.total
+      assert_equal @pager.offset, paginated.offset_value
+      assert_equal @pager.size, paginated.limit_value
     end
 
     def test_offset_at

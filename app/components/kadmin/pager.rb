@@ -35,6 +35,8 @@ module Kadmin
     # @param [ActiveRecord::Relation] collection relation to paginate
     # @return [ActiveRecord::Relation] paginated collection
     def paginate(collection)
+      return nil if collection.nil?
+
       self.total = collection.count
 
       collection = collection.offset(@offset)
