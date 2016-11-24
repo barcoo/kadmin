@@ -23,11 +23,15 @@ end
 
 task default: :test
 
-require 'yard'
+begin
+  require 'yard'
 
-YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb', 'app/**/*.rb', 'config/**/*.rb']
-  t.options = ['--output-dir=./docs']
+  YARD::Rake::YardocTask.new do |t|
+    t.files   = ['lib/**/*.rb', 'app/**/*.rb', 'config/**/*.rb']
+    t.options = ['--output-dir=./docs']
+  end
+rescue LoadError
+  puts 'yard not present, disabling Rake task'
 end
 
 require 'kadmin/version'
