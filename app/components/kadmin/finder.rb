@@ -6,7 +6,7 @@ module Kadmin
     # @return [Kadmin::Pager] the pager to use (if any)
     attr_reader :pager
 
-    # @return [Array<Kadmin::Finder::Filter>] array of filters applied to the finder
+    # @return [Hash<String, Kadmin::Finder::Filter>] array of filters applied to the finder
     attr_reader :filters
 
     # @return [ActiveRecord::Relation] the base relation to find items from
@@ -28,10 +28,14 @@ module Kadmin
     # @param [String, Array<String>] column the column(s) name to filter on
     # @param [String, Array<String>] value the value or values to look for (OR'd)
     def filter(name:, column:, value:)
-      if column.present? && !@filters.key?(name)
+      if column.present?
         @filters[name] = Kadmin::Finder::Filter.new(column, value)
         if value.present?
-          @scope = @scope.where("#{@scope.table_name}.`#{column}` LIKE ?", "%#{value}%".squeeze('%'))
+          search_value = ActiveRecord::Base.sanitize("%#{value}%".squeeze('%'))
+          filters = Array.wrap(column).map do |column_name|
+            %("#{@scope.table_name}"."#{column_name}" LIKE #{search_value})
+          end
+          @scope = @scope.where(filters.join(' OR '))
           @filtering = true
         end
       end
@@ -62,13 +66,12 @@ module Kadmin
       return @results ||= begin
         results = @scope
         results = @pager.paginate(results) unless @pager.nil?
-        Rails.logger.info('Right before loading')
         results.load
-        Rails.logger.info('Right after loading')
         results
       end
     end
 
+    # Forces to refetch/recalculate the find operation results
     def find!
       @total_found = 0
       @results = nil
