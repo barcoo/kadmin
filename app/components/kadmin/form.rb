@@ -63,6 +63,10 @@ module Kadmin
       return attributes
     end
 
+    # @!endgroup
+
+    # @!group Associations
+
     class << self
       # Delegates the list of attributes to the model, both readers and writers.
       # If the attribute value passed is a hash and not a symbol, assumes it is

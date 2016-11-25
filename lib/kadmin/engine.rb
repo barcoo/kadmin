@@ -1,5 +1,4 @@
 # Rails dependencies
-require 'bootstrap-sass'
 require 'sass-rails'
 require 'jquery-rails'
 require 'select2-rails'
