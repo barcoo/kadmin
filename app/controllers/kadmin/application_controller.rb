@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Kadmin
   class ApplicationController < ActionController::Base
-    layout 'modular/application'
+    layout 'kadmin/application'
 
     helper Kadmin::ApplicationHelper
     helper Kadmin::BootstrapHelper

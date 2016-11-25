@@ -1,14 +1,17 @@
-<%= render partial: 'kadmin/components/finder/header', locals: { finder: finder } %>
-
-<div class='container-fluid'>
-  <div class='row' style='padding-top: 15px'>
-    <% if finder.results.empty? %>
-      <%= render partial: 'kadmin/components/finder/empty', locals: { finder: finder } %>
-    <% else %>
-      <%= yield %>
-      <% if finder.pager.pages > 1 %>
-        <%= finder.pager.present(self).render %>
-      <% end %>
-    <% end %>
+<div class='card'>
+  <div class='card-block'>
+    <%= render partial: 'kadmin/components/finder/header', locals: { finder: finder } %>
+    <div class='container-fluid'>
+      <div class='row' style='padding-top: 15px'>
+        <% if finder.results.empty? %>
+          <%= render partial: 'kadmin/components/finder/empty', locals: { finder: finder } %>
+        <% else %>
+          <%= yield %>
+          <% if finder.pager.pages > 1 %>
+            <%= finder.pager.present(self).render %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

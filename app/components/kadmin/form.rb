@@ -43,6 +43,7 @@ module Kadmin
       @errors = ActiveModel::Errors.new(self)
       @model = model
       @form_input = {}
+      @associated_forms = Hash.new { |hash, key| hash[key] = [] }
     end
 
     def to_model
@@ -89,27 +90,49 @@ module Kadmin
       # Delegates a specified associations to other another form object
       # @example
       #   delegate_associations :child, :parent, to: 'Forms::PersonForm'
-      cattr_accessor(:associations) { {} }
       def delegate_association(association, to:)
-        self.associations[association] = to
-
         # add a reader attribute
         class_eval <<~METHOD, __FILE__, __LINE__ + 1
-          def #{association}
-            return self.associated_forms['#{association}']
+          def #{association}(index = 0)
+            return associated_form('#{association}', klass: '#{to}', index: index)
           end
         METHOD
       end
     end
 
-    def associated_forms
-      return @associated_forms ||= begin
-        self.class.associations.map do |name, form_class_name|
-          form_class = form_class_name.constantize
-          form_class.new(@model.public_send(name))
-        end
+    def associated_form(name, form_class:, index: 0)
+      form_list = @associated_forms[name]
+      form = form_list[index]
+      if form.nil?
+        form = create_associated_form(name, form_class: form_class, index: index)
+        form_list[index] = form
       end
+
+      return form
     end
+    protected :associated_form
+
+    def create_associated_form(name, form_class:, index: 0)
+      klass = case form_class
+      when String
+        form_class.constantize
+      when Class
+        form_class
+      end
+
+      raise ArgumentError, 'missing associated form class' if klass.nil?
+      association = @model.public_send(name)
+      form_model = if association.respond_to?(:to_ary)
+        association[index]
+      elsif index.positive?
+        raise ArgumentError, "trying to access association #{name} like a collection even if it is not"
+      else
+        association
+      end
+
+      return klass.new(form_model)
+    end
+    protected :create_associated_form
 
     # @!endgroup
 
@@ -127,7 +150,7 @@ module Kadmin
 
     validate :validate_associated_forms
     def validate_associated_forms
-      self.associated_forms.each do |_name, form|
+      @associated_forms.values.flatten.each do |form|
         next if form.valid?
         form.errors.each do |_attribute, _error|
           @errors.add(:base, :association_error, "associated #{form.model_name.human} form has some errors")
@@ -144,7 +167,7 @@ module Kadmin
       saved = false
       @model.class.transaction do
         saved = @model.save
-        self.associated_forms.each do |_name, form|
+        @associated_forms.values.flatten do |form|
           saved &&= form.save
         end
 
@@ -158,7 +181,7 @@ module Kadmin
       saved = false
       @model.class.transaction do
         saved = @model.save!
-        self.associated_forms.each do |_name, form|
+        @associated_form.values.flatten.each do |form|
           saved &&= form.save! # no need to raise anything, save! will do so
         end
       end

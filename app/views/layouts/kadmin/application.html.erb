@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 	<head>
 		<meta charset="utf-8">
@@ -9,14 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<!-- Place favicon.ico in the root directory -->
-		<%= stylesheet_link_tag "modular/vendor.css", media: "all" %>
-		<%= stylesheet_link_tag "modular/app-blue.css", media: "all" %>
-		<%= stylesheet_link_tag "modular/custom.css", media: "all" %>
+		<%= stylesheet_link_tag "kadmin/application", media: "all" %>
 		<%= yield :stylesheets %>
 		<%= csrf_meta_tags %>
-		<!-- Additional scripts -->
-		<%= javascript_include_tag "modular/application.js" %>
-		<%= javascript_include_tag "modular/custom.js" %>
 	</head>
 
   <!-- Wow, this is kind of silly, if the body class is not set the menu toggles don't work -->
@@ -92,20 +87,12 @@
 				</footer>
 			</div>
 		</div>
-		<!-- Reference block for JS -->
-		<div class="ref" id="ref">
-			<div class="color-primary"></div>
-			<div class="chart">
-				<div class="color-primary"></div>
-				<div class="color-secondary"></div>
-			</div>
-		</div>
-		<%= yield :javascripts %>
-    <%= javascript_include_tag "modular/vendor.js" %>
+    <%= javascript_include_tag "kadmin/application" %>
 		<script type='text/javascript'>
 			jQuery(document).ready(function () {
         jQuery('#sidebar-menu').metisMenu({ activeClass: 'open' });
 			});
 		</script>
+    <%= yield :javascripts %>
 	</body>
 </html>
