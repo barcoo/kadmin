@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="row sameheight-container">
+    <%= form.hidden_field :id %>
+    <div class='col-xs-12 col-sm-8 col-md-6'>
+      <div class="card card-block sameheight-item">
+        <div class="form-group">
+          <%= form.label :name, class: 'control-label' %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :owner, class: 'control-label' %>
+          <%= form.text_field :owner, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= form.button(type: 'submit', data: { 'disable-with': 'Saving...' }, class: 'btn btn-primary btn-lg') do %>
+        <%= glyphicon('floppy-save') %>
+        Save
+      <% end %>
+    </div>
+  </div>
+</section>

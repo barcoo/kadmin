@@ -1,0 +1,5 @@
+<div class="title-block"><h3 class="title">Editing <%= @group.name %></h3></div>
+<%= render partial: 'kadmin/helpers/form_errors', locals: { model: @group_form } %>
+<%= form_for [:admin, @group_form] do |form| %>
+  <%= render partial: 'admin/groups/form', locals: { form: form } %>
+<% end %>

@@ -1,0 +1,2 @@
+<h1><%= @group.name %></h1>
+<p>Owner: <%= link_to(@person.full_name, admin_person_path(@group.owner.id)) %></p>

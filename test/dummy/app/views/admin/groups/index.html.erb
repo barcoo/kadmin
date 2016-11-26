@@ -1,0 +1,7 @@
+<div class="page-header">
+  <h3>Groups</h3>
+</div>
+
+<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do %>
+  <%= render partial: 'admin/groups/table', locals: { groups: @finder.results } %>
+<% end %>

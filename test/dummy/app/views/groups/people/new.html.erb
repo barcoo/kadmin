@@ -1,0 +1,5 @@
+<div class="title-block"><h3 class="title">Register a new person</h3></div>
+<%= render partial: 'kadmin/helpers/form_errors', locals: { model: @person_form } %>
+<%= form_for [:admin, @person_form] do |form| %>
+  <%= render partial: 'admin/people/form', locals: { form: form, model: @person_form } %>
+<% end %>

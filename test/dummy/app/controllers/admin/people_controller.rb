@@ -17,6 +17,16 @@ module Admin
         .paginate(size: page_size, offset: params.fetch(:page_offset, 0))
       finder.find!
       @finder = finder.present
+
+      respond_to do |format|
+        format.html
+        format.js do
+          render json: {
+            items: @finder.results.map { |person| { id: person.id, full_name: person.full_name } },
+            more: @finder.pager.next_page?
+          }
+        end
+      end
     end
 
     # GET /admin/people/:id

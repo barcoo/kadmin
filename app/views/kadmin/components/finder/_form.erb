@@ -4,6 +4,6 @@
     <% finder.filters.each do |name, filter| %>
       <%= text_field_tag("filter_#{name}", filter&.value, class: 'form-control', placeholder: "Filter by #{name}...") %>
     <% end %>
-    <%= submit_tag(t('kadmin.components.finder.filter'), class: 'btn btn-default form-control') %>
+    <%= submit_tag(t('kadmin.components.finder.filter'), class: 'btn btn-secondary form-control') %>
   </div>
 <% end %>

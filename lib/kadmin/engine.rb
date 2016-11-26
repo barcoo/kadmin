@@ -1,7 +1,6 @@
 # Rails dependencies
 require 'sass-rails'
 require 'jquery-rails'
-require 'select2-rails'
 
 module Kadmin
   class Engine < ::Rails::Engine

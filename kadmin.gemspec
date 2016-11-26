@@ -21,6 +21,5 @@ Gem::Specification.new do |s|
   # Front-end stuff
   s.add_dependency 'sass-rails', '~> 5.0' # to use Sass files
   s.add_dependency 'jquery-rails', '~> 4.1' # to use jquery_ujs
-  s.add_dependency 'select2-rails', '~> 4.0' # to use select2 as typeahead
   s.add_dependency 'omniauth-google-oauth2', '~> 0.4' # for authentication
 end

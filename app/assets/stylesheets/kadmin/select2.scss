@@ -1,0 +1,28 @@
+//*= require select2
+//*= require_self
+
+// SELECT2
+
+.kadmin {
+  .select2-dropdown {
+    border-radius: 0 !important; // sass-lint:disable-line no-important
+  }
+
+  .select2-container--default {
+    .select2-selection--single {
+      border-radius: 0 !important; // sass-lint:disable-line no-important
+    }
+  }
+
+  .input-group {
+    .select2-selection { // sass-lint:disable-line class-name-format
+      height: 38px;
+    }
+  }
+
+  .input-group-lg {
+    .select2-selection { // sass-lint:disable-line class-name-format
+      height: 52px;
+    }
+  }
+}
