@@ -1,4 +1,0 @@
-<div class="title-block"><h3 class="title">Editing <%= @person.full_name(inversed: true) %></h3></div>
-<%= form_for [:admin, @person_form] do |form| %>
-  <%= render partial: 'admin/people/form', locals: { form: form } %>
-<% end %>

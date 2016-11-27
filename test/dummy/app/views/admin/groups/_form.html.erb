@@ -9,7 +9,13 @@
         </div>
         <div class="form-group">
           <%= form.label :owner, class: 'control-label' %>
-          <%= form.text_field :owner, class: 'form-control' %>
+          <%= form.select2 :owner_id, [[form.object.owner&.full_name, form.object.owner&.id]], {
+              prompt: 'Choose group owner...',
+              filter_param: 'filter_name',
+              data_url: admin_people_path,
+              display_property: :full_name,
+              value_property: :id
+            }, class: 'form-control' %>
         </div>
       </div>
     </div>

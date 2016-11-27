@@ -30,7 +30,7 @@ module Kadmin
       class Presenter < Kadmin::Presenter
         # Generates a list item with the section text as header, and a sub-list for the links
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
-        def generate(**_options)
+        def generate(captured, **)
           current_section_id = @view.controller.class.try(:navbar_section).to_s
           section_links = ActiveSupport::SafeBuffer.new
           css_classes = self.css_classes.dup
@@ -38,7 +38,7 @@ module Kadmin
 
           self.links.each { |link| section_links << link.present(@view).render }
 
-          return "<li class='#{css_classes.join(' ')}'><a>#{self.text} <i class='fa arrow'></i></a><ul>#{section_links}</ul></li>".html_safe
+          return "<li class='#{css_classes.join(' ')}'><a>#{self.text} <i class='fa arrow'></i></a><ul>#{section_links}</ul>#{captured}</li>".html_safe
         end
       end
     end

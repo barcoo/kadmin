@@ -36,5 +36,12 @@ Kadmin.config.add_navbar_items(
       Kadmin::Navbar::Link.new(text: 'Register new person', path: -> { Rails.application.routes.url_helpers.new_admin_person_path })
     ]
   ),
-  Kadmin::Navbar::Link.new(text: 'Groups', path: -> { Rails.application.routes.url_helpers.admin_groups_path })
+  Kadmin::Navbar::Section.new(
+    id: Admin::GroupsController,
+    text: 'Groups',
+    links: [
+      Kadmin::Navbar::Link.new(text: 'Groups list', path: -> { Rails.application.routes.url_helpers.admin_groups_path }),
+      Kadmin::Navbar::Link.new(text: 'Add group', path: -> { Rails.application.routes.url_helpers.new_admin_group_path })
+    ]
+  )
 )

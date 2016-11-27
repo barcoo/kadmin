@@ -24,11 +24,11 @@ module Kadmin
       # Generates HTML controls to change page, and pager behaviour.
       # @param [Array<Integer>] page_sizes list of page sizes for the controls
       # @return [ActiveSupport::SafeBuffer] 'safe' HTML representing the navigation and page size controls
-      def generate(page_sizes: DEFAULT_SIZES)
+      def generate(captured, page_sizes: DEFAULT_SIZES, **)
         navigation = page_list
         controls = size_list(page_sizes)
 
-        return "<div class='btn-toolbar'>#{navigation + controls}</div>".html_safe
+        return "<div class='btn-toolbar'>#{navigation + controls + captured}</div>".html_safe
       end
 
       def page_list

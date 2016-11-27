@@ -98,7 +98,7 @@ module Kadmin
         # add a reader attribute
         class_eval <<~METHOD, __FILE__, __LINE__ + 1
           def #{association}(index = 0)
-            return associated_form('#{association}', klass: '#{to}', index: index)
+            return associated_form('#{association}', form_class: '#{to}', index: index)
           end
         METHOD
       end

@@ -1,33 +1,37 @@
-<table class='table table-hover table-striped'>
-  <thead>
-    <tr>
-      <th style='width: 1%'>ID</th>
-      <th style='width: 15%'>First name</th>
-      <th style='width: 15%'>Last name</th>
-      <th style='width: 20%'>Date of birth</th>
-      <th style='width: 5%'>Gender</th>
-      <th style='width: 9%'>Registered</th>
-      <th style='width: 1%'>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% people.each do |person| %>
-    <tr>
-      <td><%= link_to(person.id, admin_people_path(person.id)) %></td>
-      <td><%= link_to(person.first_name, admin_person_path(person.id)) %></td>
-      <td><%= link_to(person.last_name, admin_person_path(person.id)) %></td>
-      <td><%= person.date_of_birth %></td>
-      <td><%= t("person.genders.#{person.gender}") %></td>
-      <td><%= person.created_at %></td>
-      <td class="text-center">
-        <%=
-          dropdown('Actions...', [
-            link_to('Edit', edit_admin_person_path(person.id)),
-            link_to('Delete', admin_person_path(person.id), method: :delete, data: { confirm: "Are you sure you want to delete [#{person.full_name}]" })
-          ])
-        %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if people.empty? %>
+  <div class="well"><p><%= t('kadmin.nothing_to_show') %></p></div>
+<% else %>
+  <table class='table table-hover table-striped'>
+    <thead>
+      <tr>
+        <th style='width: 1%'>ID</th>
+        <th style='width: 15%'>First name</th>
+        <th style='width: 15%'>Last name</th>
+        <th style='width: 20%'>Date of birth</th>
+        <th style='width: 5%'>Gender</th>
+        <th style='width: 9%'>Registered</th>
+        <th style='width: 1%'>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% people.each do |person| %>
+      <tr>
+        <td><%= link_to(person.id, admin_people_path(person.id)) %></td>
+        <td><%= link_to(person.first_name, admin_person_path(person.id)) %></td>
+        <td><%= link_to(person.last_name, admin_person_path(person.id)) %></td>
+        <td><%= person.date_of_birth %></td>
+        <td><%= t("person.genders.#{person.gender}") %></td>
+        <td><%= person.created_at %></td>
+        <td class="text-center">
+          <%=
+            dropdown('Actions...', [
+              link_to('Edit', edit_admin_person_path(person.id)),
+              link_to('Delete', admin_person_path(person.id), method: :delete, data: { confirm: "Are you sure you want to delete [#{person.full_name}]" })
+            ])
+          %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

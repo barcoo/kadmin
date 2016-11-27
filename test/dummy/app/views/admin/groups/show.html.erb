@@ -1,2 +1,15 @@
-<h1><%= @group.name %></h1>
-<p>Owner: <%= link_to(@person.full_name, admin_person_path(@group.owner.id)) %></p>
+<div class="card">
+  <div class="card-block">
+    <h1><%= @group.name %></h1>
+    <% if @group.owner.present? %>
+    <p>Owner: <%= link_to(@group.owner.full_name, admin_person_path(@group.owner.id)) %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-block">
+    <h2>Members</h2>
+    <%= render partial: 'admin/people/table', locals: { people: @group.people } %>
+  </div>
+</div>

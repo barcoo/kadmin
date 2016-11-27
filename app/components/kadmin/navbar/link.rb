@@ -33,10 +33,11 @@ module Kadmin
       class Presenter < Kadmin::Presenter
         # Generates HTML to present the section
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
-        def generate(**_options)
+        def generate(captured, **)
           css_classes = self.css_classes
           css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == self.path
           contents = @view.link_to(self.text.to_s.html_safe, self.path)
+          contents << captured unless captured.blank?
 
           return %(<li class="#{css_classes.join(' ')}">#{contents}</li>).html_safe
         end

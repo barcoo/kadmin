@@ -7,10 +7,11 @@ en:
       unauthorized: Unauthorized access
       unauthorized_message: You are not authorized to access this resource; if you think you should be, contact the Apps & Services team
     components:
+      collection:
+        empty: Nothing to show
       finder:
         clear: Clear
         create: Create
-        empty: Nothing to show
         filter: Filter
         out_of: out of %{total}
     dash_message: See the top navigation bar for the different admin sections. If you are missing authorizations, or if there is any issue at all, contact the Apps & Services team!

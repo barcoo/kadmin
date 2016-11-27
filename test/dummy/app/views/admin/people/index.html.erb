@@ -1,58 +1,30 @@
 <div class="page-header">
   <h3>People</h3>
   <form class="form-inline">
-    <select class="form-control person-select" style='width: 250px'>
-    </select>
+    <%= select2_tag('person-selector', [],
+      placeholder: 'Go to...',
+      data_url: admin_people_path,
+      filter_param: :filter_name,
+      display_property: :full_name,
+      style: 'min-width: 250px',
+      class: 'form-control') %>
   </form>
 </div>
 
-<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do %>
-  <%= render partial: 'admin/people/table', locals: { people: @finder.results } %>
+<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do |items| %>
+  <%= render partial: 'admin/people/table', locals: { people: items } %>
 <% end %>
 
 <% content_for(:stylesheets) do %>
   <%= stylesheet_link_tag "kadmin/select2", media: "all" %>
-  <style type="text/css" media="all">
-  </style>
 <% end %>
 
 <% content_for(:javascripts) do %>
   <%= javascript_include_tag "kadmin/select2" %>
   <script type="text/javascript">
     $(document).ready(function() {
-      var page_size = 10;
       var person_path = "<%= admin_person_path(0) %>".split('/').slice(0, -1).join('/');
-
-      $(".person-select").select2({
-        ajax: {
-          url: "<%= admin_people_path %>",
-          dataType: 'json',
-          delay: 250,
-          data: function (params) {
-            var page = params.page || 0;
-            return {
-              filter_name: params.term, // search term
-              page_offset: page * page_size,
-              page_size: page_size
-            };
-          },
-          processResults: function (data, params) {
-            return {
-              results: data.items,
-              pagination: { more: data.more }
-            };
-          },
-          cache: true
-        },
-        placeholder: "Go to...",
-        templateResult: function(person) {
-          return person.full_name || person.text;
-        },
-        templateSelection: function (person) {
-          return person.full_name || person.text;
-        }
-      });
-      $(".person-select").on("select2:select", function(event) {
+      $("#person-selector").on("select2:select", function(event) {
         var person = event.params.data;
         if (person.id) {
           document.location.href = person_path + "/" + person.id;

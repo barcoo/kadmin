@@ -1,9 +1,10 @@
 class PersonForm < Kadmin::Form
+  delegate :full_name, to: :model
   delegate_attributes :gender, :first_name, :last_name, :date_of_birth, :groups
 
   def initialize(*args)
     super
-    raise(ArgumentError, 'Model given should be a person') unless @model.is_a?(Person)
+    raise(ArgumentError, 'Model given should be a person') unless @model.nil? || @model.is_a?(Person)
   end
 
   validate :adult?

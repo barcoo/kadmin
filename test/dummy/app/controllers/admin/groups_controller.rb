@@ -73,8 +73,8 @@ module Admin
 
     # DELETE /admin/groups/:id
     def destroy
-      @group = Group.new
-      name = [@group.last_name, @group.first_name].join(', ')
+      @group = load_group
+      name = @group.name
 
       @group.destroy # only fails when it raises an exception
       flash[:success] = "Successfully deleted #{name}"
@@ -87,11 +87,13 @@ module Admin
     def load_group
       params.require(:id)
       id = params[:id].to_i
-      return Group.includes(:groups, :owned_groups).find(id)
+      return Group.eager_load(:people, :owner).find(id)
     end
     private :load_group
 
     def group_form
+      # Make sure associated forms have a model too
+      @group.owner ||= Person.new
       form = GroupForm.new(@group)
       form.assign_attributes(params.fetch(:group, {}).except(:id))
       return form
