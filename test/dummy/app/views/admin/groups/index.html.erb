@@ -1,7 +1,35 @@
 <div class="page-header">
   <h3>Groups</h3>
+  <form class="form-inline">
+    <%= select2_tag('group-selector', [],
+      placeholder: 'Go to...',
+      data_url: admin_groups_path,
+      filter_param: :filter_name,
+      display_property: :name,
+      style: 'min-width: 250px',
+      class: 'form-control') %>
+  </form>
 </div>
 
 <%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do |items| %>
   <%= render partial: 'admin/groups/table', locals: { groups: items } %>
+<% end %>
+
+<% content_for(:stylesheets) do %>
+  <%= stylesheet_link_tag "kadmin/select2", media: "all" %>
+<% end %>
+
+<% content_for(:javascripts) do %>
+  <%= javascript_include_tag "kadmin/select2" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var group_path = "<%= admin_group_path(0) %>".split('/').slice(0, -1).join('/');
+      $("#group-selector").on("select2:select", function(event) {
+        var group = event.params.data;
+        if (group.id) {
+          document.location.href = group_path + "/" + group.id;
+        }
+      });
+    });
+  </script>
 <% end %>
