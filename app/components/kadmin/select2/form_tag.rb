@@ -9,7 +9,7 @@ module Kadmin
 
       def render
         rendered = super
-        select2 = Kadmin::Select2.new([], @options)
+        select2 = Kadmin::Select2.new(@options)
 
         @template_object.content_for(:javascripts) do
           @template_object.javascript_tag(select2.present(@template_object).render(id: @html_id), defer: true)
