@@ -3,3 +3,11 @@
 <%= form_for [:admin, @person_form] do |form| %>
   <%= render partial: 'admin/people/form', locals: { form: form } %>
 <% end %>
+
+<% content_for(:stylesheets) do %>
+  <%= stylesheet_link_tag "kadmin/select2", media: "all" %>
+<% end %>
+
+<% content_for(:javascripts) do %>
+  <%= javascript_include_tag "kadmin/select2" %>
+<% end %>
