@@ -13,9 +13,16 @@ module Kadmin
     before_action :set_default_format
 
     # Each controller should specify which navbar section they
-    # belong to, if any.
+    # belong to, if any. By default, each controller is setup to
+    # be its own section.
     class << self
-      attr_accessor :navbar_section
+      def navbar_section=(id)
+        @navbar_section = id.to_s.freeze
+      end
+
+      def navbar_section
+        return @navbar_section ||= self
+      end
     end
 
     # @!group Error Handling

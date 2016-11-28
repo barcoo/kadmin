@@ -33,7 +33,7 @@ module Kadmin
         if value.present?
           search_value = ActiveRecord::Base.sanitize("%#{value}%".squeeze('%'))
           filters = Array.wrap(column).map do |column_name|
-            %("#{@scope.table_name}"."#{column_name}" LIKE #{search_value})
+            %(`#{@scope.table_name}`.`#{column_name}` LIKE #{search_value})
           end
           @scope = @scope.where(filters.join(' OR '))
           @filtering = true
