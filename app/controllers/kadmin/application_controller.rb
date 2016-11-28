@@ -15,15 +15,7 @@ module Kadmin
     # Each controller should specify which navbar section they
     # belong to, if any. By default, each controller is setup to
     # be its own section.
-    class << self
-      def navbar_section=(id)
-        @navbar_section = id.to_s.freeze
-      end
-
-      def navbar_section
-        return @navbar_section ||= self
-      end
-    end
+    class_attribute :navbar_section
 
     # @!group Error Handling
 

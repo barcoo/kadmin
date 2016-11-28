@@ -1,10 +1,10 @@
 module Kadmin
   # Collection of Bootstrap helpers
   module BootstrapHelper
-    # @see http://getbootstrap.com/components/#glyphicons-glyphs
-    # @param [String] icon the part after glyphicon-
+    # @see Font-Awesome icons: http://fontawesome.io/icons/
+    # @param [String] the name of the icon you want
     def glyphicon(icon)
-      return "<span class='glyphicon glyphicon-#{icon}' aria-hidden='true'> </span>".html_safe
+      return "<i class='fa fa-#{icon}' aria-hidden='true'></i>".html_safe
     end
 
     # @param [Boolean] condition condition of evaluate
