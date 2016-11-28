@@ -1,5 +1,9 @@
 # Changelog
 
+##0.4.2
+
+- [ed77659](https://github.com/barcoo/kadmin/commit/ed77659) *2016-11-28* __added missing vendor folder to gemsepc__ (Nicolas Pepin-Perreault)
+
 ##0.4.1
 
 - [9418423](https://github.com/barcoo/kadmin/commit/9418423) *2016-11-28* __fixed assets paths, fixed glyphicons to use FontAwesome, fixed navbar section__ (Nicolas Pepin-Perreault)
