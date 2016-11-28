@@ -3,3 +3,7 @@ rvm:
   - 2.3.1
 cache: bundler
 bundler_args: --without development profile
+notifications:
+  email:
+    on_success: change
+    on_failure: always
