@@ -1,5 +1,9 @@
 # Changelog
 
+##0.5.2
+
+- [66689d3](https://github.com/barcoo/kadmin/commit/66689d3) *2016-11-28* __prevent nil access__ (Nicolas Pepin-Perreault)
+
 ##0.5.1
 
 - [c673115](https://github.com/barcoo/kadmin/commit/c673115) *2016-11-28* __added router in navigation callback__ (Nicolas Pepin-Perreault)
