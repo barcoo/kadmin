@@ -1,5 +1,9 @@
 # Changelog
 
+##0.4.0
+
+- [285b76f](https://github.com/barcoo/kadmin/commit/285b76f) *2016-11-28* __60385 improvements (#4)__ (npepinpe)
+
 ##0.3.2
 
 - [e239675](https://github.com/barcoo/kadmin/commit/e239675) *2016-11-10* __Kadmin modulartheme styles changes (#3)__ (Hinnerk Bruegmann)
