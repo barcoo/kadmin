@@ -1,5 +1,10 @@
 # Changelog
 
+##0.5.0
+
+- [7567ad5](https://github.com/barcoo/kadmin/commit/7567ad5) *2016-11-28* __changed select2 widget to use data-attributes and in general be easier to use__ (Nicolas Pepin-Perreault)
+- [f888c4d](https://github.com/barcoo/kadmin/commit/f888c4d) *2016-11-28* __do not send a notification all the time on builds, only when they change or fail__ (Nicolas Pepin-Perreault)
+
 ##0.4.2
 
 - [ed77659](https://github.com/barcoo/kadmin/commit/ed77659) *2016-11-28* __added missing vendor folder to gemsepc__ (Nicolas Pepin-Perreault)
