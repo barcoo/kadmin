@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.description = 'Collection of utility, configuration, etc., for admin areas in a Rails application. Provides a boostrap environment, standard layout, authentication, and more.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'test/factories/**/*', 'Rakefile', 'README.md']
+  s.files = Dir['{app,config,db,lib,vendor}/**/*', 'test/factories/**/*', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
 
   # Core
