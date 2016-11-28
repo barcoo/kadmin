@@ -307,7 +307,7 @@
       <pre class="code"><span class="info file"># File 'lib/kadmin/auth/user_store.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
-  <span class='ivar'>@store</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
+  <span class='ivar'>@store</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -337,7 +337,7 @@
       <pre class="code"><span class="info file"># File 'lib/kadmin/auth/user_store.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='ivar'>@store</span><span class='lbracket'>[</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='ivar'>@store</span><span class='lbracket'>[</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -367,7 +367,7 @@
       <pre class="code"><span class="info file"># File 'lib/kadmin/auth/user_store.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
-  <span class='ivar'>@store</span><span class='lbracket'>[</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span>
+  <span class='ivar'>@store</span><span class='lbracket'>[</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -379,7 +379,7 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Oct 10 17:58:30 2016 by
+  Generated on Thu Nov 24 12:48:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

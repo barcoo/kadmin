@@ -1,0 +1,78 @@
+//*= require modular
+//*= require_self
+
+// sass-lint:disable no-color-literals
+
+
+// Wrap everything in a .kadmin class to ensure our styling always overrides everyone else
+.kadmin {
+  a.titlelink { // sass-lint:disable-line no-qualifying-elements force-element-nesting
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .helpsidebar {
+    .img-responsive {
+      max-width: 100%;
+    }
+  }
+
+  // FORMS
+  .form-control {
+    border-radius: 0;
+  }
+
+  .btn {
+    margin-bottom: 0;
+  }
+
+  .tab-pane {
+    .content {
+      padding: 0;
+    }
+  }
+
+  .field_with_errors { // sass-lint:disable-line class-name-format
+    color: #f44;
+    display: block !important; // sass-lint:disable-line no-important
+    font-size: 13px;
+
+    .form-control {
+      border-color: #f44;
+      box-shadow: none;
+    }
+  }
+
+  // MISC
+
+  .dropdown-menu {
+    padding: 8px;
+
+    li {
+      padding-bottom: 3px;
+      padding-top: 3px;
+    }
+  }
+
+  // PAGES
+
+  .page-header {
+    position: relative;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      border-bottom: 1px solid #d7dde4;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+    }
+
+    form {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

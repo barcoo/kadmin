@@ -1,22 +1,33 @@
+# frozen_string_literal: true
 module Kadmin
   class ApplicationController < ActionController::Base
-    layout 'modular/application'
+    layout 'kadmin/application'
 
     helper Kadmin::ApplicationHelper
     helper Kadmin::BootstrapHelper
     helper Kadmin::AlertHelper
-    helper Kadmin::NavigationHelper
-    helper Kadmin::PaginationHelper
 
     include Kadmin::Concerns::AuthorizedUser
 
     before_action :authorize
-    before_action :set_navbar_links
     before_action :set_default_format
+
+    # Each controller should specify which navbar section they
+    # belong to, if any. By default, each controller is setup to
+    # be its own section.
+    class << self
+      def navbar_section=(id)
+        @navbar_section = id.to_s.freeze
+      end
+
+      def navbar_section
+        return @navbar_section ||= self
+      end
+    end
 
     # @!group Error Handling
 
-    unless defined?(BetterErrors)
+    if Kadmin.config.handle_errors && !defined?(BetterErrors)
       rescue_from StandardError, with: :handle_unexpected_error
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
       rescue_from ActionController::ParameterMissing, with: :params_missing
@@ -39,7 +50,8 @@ module Kadmin
       options = {
         title: error.try(:title) || error.class.name,
         message: error.message,
-        status: :internal_server_error
+        status: :internal_server_error,
+        error: error
       }.merge(options)
       render 'kadmin/error', status: options[:status], locals: options
     end
@@ -47,12 +59,6 @@ module Kadmin
     # @!endgroup
 
     # @!group Helpers
-
-    # Overload in the sub-controllers to set up the links in the layout
-    def set_navbar_links
-      @layout_navbar_links = []
-    end
-    protected :set_navbar_links
 
     def set_default_format
       params[:format] = 'html' if params[:format].blank?

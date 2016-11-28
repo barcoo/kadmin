@@ -17,6 +17,7 @@ module Kadmin
         @user_class = Kadmin::Auth::User
         @user_store_class = Kadmin::Auth::UserStore
         @enabled = false
+        @__omniauth_appended = false
       end
 
       # @return [Boolean] true if enabled, false otherwise
@@ -34,13 +35,13 @@ module Kadmin
 
       # Disables authentication and removes OmniAuth middlewares
       def disable!
-        if @enabled
-          delete_omniauth_middleware
-          @enabled = false
-        end
+        @enabled = false
       end
 
       def append_omniauth_middleware
+        return if @__omniauth_appended
+
+        @__omniauth_appended = true
         OmniAuth.config.logger = Kadmin.logger
         OmniAuth.config.path_prefix = File.join(Kadmin.config.mount_path, OmniAuth.config.path_prefix)
 
@@ -56,11 +57,6 @@ module Kadmin
         end
       end
       private :append_omniauth_middleware
-
-      def delete_omniauth_middleware
-        Rails.application.config.middleware.delete OmniAuth::Builder
-      end
-      private :delete_omniauth_middleware
     end
   end
 end

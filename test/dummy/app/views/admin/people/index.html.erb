@@ -1,3 +1,35 @@
-<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do %>
-  <%= render partial: 'admin/people/table', locals: { people: @finder.results } %>
+<div class="page-header">
+  <h3>People</h3>
+  <form class="form-inline">
+    <%= select2_tag('person-selector', [],
+      placeholder: 'Go to...',
+      data_url: admin_people_path,
+      filter_param: :filter_name,
+      display_property: :full_name,
+      style: 'min-width: 250px',
+      class: 'form-control') %>
+  </form>
+</div>
+
+<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do |items| %>
+  <%= render partial: 'admin/people/table', locals: { people: items } %>
+<% end %>
+
+<% content_for(:stylesheets) do %>
+  <%= stylesheet_link_tag "kadmin/select2", media: "all" %>
+<% end %>
+
+<% content_for(:javascripts) do %>
+  <%= javascript_include_tag "kadmin/select2" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var person_path = "<%= admin_person_path(0) %>".split('/').slice(0, -1).join('/');
+      $("#person-selector").on("select2:select", function(event) {
+        var person = event.params.data;
+        if (person.id) {
+          document.location.href = person_path + "/" + person.id;
+        }
+      });
+    });
+  </script>
 <% end %>

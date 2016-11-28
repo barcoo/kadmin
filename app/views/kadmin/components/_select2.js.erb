@@ -1,0 +1,45 @@
+$(document).ready(function() {
+  var page_size = <%= local_assigns.fetch(:page_size, 10).to_i %>;
+  var options = {};
+
+  <% if local_assigns[:placeholder].present? %>
+    options.placeholder = "<%= placeholder %>";
+  <% end %>
+
+  var formatModel = function(object) {
+    <% if local_assigns[:display_property].present? %>
+      return object.<%= display_property %> || object.text;
+    <% else %>
+      return object.text;
+    <% end %>
+  };
+  options.templateResult = formatModel;
+  options.templateSelection = formatModel;
+
+  <% if local_assigns[:data_url].present? %>
+    var ajax = {}
+    options.ajax = {
+      url: "<%= data_url %>",
+      dataType: 'json',
+      delay: 250,
+      data: function (params) {
+        var page = params.page || 0;
+        var options = {
+          <% if filter_param.present? %> <%= filter_param %>: params.term, <% end %>
+          page_offset: page * page_size,
+          page_size: page_size
+        };
+        return options;
+      },
+      processResults: function (data, params) {
+        return {
+          results: data.items,
+          pagination: { more: data.more }
+        };
+      },
+      cache: true
+    };
+  <% end %>
+
+  $("<%= selector %>").select2(options);
+});

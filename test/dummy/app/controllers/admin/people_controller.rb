@@ -1,18 +1,32 @@
+# frozen_string_literal: true
 module Admin
   class PeopleController < Admin::ApplicationController
-    MAX_PAGE_SIZE = 200
+    # Maximum page size for a given pager
+    MAX_PAGE_SIZE = 1000
+
+    self.navbar_section = self
 
     # GET /admin/people
     def index
       params.permit(:page_size, :page_offset, :filter_name, :format)
 
-      page_size = [params.fetch(:page_size, 15).to_i, MAX_PAGE_SIZE].min # fix 200 as maximum size
+      page_size = [params.fetch(:page_size, 50).to_i, MAX_PAGE_SIZE].min
 
-      finder = Kadmin::Finder.new(Person.includes(:groups, :owned_groups).order(created_at: :desc))
+      finder = Kadmin::Finder.new(Person.eager_load(:groups, :owned_groups).order(created_at: :desc))
         .filter(name: :name, column: [:first_name, :last_name], value: params[:filter_name])
         .paginate(size: page_size, offset: params.fetch(:page_offset, 0))
       finder.find!
-      @finder = Kadmin::FinderDecorator.new(finder)
+      @finder = finder.present
+
+      respond_to do |format|
+        format.html
+        format.js do
+          render json: {
+            items: @finder.results.map { |person| { id: person.id, full_name: person.full_name } },
+            more: @finder.pager.next_page?
+          }
+        end
+      end
     end
 
     # GET /admin/people/:id
@@ -78,7 +92,7 @@ module Admin
     private :load_person
 
     def person_form
-      form = Forms::PersonForm.new(@person)
+      form = PersonForm.new(@person)
       form.assign_attributes(params.fetch(:person, {}).except(:id))
       return form
     end

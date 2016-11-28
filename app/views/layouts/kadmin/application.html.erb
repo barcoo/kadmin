@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Apps/Services Admin</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+		<%= stylesheet_link_tag "kadmin/application", media: "all" %>
+		<%= yield :stylesheets %>
+		<%= csrf_meta_tags %>
+	</head>
+
+  <!-- Wow, this is kind of silly, if the body class is not set the menu toggles don't work -->
+	<body class="loaded kadmin">
+		<div class="main-wrapper">
+			<div class="app" id="app">
+				<header class="header">
+					<div class="header-block header-block-nav">
+						<ul class="nav-profile">
+							<% if logged_in? %>
+							<%= link_to(t('kadmin.authorization.logout'), Kadmin::Engine.routes.url_helpers.auth_logout_path) %>
+							<% end %>
+						</ul>
+					</div>
+				</header>
+				<aside class="sidebar">
+					<div class="sidebar-container">
+						<div class="sidebar-header">
+							<div class="brand">
+								<a class="titlelink" href="/admin">Apps&amp;Services Admin</a>
+							</div>
+						</div>
+						<% unless Kadmin.config.navbar_items.empty? %>
+						<nav class="menu">
+							<ul class="nav metismenu" id="sidebar-menu">
+								<% Kadmin.config.navbar_items.each do |item| %>
+								<%= item.present(self).render %>
+								<% end %>
+							</ul>
+						</nav>
+						<% end %>
+					</div>
+				</aside>
+				<div class="sidebar-overlay" id="sidebar-overlay"></div>
+				<article class="content dashboard-page">
+					<div class="row">
+						<% if content_for?(:sidebar) %>
+						<div class="col-xl-8">
+							<!-- main -->
+							<%= render partial: 'kadmin/helpers/alerts' %>
+							<%= yield %>
+						</div>
+						<div class="col-xl-4 helpsidebar">
+							<!-- sidebar -->
+							<div class="card card-default">
+								<div class="card-header">
+									<div class="header-block">
+										<p class="title">Help</p>
+									</div>
+								</div>
+								<div class="card-block">
+									<%= yield(:sidebar) %>
+								</div>
+							</div>
+						</div>
+					<% else %>
+						<div class="col-sm-12">
+							<%= render partial: 'kadmin/helpers/alerts' %>
+							<%= yield %>
+						</div>
+						<% end %>
+					</div>
+				</article>
+				<footer class="footer">
+					<div class="footer-block buttons"></div>
+					<div class="footer-block author">
+						<ul>
+							<li>Problems?
+								<a href="https://redmine.offerista.com/projects/apps-services/issues/new">Create a Ticket</a>
+							</li>
+						</ul>
+					</div>
+				</footer>
+			</div>
+		</div>
+    <%= javascript_include_tag "kadmin/application" %>
+		<script type='text/javascript'>
+			jQuery(document).ready(function () {
+        jQuery('#sidebar-menu').metisMenu({ activeClass: 'open' });
+			});
+		</script>
+    <%= yield :javascripts %>
+	</body>
+</html>

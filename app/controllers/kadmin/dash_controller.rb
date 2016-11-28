@@ -10,10 +10,6 @@ module Kadmin
 
     # @!group Helpers
 
-    def set_navbar_links
-      @layout_navbar_links = Kadmin.config.navbar_links
-    end
-
     # @!endgroup
   end
 end

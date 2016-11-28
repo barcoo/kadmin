@@ -16,11 +16,10 @@ Gem::Specification.new do |s|
 
   # Core
   s.add_dependency 'rails', '~> 4.2'
+  s.add_dependency 'i18n', '~> 0.7'
 
   # Front-end stuff
-  s.add_dependency 'bootstrap-sass', '~> 3.3'
-  s.add_dependency 'sass-rails', '~> 5.0'
-  s.add_dependency 'jquery-rails', '~> 4.1'
-  s.add_dependency 'select2-rails', '~> 4.0'
-  s.add_dependency 'omniauth-google-oauth2', '~> 0.4'
+  s.add_dependency 'sass-rails', '~> 5.0' # to use Sass files
+  s.add_dependency 'jquery-rails', '~> 4.1' # to use jquery_ujs
+  s.add_dependency 'omniauth-google-oauth2', '~> 0.4' # for authentication
 end

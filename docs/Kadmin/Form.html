@@ -106,7 +106,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/kadmin/form.rb</dd>
+    <dd>app/components/kadmin/form.rb</dd>
   </dl>
   
 </div>
@@ -439,14 +439,14 @@ end</code></pre>
       <pre class="lines">
 
 
-41
 42
 43
 44
-45</pre>
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
   <span class='ivar'>@errors</span> <span class='op'>=</span> <span class='const'>ActiveModel</span><span class='op'>::</span><span class='const'>Errors</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -509,12 +509,12 @@ end</code></pre>
       <pre class="lines">
 
 
-37
 38
-39</pre>
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_model'>model</span>
   <span class='ivar'>@model</span>
@@ -546,7 +546,6 @@ end</code></pre>
       <pre class="lines">
 
 
-92
 93
 94
 95
@@ -555,10 +554,11 @@ end</code></pre>
 98
 99
 100
-101</pre>
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delegate_association'>delegate_association</span><span class='lparen'>(</span><span class='id identifier rubyid_association'>association</span><span class='comma'>,</span> <span class='label'>to:</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_associations'>associations</span><span class='lbracket'>[</span><span class='id identifier rubyid_association'>association</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_to'>to</span>
@@ -631,7 +631,6 @@ of one key, whose value is an array contained :reader, :writer, or both.</p>
       <pre class="lines">
 
 
-71
 72
 73
 74
@@ -646,10 +645,11 @@ of one key, whose value is an array contained :reader, :writer, or both.</p>
 83
 84
 85
-86</pre>
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delegate_attributes'>delegate_attributes</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delegates'>delegates</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_each_with_object'>each_with_object</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attribute'>attribute</span><span class='comma'>,</span> <span class='id identifier rubyid_acc'>acc</span><span class='op'>|</span>
@@ -693,17 +693,17 @@ of one key, whose value is an array contained :reader, :writer, or both.</p>
       <pre class="lines">
 
 
-104
 105
 106
 107
 108
 109
 110
-111</pre>
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_associated_forms'>associated_forms</span>
   <span class='kw'>return</span> <span class='ivar'>@associated_forms</span> <span class='op'>||=</span> <span class='kw'>begin</span>
@@ -745,12 +745,12 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
       <pre class="lines">
 
 
-60
 61
-62</pre>
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sanitize_for_mass_assignment'>sanitize_for_mass_assignment</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_attributes'>attributes</span>
@@ -775,7 +775,6 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
       <pre class="lines">
 
 
-142
 143
 144
 145
@@ -787,10 +786,11 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
 151
 152
 153
-154</pre>
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
   <span class='id identifier rubyid_saved'>saved</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -825,7 +825,6 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
       <pre class="lines">
 
 
-156
 157
 158
 159
@@ -835,10 +834,11 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
 163
 164
 165
-166</pre>
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save!'>save!</span>
   <span class='id identifier rubyid_saved'>saved</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -871,12 +871,12 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
       <pre class="lines">
 
 
-47
 48
-49</pre>
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/kadmin/form.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'app/components/kadmin/form.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_model'>to_model</span>
   <span class='kw'>return</span> <span class='ivar'>@model</span>
@@ -891,7 +891,7 @@ in Rails 5, so once we upgrade we can remove the overload.</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Oct 10 17:58:29 2016 by
+  Generated on Thu Nov 24 12:48:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

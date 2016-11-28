@@ -5,6 +5,13 @@ source 'https://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
+group :development, :profile do
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof' # ruby 2.1+ only
+  gem 'memory_profiler'
+end
+
 group :development do
   gem 'better_errors' # generate an error in dev, you'll see
   gem 'binding_of_caller' # for the above to get a console

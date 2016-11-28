@@ -292,7 +292,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="Kadmin::ApplicationController (class)">ApplicationController</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#handle_error-instance_method" title="Kadmin::ApplicationController#handle_error (method)">#handle_error</a></span>, <span class='object_link'><a href="ApplicationController.html#not_found-instance_method" title="Kadmin::ApplicationController#not_found (method)">#not_found</a></span>, <span class='object_link'><a href="ApplicationController.html#params_missing-instance_method" title="Kadmin::ApplicationController#params_missing (method)">#params_missing</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#handle_error-instance_method" title="Kadmin::ApplicationController#handle_error (method)">#handle_error</a></span>, <span class='object_link'><a href="ApplicationController.html#handle_unexpected_error-instance_method" title="Kadmin::ApplicationController#handle_unexpected_error (method)">#handle_unexpected_error</a></span>, <span class='object_link'><a href="ApplicationController.html#not_found-instance_method" title="Kadmin::ApplicationController#not_found (method)">#not_found</a></span>, <span class='object_link'><a href="ApplicationController.html#params_missing-instance_method" title="Kadmin::ApplicationController#params_missing (method)">#params_missing</a></span></p>
 
   
   
@@ -338,17 +338,17 @@
       <pre class="lines">
 
 
-47
-48
-49
-50</pre>
+51
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_failure'>failure</span>
   <span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_alert'>alert</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:message</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='symbol'>:login</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_auth_login_path'>auth_login_path</span><span class='lparen'>(</span><span class='label'>origin:</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>omniauth.origin</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -383,13 +383,21 @@
 
 10
 11
-12</pre>
+12
+13
+14
+15
+16</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_login'>login</span>
-  <span class='id identifier rubyid_render'>render</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kadmin/auth/login</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_logged_in?'>logged_in?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_authorized?'>authorized?</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_dash_path'>dash_path</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kadmin/auth/login</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -422,17 +430,17 @@
       <pre class="lines">
 
 
-16
-17
-18
-19</pre>
+20
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logout'>logout</span>
   <span class='id identifier rubyid_session'>session</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='const'>SESSION_KEY</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='symbol'>:login</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_auth_login_path'>auth_login_path</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -454,10 +462,6 @@
       <pre class="lines">
 
 
-75
-76
-77
-78
 79
 80
 81
@@ -472,13 +476,17 @@
 90
 91
 92
-93</pre>
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_omniauth_provider_link'>omniauth_provider_link</span>
-  <span class='id identifier rubyid_auth_prefix'>auth_prefix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Kadmin</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_mount_path'>mount_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>/auth</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_auth_prefix'>auth_prefix</span> <span class='op'>=</span> <span class='id identifier rubyid_auth_path'>auth_path</span>
   <span class='id identifier rubyid_provider_link'>provider_link</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_auth_prefix'>auth_prefix</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>Kadmin</span><span class='op'>::</span><span class='const'>Auth</span><span class='period'>.</span><span class='id identifier rubyid_omniauth_provider'>omniauth_provider</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_origin'>origin</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:origin</span><span class='rbracket'>]</span>
 
@@ -527,10 +535,6 @@
       <pre class="lines">
 
 
-23
-24
-25
-26
 27
 28
 29
@@ -548,10 +552,14 @@
 41
 42
 43
-44</pre>
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span>
   <span class='id identifier rubyid_auth_hash'>auth_hash</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>omniauth.auth</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -559,7 +567,7 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_auth_hash'>auth_hash</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
     <span class='const'>Kadmin</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>No authorization hash provided</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_alert'>alert</span> <span class='op'>=</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kadmin.auth.error</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='label'>action:</span> <span class='symbol'>:login</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_auth_login_path'>auth_login_path</span><span class='lparen'>(</span><span class='label'>origin:</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>omniauth.origin</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>return</span>
   <span class='kw'>end</span>
 
@@ -570,7 +578,7 @@
     <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='const'>Kadmin</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_mount_path'>mount_path</span> <span class='kw'>unless</span> <span class='id identifier rubyid_valid_redirect_url?'>valid_redirect_url?</span><span class='lparen'>(</span><span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_flash'>flash</span><span class='period'>.</span><span class='id identifier rubyid_alert'>alert</span> <span class='op'>=</span> <span class='const'>I18n</span><span class='period'>.</span><span class='id identifier rubyid_t'>t</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kadmin.auth.unauthorized_message</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='id identifier rubyid_url_for'>url_for</span><span class='lparen'>(</span><span class='label'>action:</span> <span class='symbol'>:login</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='id identifier rubyid_auth_login_path'>auth_login_path</span><span class='lparen'>(</span><span class='label'>origin:</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>omniauth.origin</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span>
@@ -595,15 +603,15 @@
       <pre class="lines">
 
 
-52
-53
-54
-55
 56
-57</pre>
+57
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/kadmin/auth_controller.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unauthorized'>unauthorized</span>
   <span class='id identifier rubyid_render'>render</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kadmin/error</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>format:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>html</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>locals:</span> <span class='lbrace'>{</span>
@@ -621,7 +629,7 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Oct 10 17:58:30 2016 by
+  Generated on Thu Nov 24 12:48:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>
