@@ -22,8 +22,11 @@ module Admin
         format.html
         format.js do
           render json: {
-            items: @finder.results.map { |person| { id: person.id, full_name: person.full_name } },
-            more: @finder.pager.next_page?
+            data: @finder.results.map { |person| person.as_json(methods: :full_name) },
+            more: @finder.pager.next_page?,
+            recordsTotal: @finder.pager.total,
+            draw: params[:draw].to_i,
+            recordsFiltered: @finder.pager.total
           }
         end
       end

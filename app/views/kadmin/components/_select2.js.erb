@@ -33,7 +33,7 @@ $(document).ready(function() {
       },
       processResults: function (data, params) {
         return {
-          results: data.items,
+          results: data.data,
           pagination: { more: data.more }
         };
       },

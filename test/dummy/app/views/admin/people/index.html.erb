@@ -1,7 +1,7 @@
 <div class="page-header">
   <h3>People</h3>
   <form class="form-inline">
-    <%= select2_tag('person-selector', [],
+    <%= select2_tag('person-navigator', [],
       placeholder: 'Go to...',
       data_url: admin_people_path,
       filter_param: :filter_name,
@@ -17,18 +17,52 @@
 
 <% content_for(:stylesheets) do %>
   <%= stylesheet_link_tag "kadmin/select2", media: "all" %>
+  <%= stylesheet_link_tag "datatables", media: "all" %>
 <% end %>
 
 <% content_for(:javascripts) do %>
   <%= javascript_include_tag "kadmin/select2" %>
+  <%= javascript_include_tag "datatables" %>
   <script type="text/javascript">
     $(document).ready(function() {
+      // Setup People Navigator
       var person_path = "<%= admin_person_path(0) %>".split('/').slice(0, -1).join('/');
-      $("#person-selector").on("select2:select", function(event) {
+      $("#person-navigator").on("select2:select", function(event) {
         var person = event.params.data;
         if (person.id) {
           document.location.href = person_path + "/" + person.id;
         }
+      });
+
+      // Setup DataTables
+      $('#people-table').DataTable({
+        "ajax": {
+          "url": "<%= admin_people_path %>",
+          "data": function(data) {
+            if (data.start) {
+              data.page_offset = data.start;
+            }
+
+            if (data.length) {
+              data.page_size = data.length;
+            }
+
+            if (data.search && data.search["value"]) {
+              data.filter_name = data.search["value"];
+            }
+          }
+        },
+        "columns": [
+          { data: "id" },
+          { data: "first_name" },
+          { data: "last_name" },
+          { data: "date_of_birth" },
+          { data: "gender" },
+          { data: "created_at" },
+          { data: "" }
+        ],
+        "processing": true,
+        "serverSide": true
       });
     });
   </script>
