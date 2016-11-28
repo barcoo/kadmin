@@ -25,7 +25,7 @@ module Kadmin
         @text = text.freeze
         @path = path.freeze
         @css_classes = Array.wrap(css_classes).dup.freeze
-        @engine = engine&.engine_name.dup.freeze
+        @engine = engine&.engine_name
       end
 
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
