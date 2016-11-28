@@ -14,19 +14,18 @@ module Kadmin
       # @return [Array<String>] list of additional CSS classes
       attr_reader :css_classes
 
+      # @return [Rails::Engine] only pass if you want to access engine routes
+      attr_reader :engine
+
       # @param [String] text the link text; can be HTML
       # @param [String, Proc] path the linked path; if a Proc, will get evaluated everytime when calling the reader
       # @param [Array<String>] css_classes list of additional CSS classes
-      def initialize(text:, path:, css_classes: [])
+      # @return [Rails::Application] app application providing URL helpers; if you're in an engine, pass your engine
+      def initialize(text:, path:, engine: nil, css_classes: [])
         @text = text.freeze
         @path = path.freeze
         @css_classes = Array.wrap(css_classes).dup.freeze
-      end
-
-      # Supports dynamic paths by setting the base property as a Proc
-      # @return [String] path for the given link
-      def path
-        return @path.respond_to?(:call) ? @path.call : @path
+        @engine = engine&.engine_name.dup.freeze
       end
 
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
@@ -34,9 +33,18 @@ module Kadmin
         # Generates HTML to present the section
         # @return [ActiveSupport::SafeBuffer] safe HTML to display
         def generate(captured, **)
+          path = self.path
+
+          if self.path.respond_to?(:call)
+            router = @view
+            router = @view.public_send(self.engine) if !self.engine.nil? && @view.respond_to?(self.engine)
+            path = self.path.call(router)
+          end
+
           css_classes = self.css_classes
-          css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == self.path
-          contents = @view.link_to(self.text.to_s.html_safe, self.path)
+          css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == path
+
+          contents = @view.link_to(self.text.to_s.html_safe, path)
           contents << captured unless captured.blank?
 
           return %(<li class="#{css_classes.join(' ')}">#{contents}</li>).html_safe
