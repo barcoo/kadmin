@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 module Kadmin
+  # TODO: Figure out how to have access to a properly scoped routing proxy
   module Navbar
     # A navigation link for use with the navbar items
     class Link
@@ -25,7 +26,7 @@ module Kadmin
         @text = text.freeze
         @path = path.freeze
         @css_classes = Array.wrap(css_classes).dup.freeze
-        @engine = engine&.engine_name
+        @engine = engine || Rails.application
       end
 
       # Generates HTML for use in the main Kadmin layout to build the navigation sidebar
@@ -36,8 +37,7 @@ module Kadmin
           path = self.path
 
           if self.path.respond_to?(:call)
-            router = @view
-            router = @view.public_send(self.engine) if !self.engine.nil? && @view.respond_to?(self.engine)
+            router = self.engine.routes.url_helpers
             path = self.path.call(router)
           end
 
