@@ -1,5 +1,9 @@
 # Changelog
 
+##0.5.4
+
+- [e2c2502](https://github.com/barcoo/kadmin/commit/e2c2502) *2016-11-29* __fixed wrong constant name__ (Nicolas Pepin-Perreault)
+
 ##0.5.3
 
 - [6b6bac5](https://github.com/barcoo/kadmin/commit/6b6bac5) *2016-11-29* __use basic router, not routing proxy from view__ (Nicolas Pepin-Perreault)
