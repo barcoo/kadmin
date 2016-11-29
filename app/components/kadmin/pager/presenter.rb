@@ -27,8 +27,10 @@ module Kadmin
       def generate(captured, page_sizes: DEFAULT_SIZES, **)
         navigation = page_list
         controls = size_list(page_sizes)
+        contents = navigation + controls
+        contents << captured unless captured.nil?
 
-        return "<div class='btn-toolbar'>#{navigation + controls + captured}</div>".html_safe
+        return "<div class='btn-toolbar'>#{contents}</div>".html_safe
       end
 
       def page_list

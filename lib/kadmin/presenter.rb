@@ -16,6 +16,7 @@ module Kadmin
     def render(view: nil, **options, &block)
       previous_view = @view
       rendered = nil
+      captured = ''
 
       begin
         @view = view unless view.nil?
