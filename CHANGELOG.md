@@ -1,5 +1,9 @@
 # Changelog
 
+##0.5.5
+
+- [7073d7a](https://github.com/barcoo/kadmin/commit/7073d7a) *2016-11-29* __fixes again wrong constant name__ (Nicolas Pepin-Perreault)
+
 ##0.5.4
 
 - [e2c2502](https://github.com/barcoo/kadmin/commit/e2c2502) *2016-11-29* __fixed wrong constant name__ (Nicolas Pepin-Perreault)
