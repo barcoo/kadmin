@@ -1,5 +1,10 @@
 # Changelog
 
+##0.5.7
+
+- [d51d5da](https://github.com/barcoo/kadmin/commit/d51d5da) *2016-11-29* __added missing fontawesome fonts__ (Nicolas Pepin-Perreault)
+- [ae4ba08](https://github.com/barcoo/kadmin/commit/ae4ba08) *2016-11-29* __fixed including fonts assets, fixes FontAwesome usage__ (Nicolas Pepin-Perreault)
+
 ##0.5.6
 
 - [84b84f0](https://github.com/barcoo/kadmin/commit/84b84f0) *2016-11-29* __fix nil access__ (Nicolas Pepin-Perreault)
