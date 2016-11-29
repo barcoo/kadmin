@@ -1,5 +1,9 @@
 # Changelog
 
+##0.5.6
+
+- [84b84f0](https://github.com/barcoo/kadmin/commit/84b84f0) *2016-11-29* __fix nil access__ (Nicolas Pepin-Perreault)
+
 ##0.5.5
 
 - [7073d7a](https://github.com/barcoo/kadmin/commit/7073d7a) *2016-11-29* __fixes again wrong constant name__ (Nicolas Pepin-Perreault)
