@@ -1,5 +1,9 @@
 # Changelog
 
+##0.5.3
+
+- [6b6bac5](https://github.com/barcoo/kadmin/commit/6b6bac5) *2016-11-29* __use basic router, not routing proxy from view__ (Nicolas Pepin-Perreault)
+
 ##0.5.2
 
 - [66689d3](https://github.com/barcoo/kadmin/commit/66689d3) *2016-11-28* __prevent nil access__ (Nicolas Pepin-Perreault)
