@@ -3,3 +3,4 @@
 # to cause issues, although loading them by filename is fine. Go figure.
 Rails.application.config.assets.precompile << Dir.glob("#{Kadmin::Engine.root}/app/assets/**/*").reject { |fn| File.directory?(fn) }
 Rails.application.config.assets.precompile << Dir.glob("#{Kadmin::Engine.root}/vendor/assets/**/*").reject { |fn| File.directory?(fn) }
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
