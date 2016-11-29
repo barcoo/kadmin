@@ -1,5 +1,5 @@
 module Kadmin
-  module Forms
+  module FormTags
     class InvertedCheckBox < ActionView::Helpers::Tags::CheckBox
       # Overload how it gets the value and return the invert
       def value(*args)
