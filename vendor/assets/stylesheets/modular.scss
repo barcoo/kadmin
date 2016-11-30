@@ -17,3 +17,14 @@
 .fa {
   font-family: 'FontAwesomeRails' !important; // sass-lint:disable-line no-important
 }
+
+// Temporary bootstrap fix until Modular updates bootstrap version
+select {
+  &.form-control {
+    &:not([size]) {
+      &:not([multiple]) { // sass-lint:disable-line nesting-depth
+        height: calc(2.5rem - 2px);
+      }
+    }
+  }
+}
