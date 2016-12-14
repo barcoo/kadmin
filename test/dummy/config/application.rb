@@ -30,9 +30,6 @@ module Dummy
     # Enable assets pipeline
     config.assets.enabled = true
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir.glob("#{config.root}/../../lib/**/*").select { |f| File.directory?(f) }
 

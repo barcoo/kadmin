@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Person < ApplicationRecord
   has_many :group_people, dependent: :destroy, autosave: true
   has_many :groups, through: :group_people, validate: true
   has_many :owned_groups, class_name: 'Group', foreign_key: 'owner_id', dependent: :nullify, autosave: true

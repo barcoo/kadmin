@@ -27,7 +27,7 @@ module Kadmin
     end
 
     def test_save
-      post :save, provider: Kadmin::Auth.omniauth_provider
+      post :save, params: { provider: Kadmin::Auth.omniauth_provider }
       assert_redirected_to auth_login_path
       assert_not_nil flash.alert # it doesn't matter too much what we wrote, just that we do notify the user
 
@@ -37,20 +37,20 @@ module Kadmin
       flexmock(Kadmin::Auth.users).should_receive(:exists?).with(existent).and_return(true)
 
       @request.env['omniauth.auth'] = { 'info' => { 'email' => nonexistent } }
-      post :save, provider: Kadmin::Auth.omniauth_provider
+      post :save, params: { provider: Kadmin::Auth.omniauth_provider }
       assert_redirected_to auth_login_path
       assert_not_nil flash.alert
 
       @request.env['omniauth.origin'] = dash_path
       @request.env['omniauth.auth'] = { 'info' => { 'email' => existent } }
-      post :save, provider: Kadmin::Auth.omniauth_provider
+      post :save, params: { provider: Kadmin::Auth.omniauth_provider }
       assert_redirected_to dash_path
       assert_equal existent, session[Kadmin::AuthController::SESSION_KEY]
     end
 
     def test_failure
       @request.env['omniauth.origin'] = 'origin'
-      get :failure, message: 'failed'
+      get :failure, params: { message: 'failed' }
       assert_redirected_to auth_login_path(origin: 'origin')
       assert_equal 'failed', flash.alert
     end

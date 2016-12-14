@@ -1,4 +1,4 @@
-class GroupPerson < ActiveRecord::Base
+class GroupPerson < ApplicationRecord
   belongs_to :group
   belongs_to :person
 

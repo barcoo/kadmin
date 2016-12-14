@@ -15,7 +15,6 @@ end
 group :development do
   gem 'better_errors' # generate an error in dev, you'll see
   gem 'binding_of_caller' # for the above to get a console
-  gem 'quiet_assets' # no logs for assets in dev
   gem 'puma' # development webserver
   gem 'yard' # documentation generator, run rake yard
 end
@@ -29,6 +28,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing' # allows using assigns, assert_template
   gem 'minitest-reporters', '~> 1.1.9', require: false
   gem 'simplecov', '~> 0.11.2', require: false
   gem 'simplecov-cobertura', '~> 1.1.0', require: false
