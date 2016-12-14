@@ -1,5 +1,10 @@
 # Changelog
 
+##0.6.0
+
+- [1ffbcbb](https://github.com/barcoo/kadmin/commit/1ffbcbb) *2016-12-14* __support rails 5__ (Nicolas Pepin-Perreault)
+- [e980c08](https://github.com/barcoo/kadmin/commit/e980c08) *2016-11-30* __add temporary bootstrap fix until modular updates bootstrap__ (Nicolas Pepin-Perreault)
+
 ##0.5.7
 
 - [d51d5da](https://github.com/barcoo/kadmin/commit/d51d5da) *2016-11-29* __added missing fontawesome fonts__ (Nicolas Pepin-Perreault)
