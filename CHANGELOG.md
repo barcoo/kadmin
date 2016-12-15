@@ -1,5 +1,9 @@
 # Changelog
 
+##0.6.1
+
+- [ea966e0](https://github.com/barcoo/kadmin/commit/ea966e0) *2016-12-15* __fix mass find-and-replace regression using wrong ApplicationRecord__ (Nicolas Pepin-Perreault)
+
 ##0.6.0
 
 - [1ffbcbb](https://github.com/barcoo/kadmin/commit/1ffbcbb) *2016-12-14* __support rails 5__ (Nicolas Pepin-Perreault)
