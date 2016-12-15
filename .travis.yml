@@ -6,7 +6,6 @@ env:
   - RAILS_ENV=test
 script:
   - bundle exec rake db:migrate
-  - bundle exec rake db:test:prepare
 bundler_args: --without development profile
 notifications:
   email:
