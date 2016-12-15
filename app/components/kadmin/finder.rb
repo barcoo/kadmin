@@ -31,7 +31,7 @@ module Kadmin
       if column.present?
         @filters[name] = Kadmin::Finder::Filter.new(column, value)
         if value.present?
-          search_value = ApplicationRecord.sanitize("%#{value}%".squeeze('%'))
+          search_value = ActiveRecord::Base.sanitize("%#{value}%".squeeze('%'))
           filters = Array.wrap(column).map do |column_name|
             %(`#{@scope.table_name}`.`#{column_name}` LIKE #{search_value})
           end
