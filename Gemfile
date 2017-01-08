@@ -6,10 +6,10 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :profile do
-  gem 'rack-mini-profiler'
-  gem 'flamegraph'
-  gem 'stackprof' # ruby 2.1+ only
-  gem 'memory_profiler'
+  gem 'flamegraph', platforms: [:mri]
+  gem 'memory_profiler', platforms: [:mri]
+  gem 'rack-mini-profiler', platforms: [:mri]
+  gem 'stackprof', platforms: [:mri] # ruby 2.1+ only
 end
 
 group :development do
@@ -20,18 +20,18 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3' # test database
   gem 'byebug' # debugger
   gem 'pry-byebug' # pry integration for byebug
   gem 'pry-rails' # pry integration for rails
   gem 'pry-stack_explorer' # stack exploration
+  gem 'sqlite3' # test database
 end
 
 group :test do
-  gem 'rails-controller-testing' # allows using assigns, assert_template
+  gem 'flexmock', '~> 2.1.0', require: false
   gem 'minitest-reporters', '~> 1.1.9', require: false
+  gem 'rails-controller-testing' # allows using assigns, assert_template
   gem 'simplecov', '~> 0.11.2', require: false
   gem 'simplecov-cobertura', '~> 1.1.0', require: false
   gem 'simplecov-formatter-shield', '~> 0.0.3', require: false
-  gem 'flexmock', '~> 2.1.0', require: false
 end
