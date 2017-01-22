@@ -67,26 +67,19 @@ module Kadmin
 
     # @!group Associations
 
+    # TODO: For Rails 5, investigate use of ActiveModel associations
+
     class << self
-      # Delegates the list of attributes to the model, both readers and writers.
-      # If the attribute value passed is a hash and not a symbol, assumes it is
-      # a hash of one key, whose value is an array contained :reader, :writer, or both.
-      # @example
-      #   delegate_attributes :first_name, { last_name: [:reader] }
-      # @param [Array<Symbol, Hash<Symbol, Array<Symbol>>>] attributes list of attributes to delegate to the model
-      def delegate_attributes(*attributes)
-        delegates = attributes.each_with_object([]) do |attribute, acc|
-          case attribute
-          when Hash
-            key, value = attribute.first
-            acc << key if value.include?(:reader)
-            acc << "#{key}=" if value.include?(:writer)
-          when Symbol, String
-            acc.push(attribute, "#{attribute}=")
-          else
-            raise(ArgumentError, 'Attribute must be one of: Hash, Symbol, String')
-          end
-        end
+      # Delegates the list of attributes to the model.
+      # NOTE: It doesn't make a huge difference to use read_only and write_only, but it is somewhat cleaner to
+      # only delegate the methods you are not planning to override. I doubt performance changes much.
+      # @param [Array<Symbol>] attributes list of attributes to delegate to the model
+      # @param [Array<Symbol>] read_only list of read only attributes to delegate
+      # @param [Array<Symbol>] write_only list of write only attributes to delegate
+      def delegate_attributes(*attributes, read_only: [], write_only: [])
+        delegates = attributes.reduce([]) { |acc, attr| acc.push(attr, "#{attr}=") } +
+                    read_only.map { |attr| acc.push(attr) } +
+                    write_only.map { |attr| acc.push("#{attr}=") }
 
         delegate(*delegates, to: :model)
       end

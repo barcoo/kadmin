@@ -14,36 +14,8 @@ module Kadmin
       assert_equal person, form.to_model
     end
 
-    class MainForm < Kadmin::Form
-      delegate_association :items, to: 'Kadmin::FormTest::ItemForm'
-      delegate_attributes :owner
-    end
 
-    class ItemForm < Kadmin::Form
-    end
-
-    class Package
-      include ActiveModel::Model
-      attr_accessor :id, :owner
-
-      def persisted?
-        return !self.id.nil?
-      end
-
-      def items_attributes(item_attributes)
-        item_attributes.each do |attributes|
-          
-        end
-      end
-    end
-
-    class Item
-      include ActiveModel::Model
-      attr_accessor :id, :name, :weight, :package_id
-
-      def persisted?
-        return !self.id.nil?
-      end
-    end
   end
 end
+
+# movies: movies have a cast (people), genres (tags), and then other info

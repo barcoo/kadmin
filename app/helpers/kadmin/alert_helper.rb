@@ -34,10 +34,10 @@ module Kadmin
 
     Type = Struct.new(:flash_keys, :css_class, :glyphicon)
     TYPES = [
-      Type.new(['danger', 'alert'], 'danger', 'exclamation-sign'),
+      Type.new(%w(danger alert), 'danger', 'exclamation-sign'),
       Type.new(['success'], 'success', 'ok-sign'),
-      Type.new(['notice', 'info'], 'info', 'info-sign'),
-      Type.new(['warn', 'warning'], 'warning', 'question-sign')
+      Type.new(%w(notice info), 'info', 'info-sign'),
+      Type.new(%w(warn warning), 'warning', 'question-sign')
     ].freeze
     def render_flash_alerts
       alerts = AlertHelper::TYPES.map do |type|
@@ -48,7 +48,7 @@ module Kadmin
       return safe_join(alerts)
     end
 
-    def render_flash_alert(type, &block)
+    def render_flash_alert(type, &_block)
       messages = type.flash_keys.map { |key| Array.wrap(flash[key]).compact }.flatten
       return '' if messages.blank?
 

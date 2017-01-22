@@ -5,7 +5,10 @@ class CreatePeople < ActiveRecord::Migration
       t.string :last_name
       t.string :gender, limit: 1 # enum: m, f, o (other)
       t.date :date_of_birth
-      t.timestamps null: false
+      t.integer :country_id, null: true
+
+      t.timestamps
+      t.index [:country_id], name: 'citizens'
     end
   end
 end
