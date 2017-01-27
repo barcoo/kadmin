@@ -1,5 +1,9 @@
 # Changelog
 
+##0.6.3
+
+- [b2a6364](https://github.com/barcoo/kadmin/commit/b2a6364) *2017-01-27* __fix rails support (support [4.2, 6[)__ (Nicolas Pepin-Perreault)
+
 ##0.6.2
 
 - [b8afb25](https://github.com/barcoo/kadmin/commit/b8afb25) *2017-01-27* __bug fix on Kadmin::Form#save! (typo)__ (Nicolas Pepin-Perreault)
