@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   # Core
-  s.add_dependency 'rails', '>= 4.2', '~> 5.0.0'
+  s.add_dependency 'rails', '>= 4.2', '< 6'
   s.add_dependency 'i18n', '~> 0.7'
 
   # Front-end stuff
