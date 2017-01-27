@@ -1,5 +1,14 @@
 # Changelog
 
+##0.6.2
+
+- [b8afb25](https://github.com/barcoo/kadmin/commit/b8afb25) *2017-01-27* __bug fix on Kadmin::Form#save! (typo)__ (Nicolas Pepin-Perreault)
+- [b2d4f3f](https://github.com/barcoo/kadmin/commit/b2d4f3f) *2017-01-08* __do not show admin links unless logged in__ (Nicolas Pepin-Perreault)
+- [9043a24](https://github.com/barcoo/kadmin/commit/9043a24) *2017-01-08* __do not install profiling gems on non MRI platforms as they will not work__ (Nicolas Pepin-Perreault)
+- [94385f6](https://github.com/barcoo/kadmin/commit/94385f6) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+- [3094110](https://github.com/barcoo/kadmin/commit/3094110) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+- [e40c6f3](https://github.com/barcoo/kadmin/commit/e40c6f3) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+
 ##0.6.1
 
 - [ea966e0](https://github.com/barcoo/kadmin/commit/ea966e0) *2016-12-15* __fix mass find-and-replace regression using wrong ApplicationRecord__ (Nicolas Pepin-Perreault)
