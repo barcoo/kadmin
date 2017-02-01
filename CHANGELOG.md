@@ -1,5 +1,9 @@
 # Changelog
 
+##0.6.4
+
+- [1160f44](https://github.com/barcoo/kadmin/commit/1160f44) *2017-01-31* __show menu if no auth is configured__ (Sergio Medina)
+
 ##0.6.3
 
 - [b2a6364](https://github.com/barcoo/kadmin/commit/b2a6364) *2017-01-27* __fix rails support (support [4.2, 6[)__ (Nicolas Pepin-Perreault)
