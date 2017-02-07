@@ -16,3 +16,4 @@ coverage
 .byebug_history
 *.md-u
 *.gem
+*.rb-u
