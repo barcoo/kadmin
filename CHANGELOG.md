@@ -1,5 +1,10 @@
 # Changelog
 
+##0.6.6
+
+- [bd6a1ce](https://github.com/barcoo/kadmin/commit/bd6a1ce) *2017-02-07* __add *.rb-u to .gitignore__ (Sergio Medina)
+- [7ee59a1](https://github.com/barcoo/kadmin/commit/7ee59a1) *2017-02-07* __correct repo url__ (Sergio Medina)
+
 ##0.6.5
 
 - [5533306](https://github.com/barcoo/kadmin/commit/5533306) *2017-02-07* __add option to hide Create button next to Finder's filters__ (Sergio Medina)

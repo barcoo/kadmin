@@ -1,6 +1,6 @@
 # Kadmin
 
-[![GitHub release](https://img.shields.io/badge/release-0.6.5-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.6.5)
+[![GitHub release](https://img.shields.io/badge/release-0.6.6-blue.png)](https://github.com/barcoo/kadmin/releases/tag/0.6.6)
 
 Collection of utility, configuration, etc., for admin areas in different projects.
 Theme based on [Modular Admin](https://github.com/modularcode/modular-admin-html)
