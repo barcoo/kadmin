@@ -1,5 +1,11 @@
 # Changelog
 
+##0.6.5
+
+- [5533306](https://github.com/barcoo/kadmin/commit/5533306) *2017-02-07* __add option to hide Create button next to Finder's filters__ (Sergio Medina)
+- [68e5630](https://github.com/barcoo/kadmin/commit/68e5630) *2017-02-06* __Merge pull request #5 from barcoo/kadmin-checkbox-visual-distinction__ (Hinnerk Bruegmann)
+- [ae37824](https://github.com/barcoo/kadmin/commit/ae37824) *2017-02-06* __make checkboxes visually more distinctive__ (Hinnerk Bruegmann)
+
 ##0.6.4
 
 - [1160f44](https://github.com/barcoo/kadmin/commit/1160f44) *2017-01-31* __show menu if no auth is configured__ (Sergio Medina)
