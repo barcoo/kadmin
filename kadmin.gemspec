@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = Kadmin::VERSION
   s.authors     = ['Nicolas Pepin-Perreault', 'Sergio Medina', 'Teymour Taghavi']
   s.email       = ['nicolas.pepin-perreault@offerista.com', 'sergio.medina@offerista.com', 'teymour.taghavi@offerista.com']
-  s.homepage    = 'https://github.com/offerista/Kadmin'
+  s.homepage    = 'https://github.com/barcoo/kadmin'
   s.summary     = 'Collection of utility, configuration, etc., for admin areas'
   s.description = 'Collection of utility, configuration, etc., for admin areas in a Rails application. Provides a boostrap environment, standard layout, authentication, and more.'
   s.license     = 'MIT'
