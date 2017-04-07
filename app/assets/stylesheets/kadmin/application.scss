@@ -3,7 +3,6 @@
 
 // sass-lint:disable no-color-literals
 
-
 // Wrap everything in a .kadmin class to ensure our styling always overrides everyone else
 .kadmin {
   a.titlelink { // sass-lint:disable-line no-qualifying-elements force-element-nesting
@@ -44,14 +43,16 @@
     }
   }
 
-  .radio+span, .checkbox+span {
+
+  .radio+span,
+  .checkbox+span {
     color: #777;
+
+    ::before {
+      color: #52bcd3;
+    }
   }
-  .radio+span:before, .checkbox+span:before {
-    color: #edf3fb;
-  }
-  
-  
+
   // MISC
 
   .dropdown-menu {
