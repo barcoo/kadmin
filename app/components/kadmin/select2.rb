@@ -1,13 +1,11 @@
 # frozen_string_literal: true
+
 module Kadmin
   class Select2
     include Kadmin::Presentable
 
     CSS_CLASS_MARKER = 'kadmin-select2'
-
-    DATA_ATTRIBUTES = [
-      :placeholder, :data_url, :filter_param, :display_property, :value_property, :page_size
-    ].freeze
+    DATA_ATTRIBUTES = %i[placeholder data_url filter_param display_property value_property page_size minimum_input_length].freeze
 
     # @return [String] will be used as a placeholder if given
     attr_reader :placeholder
@@ -29,9 +27,12 @@ module Kadmin
     # @return [Integer] the page size value to fetch on each select2 remote fetch
     attr_reader :page_size
 
+    # @return [Integer] the minimum input length before trying to fetch remote data
+    attr_reader :minimum_input_length
+
     def initialize(options = {})
       @placeholder = options[:placeholder].to_s.freeze
-      extract_ajax_options!(options).freeze unless options.blank?
+      extract_ajax_options!(options).freeze if options.present?
     end
 
     def extract_ajax_options!(options)
@@ -40,6 +41,7 @@ module Kadmin
       @display_property = options.fetch(:display_property, 'text')
       @value_property = options.fetch(:value_property, 'id')
       @page_size = options.fetch(:page_size, 10)
+      @minimum_input_length = options.fetch(:minimum_input_length, 2)
 
       raise ArgumentError, 'missing data URL for remote fetching' if @data_url.blank?
     end
@@ -52,7 +54,8 @@ module Kadmin
         'kadmin--filter-param' => filter_param,
         'kadmin--display-property' => display_property,
         'kadmin--value-property' => value_property,
-        'kadmin--page-size' => page_size
+        'kadmin--page-size' => page_size,
+        'kadmin--minimum-input-length' => minimum_input_length
       }
     end
 

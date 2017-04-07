@@ -8,7 +8,6 @@ $(document).ready(function() {
     data: transformRequest,
     processResults: transformResponse
   });
-  $.fn.select2.defaults.set("minimumInputLength", 2);
   $.fn.select2.defaults.set("allowClear", true);
 
   function transformRequest(params) {
@@ -44,11 +43,18 @@ $(document).ready(function() {
     };
   }
 
+  function optionsForSelect2(element) {
+    return {
+      minimumInputLength: $(element).data('kadmin--minimum-input-length') || 2,
+    }
+  }
+
   // Need to delay a bit otherwise we have issues
   // TODO: Figure out why this happens?
   setTimeout(function() {
     $('select.kadmin-select2').each(function() {
-      $(this).select2();
+      $(this).select2(optionsForSelect2(this));
     });
   }, 300);
+
 });
