@@ -44,6 +44,14 @@
     }
   }
 
+  .radio+span, .checkbox+span {
+    color: #777;
+  }
+  .radio+span:before, .checkbox+span:before {
+    color: #edf3fb;
+  }
+  
+  
   // MISC
 
   .dropdown-menu {

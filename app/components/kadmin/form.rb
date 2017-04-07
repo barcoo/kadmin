@@ -178,7 +178,7 @@ module Kadmin
       saved = false
       @model.class.transaction do
         saved = @model.save!
-        @associated_form.values.flatten.each do |form|
+        @associated_forms.values.flatten.each do |form|
           saved &&= form.save! # no need to raise anything, save! will do so
         end
       end

@@ -1,6 +1,8 @@
 <%= form_tag(request.fullpath, method: 'get', class: 'form-inline pull-right') do %>
   <div class='form-group'>
-    <%= link_to(t('kadmin.components.finder.create'), url_for(action: :new), class: 'btn btn-primary', style: 'margin-right: 20px') %>
+    <% unless hide_create_button %>
+      <%= link_to(t('kadmin.components.finder.create'), url_for(action: :new), class: 'btn btn-primary', style: 'margin-right: 20px') %>
+    <% end %>
     <% finder.filters.each do |name, filter| %>
       <%= text_field_tag("filter_#{name}", filter&.value, class: 'form-control', placeholder: "Filter by #{name}...") %>
     <% end %>

@@ -3,7 +3,7 @@ en:
     auth:
       error: An error occurred; please try again
       login_required: A valid Google enabled email is necessary to login
-      please_login: Please authenticate yourself
+      please_login: Click here to login
       unauthorized: Unauthorized access
       unauthorized_message: You are not authorized to access this resource; if you think you should be, contact the Apps & Services team
     components:

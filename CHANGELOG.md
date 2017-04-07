@@ -1,5 +1,33 @@
 # Changelog
 
+##0.6.6
+
+- [bd6a1ce](https://github.com/barcoo/kadmin/commit/bd6a1ce) *2017-02-07* __add *.rb-u to .gitignore__ (Sergio Medina)
+- [7ee59a1](https://github.com/barcoo/kadmin/commit/7ee59a1) *2017-02-07* __correct repo url__ (Sergio Medina)
+
+##0.6.5
+
+- [5533306](https://github.com/barcoo/kadmin/commit/5533306) *2017-02-07* __add option to hide Create button next to Finder's filters__ (Sergio Medina)
+- [68e5630](https://github.com/barcoo/kadmin/commit/68e5630) *2017-02-06* __Merge pull request #5 from barcoo/kadmin-checkbox-visual-distinction__ (Hinnerk Bruegmann)
+- [ae37824](https://github.com/barcoo/kadmin/commit/ae37824) *2017-02-06* __make checkboxes visually more distinctive__ (Hinnerk Bruegmann)
+
+##0.6.4
+
+- [1160f44](https://github.com/barcoo/kadmin/commit/1160f44) *2017-01-31* __show menu if no auth is configured__ (Sergio Medina)
+
+##0.6.3
+
+- [b2a6364](https://github.com/barcoo/kadmin/commit/b2a6364) *2017-01-27* __fix rails support (support [4.2, 6[)__ (Nicolas Pepin-Perreault)
+
+##0.6.2
+
+- [b8afb25](https://github.com/barcoo/kadmin/commit/b8afb25) *2017-01-27* __bug fix on Kadmin::Form#save! (typo)__ (Nicolas Pepin-Perreault)
+- [b2d4f3f](https://github.com/barcoo/kadmin/commit/b2d4f3f) *2017-01-08* __do not show admin links unless logged in__ (Nicolas Pepin-Perreault)
+- [9043a24](https://github.com/barcoo/kadmin/commit/9043a24) *2017-01-08* __do not install profiling gems on non MRI platforms as they will not work__ (Nicolas Pepin-Perreault)
+- [94385f6](https://github.com/barcoo/kadmin/commit/94385f6) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+- [3094110](https://github.com/barcoo/kadmin/commit/3094110) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+- [e40c6f3](https://github.com/barcoo/kadmin/commit/e40c6f3) *2016-12-15* __updated travis config__ (Nicolas Pepin-Perreault)
+
 ##0.6.1
 
 - [ea966e0](https://github.com/barcoo/kadmin/commit/ea966e0) *2016-12-15* __fix mass find-and-replace regression using wrong ApplicationRecord__ (Nicolas Pepin-Perreault)
