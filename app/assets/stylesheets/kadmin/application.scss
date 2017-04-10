@@ -53,6 +53,19 @@
     }
   }
 
+  // ALERTS
+
+  // correctly position the close icon for alerts
+  .alert-dismissible {
+    position: relative;
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+  }
+
   // MISC
 
   .dropdown-menu {
