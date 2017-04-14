@@ -3,7 +3,6 @@
 
 // sass-lint:disable no-color-literals
 
-
 // Wrap everything in a .kadmin class to ensure our styling always overrides everyone else
 .kadmin {
   a.titlelink { // sass-lint:disable-line no-qualifying-elements force-element-nesting
@@ -41,6 +40,29 @@
     .form-control {
       border-color: #f44;
       box-shadow: none;
+    }
+  }
+
+
+  .radio+span,
+  .checkbox+span {
+    color: #777;
+
+    ::before {
+      color: #52bcd3;
+    }
+  }
+
+  // ALERTS
+
+  // correctly position the close icon for alerts
+  .alert-dismissible {
+    position: relative;
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 5px;
     }
   }
 

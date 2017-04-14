@@ -2,10 +2,13 @@
   <h3>People</h3>
   <form class="form-inline">
     <%= select2_tag('person-selector', [],
-      placeholder: 'Go to...',
-      data_url: admin_people_path,
-      filter_param: :filter_name,
-      display_property: :full_name,
+      {
+        placeholder: 'Go to...',
+        data_url: admin_people_path,
+        filter_param: :filter_name,
+        display_property: :full_name,
+        minimum_input_length: 3
+      },
       style: 'min-width: 250px',
       class: 'form-control') %>
   </form>

@@ -1,6 +1,8 @@
-# Load engine assets
-# While loading images by extensions seem to work, loading JS and (S)CSS by extension seems
-# to cause issues, although loading them by filename is fine. Go figure.
-Rails.application.config.assets.precompile << Dir.glob("#{Kadmin::Engine.root}/app/assets/**/*").reject { |fn| File.directory?(fn) }
-Rails.application.config.assets.precompile << Dir.glob("#{Kadmin::Engine.root}/vendor/assets/**/*").reject { |fn| File.directory?(fn) }
+# frozen_string_literal: true
+
+%w(app vendor).each do |folder|
+  path = Kadmin::Engine.root.join(folder, 'assets', '**', '*')
+  Rails.application.config.assets.paths.concat(Dir.glob(path).select { |path| File.directory?(path) })
+  Rails.application.config.assets.precompile.concat(Dir.glob(path).select { |path| File.file?(path) })
+end
 Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/

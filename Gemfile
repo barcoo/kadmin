@@ -20,6 +20,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'barcoop' # barcoo shared rubocop config file and cops
   gem 'byebug' # debugger
   gem 'pry-byebug' # pry integration for byebug
   gem 'pry-rails' # pry integration for rails

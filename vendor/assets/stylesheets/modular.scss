@@ -3,19 +3,15 @@
 
 // Overwrite the font-awesome stuff to get the correct asset URLs
 @font-face {
-  font-family: 'FontAwesomeRails';
+  font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
-  src: font-url('fontawesome/fontawesome-webfont.eot?v=4.3.0'),
-  font-url('fontawesome/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),
-  font-url('fontawesome/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),
-  font-url('fontawesome/fontawesome-webfont.woff?v=4.3.0') format('woff'),
-  font-url('fontawesome/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),
-  font-url('fontawesome/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
-}
-
-.fa {
-  font-family: 'FontAwesomeRails' !important; // sass-lint:disable-line no-important
+  src: font-url('fontawesome/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+  font-url('fontawesome/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+  font-url('fontawesome/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+  font-url('fontawesome/fontawesome-webfont.eot?v=4.7.0'),
+  font-url('fontawesome/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+  font-url('fontawesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
 }
 
 // Temporary bootstrap fix until Modular updates bootstrap version

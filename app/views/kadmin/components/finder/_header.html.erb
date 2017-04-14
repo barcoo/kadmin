@@ -8,7 +8,7 @@
         )
       <% end %>
       <% if finder.filters.present? %>
-        <%= render partial: 'kadmin/components/finder/form', locals: { finder: finder } %>
+        <%= render partial: 'kadmin/components/finder/form', locals: { finder: finder, hide_create_button: hide_create_button } %>
       <% end %>
   </h3>
 </div>
