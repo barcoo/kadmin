@@ -1,28 +1,21 @@
-<div class="card">
-  <div class="card-block">
-    <h1><%= @person.full_name %></h1>
-    <p>Date of birth: <%= @person.date_of_birth %></p>
-    <p>Gender: <%= t("person.genders.#{@person.gender}") %>
-  </div>
+<div class="title-block">
+  <h2 class="title"><%= @person.full_name %></h2>
 </div>
 
 <section class="section">
-  <div class="row sameheight-container">
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <div class="card sameheight-item">
-        <div class="card-block">
-          <h2>Owned Groups</h2>
-          <%= render partial: 'admin/groups/table', locals: { groups: @person.owned_groups } %>
-        </div>
-      </div>
+  <div class="card">
+    <div class="card-block">
+      <h3>Bibliography</h3>
+      <p>Date of birth: <%= @person.date_of_birth %></p>
+      <p>Gender: <%= t("person.genders.#{@person.gender}") %>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6">
-      <div class="card sameheight-item">
-        <div class="card-block">
-          <h2>Groups</h2>
-          <%= render partial: 'admin/groups/table', locals: { groups: @person.groups } %>
-        </div>
-      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <div class="card-block">
+      <h3>Filmography</h3>
     </div>
   </div>
 </section>

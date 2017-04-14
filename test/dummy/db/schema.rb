@@ -25,22 +25,6 @@ ActiveRecord::Schema.define(version: 20170122210944) do
     t.index ["name"], name: "genre_lookup", unique: true
   end
 
-  create_table "group_people", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id", "person_id"], name: "group_people_lookup", unique: true
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "groups_owner_lookup"
-  end
-
   create_table "movie_casts", force: :cascade do |t|
     t.integer "movie_id",  null: false
     t.integer "person_id", null: false

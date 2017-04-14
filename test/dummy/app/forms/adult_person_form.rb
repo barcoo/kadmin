@@ -1,4 +1,6 @@
-class PersonForm < Kadmin::Form
+# frozen_string_literal: true
+
+class AdultPersonForm < Kadmin::Form
   delegate :full_name, to: :model
   delegate_attributes :gender, :first_name, :last_name, :date_of_birth, :groups, read_only: [:group_ids]
 

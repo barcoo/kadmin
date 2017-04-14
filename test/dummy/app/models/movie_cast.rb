@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class MovieCast < ApplicationRecord
   belongs_to :movie
   belongs_to :person
