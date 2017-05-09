@@ -1,4 +1,4 @@
-class CreateGroupPeople < ActiveRecord::Migration
+class CreateGroupPeople < ActiveRecord::Migration[4.2]
   def change
     create_table :group_people do |t|
       t.references :group
