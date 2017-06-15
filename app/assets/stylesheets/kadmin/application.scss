@@ -77,6 +77,15 @@
     }
   }
 
+  // FINDER
+  .finder {
+    overflow: scroll;
+
+    td {
+      word-wrap: break-word;
+    }
+  }
+
   // PAGES
 
   .page-header {
