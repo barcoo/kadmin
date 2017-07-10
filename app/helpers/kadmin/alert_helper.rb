@@ -52,7 +52,7 @@ module Kadmin
       messages = type.flash_keys.map { |key| Array.wrap(flash[key]).compact }.flatten
       return '' if messages.blank?
 
-      wrapped = messages.map { |message| content_tag(:p, glyphicon(type.glyphicon) + " #{message}") }.join('')
+      wrapped = messages.map { |message| content_tag(:p, glyphicon(type.glyphicon) + " #{message}".html_safe) }.join('')
       return alert(type.css_class, content: wrapped)
     end
   end
