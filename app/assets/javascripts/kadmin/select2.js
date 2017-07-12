@@ -12,11 +12,11 @@ jQuery(document).ready(function() {
   jQuery.fn.select2.defaults.set("allowClear", true);
 
   function transformRequest(params) {
-    var page = params.page || 0;
+    var page = params.page || 1;
     var page_size = this.data("kadmin--page-size") || 10;
     var filter_param = this.data("kadmin--filter-param") || null;
     var options = {
-      page_offset: page * page_size,
+      page_offset: (page - 1) * page_size,
       page_size: page_size
     };
 
