@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
       options[filter_param] = params.term;
     }
 
-    return options;
+    return transform(options, this.data("kadmin--transform-request"));
   }
 
   function transformResponse(data, params) {
@@ -32,22 +32,60 @@ jQuery(document).ready(function() {
     var options = this.options.options.kadmin || {}; // weird but it is what it is
     var displayProperty = options.displayProperty || "text";
     var valueProperty = options.valueProperty || "id";
-
     var results = [];
+    var response = {};
+
     jQuery(items).each(function(index, item) {
       results.push({ text: item[displayProperty], id: item[valueProperty] });
     });
 
-    return {
+    response = {
       results: results,
       pagination: { more: data.more }
     };
+
+    return transform(response, this.$element.data("kadmin--transform-response"));
   }
 
   function optionsForSelect2(element) {
     return {
       minimumInputLength: jQuery(element).data("kadmin--minimum-input-length") || 2,
+    };
+  }
+
+  // Data callbacks
+  var gFunctions = {};
+  function transform(initial, name) {
+    var transformed = initial;
+
+    if (name) {
+      var callback = lookup(name);
+      if (jQuery.isFunction(callback)) {
+        transformed = callback(initial);
+      }
     }
+
+    return transformed;
+  }
+
+  function lookup(path) {
+    if (gFunctions[path]) return gFunctions[path];
+
+    var namespaces = path.split(".");
+    var functionName = namespaces.pop();
+    var context = window;
+    var func = null;
+
+    for (var i = 0; context && i < namespaces.length; i++) {
+      context = context[namespaces[i]];
+    }
+
+    if (jQuery.isFunction(context[functionName])) {
+      func = context[functionName];
+      gFunctions[path] = func;
+    }
+
+    return func;
   }
 
   // Need to delay a bit otherwise we have issues

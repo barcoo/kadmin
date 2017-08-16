@@ -5,7 +5,10 @@ module Kadmin
     include Kadmin::Presentable
 
     CSS_CLASS_MARKER = 'kadmin-select2'
-    DATA_ATTRIBUTES = %i[placeholder data_url filter_param display_property value_property page_size minimum_input_length].freeze
+    DATA_ATTRIBUTES = %i[
+      placeholder data_url filter_param display_property value_property
+      page_size minimum_input_length transform_request transform_response
+    ].freeze
 
     # @return [String] will be used as a placeholder if given
     attr_reader :placeholder
@@ -30,6 +33,12 @@ module Kadmin
     # @return [Integer] the minimum input length before trying to fetch remote data
     attr_reader :minimum_input_length
 
+    # @return [String] name of callback to a globally-accessible function that can transform the request
+    attr_reader :transform_request
+
+    # @return [String] name of the callback to a globally-accessible function that can transform the response
+    attr_reader :transform_response
+
     def initialize(options = {})
       @placeholder = options[:placeholder].to_s.freeze
       extract_ajax_options!(options).freeze if options.present?
@@ -42,6 +51,8 @@ module Kadmin
       @value_property = options.fetch(:value_property, 'id')
       @page_size = options.fetch(:page_size, 10)
       @minimum_input_length = options.fetch(:minimum_input_length, 2)
+      @transform_request = options[:transform_request]
+      @transform_response = options[:transform_response]
 
       raise ArgumentError, 'missing data URL for remote fetching' if @data_url.blank?
     end
@@ -55,8 +66,10 @@ module Kadmin
         'kadmin--display-property' => display_property,
         'kadmin--value-property' => value_property,
         'kadmin--page-size' => page_size,
-        'kadmin--minimum-input-length' => minimum_input_length
-      }
+        'kadmin--minimum-input-length' => minimum_input_length,
+        'kadmin--transform-request' => transform_request,
+        'kadmin--transform-response' => transform_response
+      }.compact
     end
 
     class << self

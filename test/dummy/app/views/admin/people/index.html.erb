@@ -25,9 +25,9 @@
 <% content_for(:javascripts) do %>
   <%= javascript_include_tag "kadmin/select2" %>
   <script type="text/javascript">
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
       var person_path = "<%= admin_person_path(0) %>".split('/').slice(0, -1).join('/');
-      $("#person-selector").on("select2:select", function(event) {
+      jQuery("#person-selector").on("select2:select", function(event) {
         var person = event.params.data;
         if (person.id) {
           document.location.href = person_path + "/" + person.id;
