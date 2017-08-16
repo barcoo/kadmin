@@ -4,6 +4,7 @@ rvm:
 cache: bundler
 env:
   - RAILS_ENV=test
+  - CI=1
 script:
   - bundle exec rake db:migrate
 bundler_args: --without development profile

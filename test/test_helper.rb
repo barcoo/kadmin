@@ -1,7 +1,10 @@
 # frozen_string_literal: true
-# Configure Rails Environment
-ENV['RAILS_ENV'] = 'test'
+
+# Environment
+ENV['RAILS_ENV'] ||= 'test'
+ENV['CI'] ||= '0'
 $VERBOSE = false
+ci_build = ENV['CI'].to_i == 1
 
 # Rails setup
 require File.expand_path('../../test/dummy/config/environment.rb', __FILE__)
@@ -9,17 +12,22 @@ ActiveRecord::Migrator.migrations_paths = [File.expand_path('../../test/dummy/db
 ActiveRecord::Migrator.migrations_paths << File.expand_path('../../db/migrate', __FILE__)
 require 'rails/test_help'
 
-# Setup Minitest
-require 'minitest/reporters'
-Minitest.backtrace_filter = Minitest::BacktraceFilter.new
-Minitest::Reporters.use!([Minitest::Reporters::ProgressReporter.new], ENV,
-  Minitest.backtrace_filter)
+# CI/Development builds
+bundler_groups = %i[default test]
+reporters = [Minitest::Reporters::SpecReporter.new]
+
+if ci_build
+  bundler_groups << :ci
+  reporters << Minitest::Reporters::JUnitReporter.new('test/reports', false)
+else
+  bundler_groups << :debug
+end
+
+Bundler.require(*bundler_groups)
+Minitest::Reporters.use!(reporters, ENV, Minitest.backtrace_filter)
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
-
-# Setup Flexmock
-require 'flexmock/minitest'
 
 # Setup OmniAuth
 # To fail authentication in your test, add:
