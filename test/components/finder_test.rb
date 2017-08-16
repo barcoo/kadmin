@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 
 module Kadmin
@@ -18,13 +19,13 @@ module Kadmin
       assert !@finder.filtering?, 'Should still not be filtering since a blank value was passed'
       assert_equal @finder.scope, Person.all, 'Scope should not have changed yet'
 
-      @finder.filter(name: 'name', column: [:first_name, :last_name], value: 'John')
+      @finder.filter(name: 'name', column: %i[first_name last_name], value: 'John')
       assert @finder.filtering?, 'Should now be filtering!'
       assert_not_equal @finder.scope, Person.all, 'Scope should have been modified'
       results = @finder.results
       assert_equal 2, results.size, 'Should have found both people, since John is present as first name for one, and last name for the other'
 
-      @finder.filter(name: 'name', column: [:first_name, :last_name], value: 'Jane')
+      @finder.filter(name: 'name', column: %i[first_name last_name], value: 'Jane')
       results = @finder.find!
       assert_equal 1, results.size, 'Should have found only Jane this time'
       assert_equal 'Jane', results.first.first_name

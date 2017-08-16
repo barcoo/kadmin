@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   module Presentable
     extend ActiveSupport::Concern

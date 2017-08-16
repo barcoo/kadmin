@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   # Parsing is done by using attribute setters. If you have an attribute called
   # name, then add a reader/writer for it, name and name=, and perform the

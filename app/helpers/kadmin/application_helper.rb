@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   module ApplicationHelper
     REDMINE_URL = 'https://redmine.offerista.com/projects/apps-services/issues/new'

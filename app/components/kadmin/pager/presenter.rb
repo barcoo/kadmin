@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   class Pager
     # Generates HTML code to present the given pager
@@ -74,14 +75,14 @@ module Kadmin
       private :page_links
 
       def list_text(text, css_classes = nil)
-        classes = %w(btn btn-default) + Array.wrap(css_classes)
+        classes = %w[btn btn-default] + Array.wrap(css_classes)
         return "<div class='#{classes.join(' ')}'>#{text}</div>".html_safe
       end
       private :list_text
 
       def list_link(text, options = {})
         link_options = @view.controller.request.query_parameters.merge(options)
-        return @view.link_to(text.to_s.html_safe, link_options, class: %w(btn btn-default).join(' '))
+        return @view.link_to(text.to_s.html_safe, link_options, class: %w[btn btn-default].join(' '))
       end
       private :list_link
 

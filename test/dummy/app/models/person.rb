@@ -5,7 +5,7 @@ class Person < ApplicationRecord
 
   validates :first_name, presence: true, length: { in: 2..254 }
   validates :last_name, presence: true, length: { in: 2..254 }
-  validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f o), message: 'one of m (male), f (female), or o (other)' }
+  validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w[m f o], message: 'one of m (male), f (female), or o (other)' }
   validate :valid_date_of_birth?
 
   def valid_date_of_birth?

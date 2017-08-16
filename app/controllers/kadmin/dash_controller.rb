@@ -3,8 +3,7 @@ module Kadmin
     # @!group Endpoints
 
     # GET /
-    def index
-    end
+    def index; end
 
     # @!endgroup
 

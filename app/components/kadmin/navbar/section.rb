@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   # TODO: Clearly some functionality between Navbar::Link and Navbar::Section is shared and
   # could be refactored into Navbar::Item one day.

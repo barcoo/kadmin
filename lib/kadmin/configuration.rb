@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   class Configuration
     # @return [Logger] An instance of a Ruby compatible logger

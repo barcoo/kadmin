@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Admin
   class PeopleController < Admin::ApplicationController
     # Maximum page size for a given pager
@@ -13,7 +14,7 @@ module Admin
       page_size = [params.fetch(:page_size, 50).to_i, MAX_PAGE_SIZE].min
 
       finder = Kadmin::Finder.new(Person.eager_load(:groups, :owned_groups).order(created_at: :desc))
-        .filter(name: :name, column: [:first_name, :last_name], value: params[:filter_name])
+        .filter(name: :name, column: %i[first_name last_name], value: params[:filter_name])
         .paginate(size: page_size, offset: params.fetch(:page_offset, 0))
       finder.find!
       @finder = finder.present

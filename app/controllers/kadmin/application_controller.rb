@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   class ApplicationController < ActionController::Base
     layout 'kadmin/application'

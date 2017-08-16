@@ -16,7 +16,7 @@ module Kadmin
       # Simple demo of how to use Kadmin::Presenter::TestCase
       class PresenterTest < Kadmin::Presenter::TestCase
         def test_render
-          link = Kadmin::Navbar::Link.new(text: 'text', path: 'my_path', css_classes: %w(icon plus))
+          link = Kadmin::Navbar::Link.new(text: 'text', path: 'my_path', css_classes: %w[icon plus])
           present link
           assert_select 'li.icon.plus > a[href="my_path"]', count: 1, text: 'text'
         end

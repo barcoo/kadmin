@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Admin
   class GroupsController < Admin::ApplicationController
     # Maximum page size for a given pager

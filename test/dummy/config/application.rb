@@ -30,11 +30,11 @@ module Dummy
     # Enable assets pipeline
     config.assets.enabled = true
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W[#{config.root}/lib]
     config.autoload_paths += Dir.glob("#{config.root}/../../lib/**/*").select { |f| File.directory?(f) }
 
-    config.watchable_dirs['lib'] = [:rb, :erb]
-    config.watchable_dirs['../../app'] = [:rb, :erb]
-    config.watchable_dirs['../../lib'] = [:rb, :erb]
+    config.watchable_dirs['lib'] = %i[rb erb]
+    config.watchable_dirs['../../app'] = %i[rb erb]
+    config.watchable_dirs['../../lib'] = %i[rb erb]
   end
 end

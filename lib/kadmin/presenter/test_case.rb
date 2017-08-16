@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   class Presenter
     # Test class for Presenters. While this will not be common, it highlights how much

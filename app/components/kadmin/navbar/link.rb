@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   # TODO: Figure out how to have access to a properly scoped routing proxy
   module Navbar
@@ -45,7 +46,7 @@ module Kadmin
           css_classes = self.css_classes.dup << 'active' if @view.controller.request.path == path
 
           contents = @view.link_to(self.text.to_s.html_safe, path)
-          contents << captured unless captured.blank?
+          contents << captured if captured.present?
 
           return %(<li class="#{css_classes.join(' ')}">#{contents}</li>).html_safe
         end

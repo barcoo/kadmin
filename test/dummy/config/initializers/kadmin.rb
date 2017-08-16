@@ -25,7 +25,7 @@ Kadmin::Auth.config.user_store_class = Dummy::UserStore
 
 Kadmin::Auth.config.enable!
 
-Kadmin.config.handle_errors = !Rails.env.test?
+Kadmin.config.handle_errors = !Rails.env.test? # rubocop: disable Barcoo/AvoidRailsEnv
 
 Kadmin.config.add_navbar_items(
   Kadmin::Navbar::Section.new(

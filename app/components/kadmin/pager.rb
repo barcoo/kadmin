@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   # Simple Pager structure, used to paginate collections
   class Pager

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Kadmin
   # Provide helpers for displaying alerts, as well as matching those alerts to
   # different flash keys.
@@ -13,7 +14,7 @@ module Kadmin
       dismissible = options.fetch(:dismissible, true)
       text_content = options.fetch(:content, '')
 
-      css_classes = %W(alert alert-#{type})
+      css_classes = %W[alert alert-#{type}]
       css_classes << 'alert-dismissible' if options.fetch(:dismissible, true)
       block_content = capture(&block) if block_given?
 
@@ -27,17 +28,17 @@ module Kadmin
           content.concat(button)
         end
 
-        content.concat(block_content.html_safe) unless block_content.blank?
+        content.concat(block_content.html_safe) if block_content.present?
         content
       end
     end
 
     Type = Struct.new(:flash_keys, :css_class, :glyphicon)
     TYPES = [
-      Type.new(['danger', 'alert'], 'danger', 'exclamation-sign'),
+      Type.new(%w[danger alert], 'danger', 'exclamation-sign'),
       Type.new(['success'], 'success', 'ok-sign'),
-      Type.new(['notice', 'info'], 'info', 'info-sign'),
-      Type.new(['warn', 'warning'], 'warning', 'question-sign')
+      Type.new(%w[notice info], 'info', 'info-sign'),
+      Type.new(%w[warn warning], 'warning', 'question-sign')
     ].freeze
     def render_flash_alerts
       alerts = AlertHelper::TYPES.map do |type|
@@ -48,7 +49,7 @@ module Kadmin
       return safe_join(alerts)
     end
 
-    def render_flash_alert(type, &block)
+    def render_flash_alert(type)
       messages = type.flash_keys.map { |key| Array.wrap(flash[key]).compact }.flatten
       return '' if messages.blank?
 

@@ -67,7 +67,7 @@ module Kadmin
     def valid_redirect_url?(url)
       valid = false
 
-      unless url.blank?
+      if url.present?
         paths = [auth_login_path, auth_logout_path]
         valid = paths.none? { |invalid| url == invalid }
       end
@@ -92,7 +92,7 @@ module Kadmin
         end
       end
 
-      provider_link = "#{provider_link}?origin=#{CGI.escape(origin)}" unless origin.blank?
+      provider_link = "#{provider_link}?origin=#{CGI.escape(origin)}" if origin.present?
       return provider_link
     end
     helper_method :omniauth_provider_link

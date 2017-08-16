@@ -14,7 +14,7 @@ module Kadmin
             link.should_receive(:present).and_return(link)
             link.should_receive(:render).and_return('')
           end
-          @section = Kadmin::Navbar::Section.new(id: 'Section', text: 'text', links: @links, css_classes: %w(icon plus))
+          @section = Kadmin::Navbar::Section.new(id: 'Section', text: 'text', links: @links, css_classes: %w[icon plus])
         end
 
         def test_render

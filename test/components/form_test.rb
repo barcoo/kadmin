@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 
 module Kadmin
@@ -32,7 +33,6 @@ module Kadmin
 
       def items_attributes(item_attributes)
         item_attributes.each do |attributes|
-          
         end
       end
     end
