@@ -1,12 +1,9 @@
 {
   "more": <%= finder.pager.next_page? %>,
-  "items": [
-    <% finder.results.each do |object| %>
-      <% if block_given? %>
-        <%= yield(object) %>
-      <% else %>
-        <%= render partial: object %>
-      <% end %>
+  "items":
+    <% if block_given? %>
+      [ <%= safe_join(finder.results.map { |object| capture { yield(object) } }, ',') %> ]
+    <% else %>
+      <%= raw(finder.results.map(&:attributes).to_json) %>
     <% end %>
-  ]
 }

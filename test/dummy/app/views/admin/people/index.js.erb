@@ -1,0 +1,3 @@
+<%= render layout: 'kadmin/components/finder', locals: { finder: @finder } do |person| %>
+  <%= raw(person.to_json(only: %i[id], methods: :full_name)) %>
+<% end %>

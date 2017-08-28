@@ -14,8 +14,7 @@
               filter_param: 'filter_name',
               data_url: admin_people_path,
               display_property: :full_name,
-              value_property: :id,
-              transform_response: 'transformResponse'
+              value_property: :id
             }, class: 'form-control' %>
         </div>
       </div>
@@ -31,16 +30,3 @@
     </div>
   </div>
 </section>
-
-<% content_for(:javascripts) do %>
-<script type='text/javascript'>
-  function transformResponse(response) {
-    response.items = jQuery.map(response.items, function(item) {
-      item['full_name'] = item['first_name'] + ' ' + item['last_name'];
-      return item;
-    });
-
-    return response;
-  }
-</script>
-<% end %>

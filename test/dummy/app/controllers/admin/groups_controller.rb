@@ -9,12 +9,10 @@ module Admin
 
     # GET /admin/groups
     def index
-      finder_filters = [
-        { name: :name, column: :name, param: :filter_name }
-      ]
-      finder = Kadmin::Finder.new(Group.eager_load(:people, :owner).order(created_at: :desc))
-
-      respond_with_finder(finder, finder_filters)
+      @finder = resources_finder(
+        Group.eager_load(:people, :owner).order(created_at: :desc),
+        name: :name, column: :name, param: :filter_name
+      )
     end
 
     # GET /admin/groups/:id

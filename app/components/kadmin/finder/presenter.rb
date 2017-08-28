@@ -55,18 +55,6 @@ module Kadmin
       end
 
       # @!endgroup
-
-      # @!group Ajax Interface
-
-      # @return [Hash] a Hash object to be rendered as JSON
-      def ajax_response
-        return {
-          more: self.pager.next_page?,
-          items: self.results.map(&:attributes)
-        }
-      end
-
-      # @!endgroup
     end
   end
 end
