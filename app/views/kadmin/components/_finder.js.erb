@@ -1,3 +1,4 @@
+<% finder = finder.present(self) unless finder.class < Kadmin::Presenter %>
 {
   "more": <%= finder.pager.next_page? %>,
   "items":
