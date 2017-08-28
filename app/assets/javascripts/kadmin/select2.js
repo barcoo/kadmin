@@ -28,6 +28,8 @@ jQuery(document).ready(function() {
   }
 
   function transformResponse(data, params) {
+    data = transform(data, this.$element.data("kadmin--transform-response"));
+
     var items = data.data || data.items;
     var options = this.options.options.kadmin || {}; // weird but it is what it is
     var displayProperty = options.displayProperty || "text";
@@ -39,12 +41,10 @@ jQuery(document).ready(function() {
       results.push({ text: item[displayProperty], id: item[valueProperty] });
     });
 
-    response = {
+    return {
       results: results,
       pagination: { more: data.more }
     };
-
-    return transform(response, this.$element.data("kadmin--transform-response"));
   }
 
   function optionsForSelect2(element) {

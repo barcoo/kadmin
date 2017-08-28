@@ -1,0 +1,12 @@
+{
+  "more": <%= finder.pager.next_page? %>,
+  "items": [
+    <% finder.results.each do |object| %>
+      <% if block_given? %>
+        <%= yield(object) %>
+      <% else %>
+        <%= render partial: object %>
+      <% end %>
+    <% end %>
+  ]
+}

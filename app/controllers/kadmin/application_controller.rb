@@ -53,10 +53,11 @@ module Kadmin
 
     # @!group Helpers
 
+    protected
+
     def set_default_format
       params[:format] = 'html' if params[:format].blank?
     end
-    protected :set_default_format
 
     # @!endgroup
   end

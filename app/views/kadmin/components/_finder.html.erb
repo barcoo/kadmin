@@ -1,7 +1,6 @@
-<% hide_create_button = false if local_assigns[:hide_create_button].nil? %>
 <div class='card finder'>
   <div class='card-block'>
-    <%= render partial: 'kadmin/components/finder/header', locals: { finder: finder, hide_create_button: hide_create_button } %>
+    <%= render partial: 'kadmin/components/finder/header', locals: local_assigns %>
     <div class='container-fluid'>
       <div class='row' style='padding-top: 15px'>
         <%= yield(finder.results) %>
