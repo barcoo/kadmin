@@ -1,3 +1,3 @@
 module Kadmin
-  VERSION = '0.6.21'.freeze
+  VERSION = '0.7.0'.freeze
 end
