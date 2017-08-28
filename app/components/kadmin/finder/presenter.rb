@@ -36,7 +36,22 @@ module Kadmin
         return applied_filters.html_safe
       end
 
+      # @return [Array] an array of optionally presented models
+      def results
+        return @results ||= __getobj__.results.map do |object|
+          if object.class < Kadmin::Presentable
+            object.present(@view)
+          else
+            object
+          end
+        end
+      end
+
       # @!group Pager properties
+
+      def pager
+        return @pager ||= __getobj__.pager.present(@view)
+      end
 
       # @return [Integer] the current number of items displayed for this page
       def displayed_items

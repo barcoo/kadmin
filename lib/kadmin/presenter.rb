@@ -30,12 +30,13 @@ module Kadmin
       return rendered
     end
 
+    protected
+
     # Generates the representation of the wrapped object.
     # Should be overloaded and implemented by a concrete class.
     def generate(captured, **)
       return "<div>#{__getobj__.inspect}#{captured}</div>".html_safe
     end
-    protected :generate
 
     class NoViewContext < Kadmin::Error
       def initialize(message = nil)

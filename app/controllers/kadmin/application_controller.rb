@@ -46,7 +46,6 @@ module Kadmin
         status: :internal_server_error,
         error: error
       }.merge(options)
-      binding.pry
       render 'kadmin/error', status: options[:status], locals: options
     end
 

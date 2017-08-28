@@ -25,7 +25,7 @@ module Kadmin
           finder.filter(name: filter[:name], column: filter[:column], value: permitted[filter[:param]])
         end
 
-        return finder.present
+        return finder
       end
     end
   end

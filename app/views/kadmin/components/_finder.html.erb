@@ -1,3 +1,4 @@
+<% finder = finder.present(self) unless finder.class < Kadmin::Presenter %>
 <div class='card finder'>
   <div class='card-block'>
     <%= render partial: 'kadmin/components/finder/header', locals: local_assigns %>
@@ -5,7 +6,7 @@
       <div class='row' style='padding-top: 15px'>
         <%= yield(finder.results) %>
         <% if finder.pager.pages > 1 %>
-          <%= finder.pager.present(self).render %>
+          <%= finder.pager.render %>
         <% end %>
       </div>
     </div>
