@@ -30,6 +30,17 @@ module Kadmin
       return rendered
     end
 
+    # Updates the context of the presenter with the given view
+    # This is mostly to provide a consistent interface between
+    # Presentable and Presenter, so you don't have to check if you should
+    # present something or not.
+    # @param [ActiveView::Base] view render in a different view
+    # @return [self] returns itself, as it is already presented
+    def present(view)
+      @view = view
+      return self
+    end
+
     protected
 
     # Generates the representation of the wrapped object.
