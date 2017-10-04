@@ -26,7 +26,7 @@ module Kadmin
               redirect_to Kadmin::Engine.routes.url_helpers.auth_unauthorized_path
             end
           else
-            redirect_to Kadmin::Engine.routes.url_helpers.auth_login_path(origin: request.path)
+            redirect_to Kadmin::Engine.routes.url_helpers.auth_login_path(origin: request.fullpath)
           end
         end
       end
