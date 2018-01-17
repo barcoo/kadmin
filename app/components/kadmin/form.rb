@@ -35,6 +35,10 @@ module Kadmin
     # Also includes ActiveModel::Naming at the same time
     extend ActiveModel::Translation
 
+    # Provides callback functionality similar to ActiveRecord
+    extend ActiveModel::Callbacks
+    define_model_callbacks :save
+
     # @return [ActiveModel::Model] underlying model to populate
     attr_reader :model
 
@@ -170,13 +174,17 @@ module Kadmin
 
     def save
       saved = false
+      # TODO: Check if the top level transaction is necessary here
+      # run_callbacks is already a transaction?
       @model.class.transaction do
-        saved = @model.save
-        @associated_forms.values.flatten do |form|
-          saved &&= form.save
-        end
+        run_callbacks :save do
+          saved = @model.save
+          @associated_forms.values.flatten do |form|
+            saved &&= form.save
+          end
 
-        raise ActiveRecord::Rollback unless saved
+          raise ActiveRecord::Rollback unless saved
+        end
       end
 
       return saved
@@ -185,9 +193,11 @@ module Kadmin
     def save!
       saved = false
       @model.class.transaction do
-        saved = @model.save!
-        @associated_forms.values.flatten.each do |form|
-          saved &&= form.save! # no need to raise anything, save! will do so
+        run_callbacks :save do
+          saved = @model.save!
+          @associated_forms.values.flatten.each do |form|
+            saved &&= form.save! # no need to raise anything, save! will do so
+          end
         end
       end
 
