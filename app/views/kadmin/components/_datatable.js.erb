@@ -1,0 +1,11 @@
+{
+  "draw": <%= table.draw %>,
+  "data":
+    <% if block_given? %>
+      [ <%= safe_join(table.data.map { |object| capture { yield(object) } }, ',') %> ]
+    <% else %>
+      <%= raw(table.data.map(&:attributes).to_json) %>
+    <% end %>,
+  "recordsTotal": <%= table.records_total %>,
+  "recordsFiltered": <%= table.records_filtered %>
+}

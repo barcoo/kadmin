@@ -5,6 +5,8 @@ module Kadmin
     module Resources
       extend ActiveSupport::Concern
 
+      # @!group Finder
+
       # Default finder page size
       DEFAULT_FINDER_PAGE_SIZE = 100
 
@@ -27,6 +29,35 @@ module Kadmin
 
         return finder
       end
+
+      # @!endgroup
+
+      # @!group Datatables
+
+      def resources_datatable(scope)
+        permitted = params.permit(:draw, :start, :length, :search, :order, :columns)
+
+        columns = []
+        Array.wrap(params[:columns]).each do |col|
+          columns << Kadmin::Datatable::Column.new(
+            name: col[:name],
+            orderable: col[:orderable],
+            query: col.dig(:search, :value),
+            searchable: col[:searchable]
+            )
+          end
+        end
+
+        Array.wrap(permitted[:order]).each do |order|
+          column_index = order[:column].to_i
+          next if columns[column_index].blank?
+          columns[column_index].order = order[:dir]
+        end
+
+        return Kadmin::Datatable.new(scope, columns: columns, **permitted.slice(:start, :length, :draw,)
+      end
+
+      # @!endgroup
     end
   end
 end

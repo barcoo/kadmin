@@ -1,0 +1,12 @@
+<%= content_for(:javascripts) do %>
+  <script type='text/javascript'>
+    jQuery(document).ready(function() {
+      $('#example').DataTable({
+        serverSide: true,
+        ajax: {
+          url: ''
+        }
+      });
+    });
+  </script>
+<% end %>

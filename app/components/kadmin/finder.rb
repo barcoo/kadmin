@@ -48,6 +48,13 @@ module Kadmin
       return @filtering
     end
 
+    def order(column:, dir:)
+      return if dir.blank?
+
+      raise ArgumentError, 'must be either asc or desc' unless %w[asc desc].include?(dir.to_s)
+      @scope.order(column => dir)
+    end
+
     # @param [Integer] offset optional; offset/index for the current page
     # @param [Integer] size optional; size of a page
     # @return [Kadmin::Finder] itself
