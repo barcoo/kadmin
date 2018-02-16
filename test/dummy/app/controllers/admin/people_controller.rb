@@ -3,6 +3,7 @@
 module Admin
   class PeopleController < Admin::ApplicationController
     include Kadmin::Concerns::Resources
+    include Kadmin::ChartsHelper
 
     # Own navigation section
     self.navbar_section = self
