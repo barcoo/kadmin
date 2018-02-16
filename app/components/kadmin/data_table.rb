@@ -3,15 +3,14 @@
 module Kadmin
   # Wraps datatable information and delegates most of the functionality to
   # the Finder class.
-  class Datatable
+  class DataTable
     Column = Struct.new(:name, :order, :query, :searchable, :orderable)
 
     # @return [Integer]
     attr_reader :draw
 
-    def initialize(scope, draw:, **options)
+    def initialize(scope, **options)
       @scope = scope
-      @draw = draw.to_i
       parse_options(options)
     end
 
