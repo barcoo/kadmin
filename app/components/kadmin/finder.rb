@@ -13,9 +13,6 @@ module Kadmin
     # @return [ActiveRecord::Relation] the base relation to find items from
     attr_reader :scope
 
-    # Simple filter structure
-    Filter = Struct.new(:column, :value)
-
     # @param [ActiveRecord::Relation] scope base relation to page/filter on
     def initialize(scope)
       @scope = scope
@@ -28,17 +25,11 @@ module Kadmin
     # @param [String] name the filter name (should be unique)
     # @param [String, Array<String>] column the column(s) name to filter on
     # @param [String, Array<String>] value the value or values to look for (OR'd)
-    def filter(name:, column:, value:)
-      if column.present?
-        @filters[name] = Kadmin::Finder::Filter.new(column, value)
-        if value.present?
-          search_value = ActiveRecord::Base.connection.quote("%#{value}%".squeeze('%'))
-          filters = Array.wrap(column).map do |column_name|
-            %(`#{@scope.table_name}`.`#{column_name}` LIKE #{search_value})
-          end
-          @scope = @scope.where(filters.join(' OR '))
-          @filtering = true
-        end
+    def filter(filter, value = nil)
+      @filters[filter.name] = filter
+      if value.present?
+        @filtering = true
+        @scope = filter.apply(@scope, value)
       end
 
       return self

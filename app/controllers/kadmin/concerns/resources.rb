@@ -21,11 +21,30 @@ module Kadmin
 
         finder = Kadmin::Finder.new(scope)
         finder.paginate(size: page_size, offset: page_offset)
-        filters.each do |filter|
-          finder.filter(name: filter[:name], column: filter[:column], value: permitted[filter[:param]])
+        filters.each do |hash|
+          value = permitted[hash[:param]]
+          filter = hash[:filter].present? ? hash[:filter] : resources_deprecated_parse_filter(hash)
+
+          finder.filter(filter, value)
         end
 
         return finder
+      end
+
+      private
+
+      # DEPRECATED
+      def resources_deprecated_parse_filter(hash)
+        filter_scope = lambda do |scope, value|
+          search_value = quote(fuzz(value))
+          conditions = Array.wrap(hash[:column]).map do |column_name|
+            %(#{scope.quoted_table_name}.`#{column_name}` LIKE #{search_value})
+          end
+
+          scope.where(conditions.join(' OR '))
+        end
+
+        Kadmin::Finder::Filter.new(name: name, scope: filter_scope)
       end
     end
   end
