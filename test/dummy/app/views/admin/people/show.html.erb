@@ -26,3 +26,30 @@
     </div>
   </div>
 </section>
+
+<section class="section">
+  <div class="row sameheight-container">
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <div class="card sameheight-item">
+        <div class="card-block">
+          <h2>Doughnut Chart</h2>
+          <%= charts_doughnut_tag [10, 20, 30, 40], ['eat', 'walk', 'work', 'sleep'] %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <div class="card sameheight-item">
+        <div class="card-block">
+          <h2>Pie Chart</h2>
+          <%= charts_pie_tag [10, 20, 30, 40], ['theater', 'books', 'films', 'music'] %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<% content_for(:javascripts) do %>
+  <%= javascript_include_tag "kadmin/charts" %>
+<% end %>

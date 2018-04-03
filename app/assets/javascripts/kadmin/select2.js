@@ -35,7 +35,6 @@ jQuery(document).ready(function() {
     var displayProperty = options.displayProperty || "text";
     var valueProperty = options.valueProperty || "id";
     var results = [];
-    var response = {};
 
     jQuery(items).each(function(index, item) {
       results.push({ text: item[displayProperty], id: item[valueProperty] });
