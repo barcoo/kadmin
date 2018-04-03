@@ -12,7 +12,11 @@ module Admin
     def index
       @finder = resources_finder(
         Person.eager_load(:groups, :owned_groups).order(created_at: :desc),
-        name: :name, param: :filter_name, filter: ->(v) { where("first_name LIKE '%#{v}%' OR last_name LIKE '%#{v}%'") }
+        [{
+          name: :name,
+          param: :filter_name,
+          filter: resources_filter_matches(%i[first_name last_name])
+        }]
       )
     end
 

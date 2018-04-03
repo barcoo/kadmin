@@ -37,17 +37,26 @@ module Kadmin
 
       private
 
-      # DEPRECATED
-      def resources_deprecated_parse_filter(hash)
-        filter_scope = lambda do |scope, value|
-          search_value = quote(fuzz(value))
-          conditions = Array.wrap(hash[:column]).map do |column_name|
-            %(#{scope.quoted_table_name}.`#{column_name}` LIKE #{search_value})
+      # Takes in a column or array of column names, and returns a proc
+      # ready to be used by this class.
+      # Columns can contain either symbols, strings, or directly an Arel::Node,
+      # allowing you to reference joined tables as well.
+      def resources_filter_matches(columns)
+        return lambda do |v|
+          pattern = "%#{v}%"
+          conditions = Array.wrap(columns).reduce(nil) do |acc, column|
+            column = arel_table[column] unless column.is_a?(Arel::Node)
+            matcher = column.matches(pattern)
+            acc.nil? ? matcher : acc.or(matcher)
           end
 
-          scope.where(conditions.join(' OR '))
+          where(conditions)
         end
+      end
 
+      # DEPRECATED
+      def resources_deprecated_parse_filter(hash)
+        filter_scope = resources_filter_matches(hash[:column])
         Finder::Filter.new(name: name, scope: filter_scope)
       end
     end
