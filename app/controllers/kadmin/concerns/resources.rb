@@ -19,11 +19,15 @@ module Kadmin
         page_size = permitted.fetch(:page_size, DEFAULT_FINDER_PAGE_SIZE).to_i
         page_offset = permitted.fetch(:page_offset, 0).to_i
 
-        finder = Kadmin::Finder.new(scope)
+        finder = Finder.new(scope)
         finder.paginate(size: page_size, offset: page_offset)
         filters.each do |hash|
           value = permitted[hash[:param]]
-          filter = hash[:filter].present? ? hash[:filter] : resources_deprecated_parse_filter(hash)
+          filter = if hash[:filter].present?
+            Finder::Filter.new(hash[:name], hash[:filter])
+          else
+            resources_deprecated_parse_filter(hash)
+          end
 
           finder.filter(filter, value)
         end
@@ -44,7 +48,7 @@ module Kadmin
           scope.where(conditions.join(' OR '))
         end
 
-        Kadmin::Finder::Filter.new(name: name, scope: filter_scope)
+        Finder::Filter.new(name: name, scope: filter_scope)
       end
     end
   end

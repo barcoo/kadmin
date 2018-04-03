@@ -6,7 +6,7 @@ module Kadmin
       attr_accessor :name
       attr_reader :value
 
-      def initialize(name:, scope:)
+      def initialize(name, scope)
         @name = name
         @scope = scope
         @value = nil
