@@ -45,7 +45,7 @@ module Kadmin
         return lambda do |v|
           pattern = "%#{v}%"
           conditions = Array.wrap(columns).reduce(nil) do |acc, column|
-            column = arel_table[column] unless column.is_a?(Arel::Node)
+            column = arel_table[column] unless column.is_a?(Arel::Attributes::Attribute)
             matcher = column.matches(pattern)
             acc.nil? ? matcher : acc.or(matcher)
           end
