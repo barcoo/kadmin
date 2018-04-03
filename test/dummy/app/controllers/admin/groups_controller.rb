@@ -11,7 +11,7 @@ module Admin
     def index
       @finder = resources_finder(
         Group.eager_load(:people, :owner).order(created_at: :desc),
-        name: :name, column: :name, param: :filter_name
+        name: :name, param: :filter_name, filter: ->(v) { where("name LIKE '%#{v}%'") }
       )
     end
 

@@ -15,12 +15,12 @@ module Kadmin
     def test_filter
       assert !@finder.filtering?
 
-      filter = Finder::Filter.new(name: 'gender', scope: ->(s, v) { s.where(gender: quote(fuzz(v))) })
+      filter = Finder::Filter.new(name: 'gender', scope: ->(v) { where(gender: v) })
       @finder.filter(filter, '')
       assert !@finder.filtering?, 'Should still not be filtering since a blank value was passed'
       assert_equal @finder.scope, Person.all, 'Scope should not have changed yet'
 
-      filter = Finder::Filter.new(name: 'name', scope: ->(s, v) { s.where("first_name LIKE #{quote(fuzz(v))} OR last_name LIKE #{quote(fuzz(v))}") })
+      filter = Finder::Filter.new(name: 'name', scope: ->(v) { where("first_name LIKE '%#{v}%' OR last_name LIKE '%#{v}%'") })
       @finder.filter(filter, 'John')
       assert @finder.filtering?, 'Should now be filtering!'
       assert_not_equal @finder.scope, Person.all, 'Scope should have been modified'
