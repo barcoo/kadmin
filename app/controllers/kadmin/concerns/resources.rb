@@ -57,7 +57,7 @@ module Kadmin
       # DEPRECATED
       def resources_deprecated_parse_filter(hash)
         filter_scope = resources_filter_matches(hash[:column])
-        Finder::Filter.new(name: name, scope: filter_scope)
+        Finder::Filter.new(name: hash[:name], scope: filter_scope)
       end
     end
   end
