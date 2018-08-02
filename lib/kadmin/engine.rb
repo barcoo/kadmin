@@ -5,7 +5,7 @@ module Kadmin
   class Engine < ::Rails::Engine
     isolate_namespace Kadmin
 
-    initializer 'kadmin.install', after: :finisher_hook do
+    initializer 'kadmin.install' do
       Kadmin.logger = Rails.logger
     end
   end
