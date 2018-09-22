@@ -4,24 +4,13 @@ module Dummy
       return true
     end
   end
-
-  class UserStore < Kadmin::Auth::UserStore
-    def get(email)
-      set(email, Dummy::User.new(email))
-      return super
-    end
-
-    def exists?(_email)
-      true
-    end
-  end
 end
 
 Kadmin.config.logger = Rails.logger
 Kadmin.config.mount_path = '/admin'
 
 Kadmin::Auth.config.user_class = Dummy::User
-Kadmin::Auth.config.user_store_class = Dummy::UserStore
+Kadmin::Auth.config.user_store_class = Kadmin::Auth::UserStore
 
 Kadmin::Auth.config.enable!
 
