@@ -13,7 +13,7 @@ module Kadmin
     before_action :authorize
     before_action :set_default_format
     before_action :organization
-    
+
     # Each controller should specify which navbar section they
     # belong to, if any. By default, each controller is setup to
     # be its own section.
@@ -65,7 +65,9 @@ module Kadmin
     end
 
     def organization
-      @organization ||= Kadmin::Organization.find_by!(name: authorized_user.organization)
+      if (authorized_user.present?)
+        @organization ||= Kadmin::Organization.find_by!(name: authorized_user.organization)
+      end
     rescue ActiveRecord::RecordNotFound
       head :forbidden
     end
