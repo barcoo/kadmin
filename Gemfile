@@ -9,6 +9,7 @@ group :development do
   gem 'binding_of_caller' # for the above to get a console
   gem 'puma' # development webserver
   gem 'yard' # documentation generator, run rake yard
+  gem 'mysql2' # test database
 end
 
 group :development, :debug do
