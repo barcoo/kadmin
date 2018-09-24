@@ -27,7 +27,7 @@ module Kadmin
             options = {
               admin: definition.fetch('admin', false),
               accept: Array.wrap(definition.fetch('accept', [])).map(&:to_sym),
-              organization: definition.fetch('organization', 'offerista')
+              organization: definition.fetch('organization', 'offerista') # default organization, needs to exist in DB
             }
 
             set(email, Kadmin::Auth.config.user_class.new(email, **options))
