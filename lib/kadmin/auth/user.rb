@@ -5,7 +5,7 @@ module Kadmin
 
       def initialize(email, options = {})
         @email = email
-        @organization = 'default_organization'
+        @organization = options[:organization]
       end
 
       def authorized?(_request)
