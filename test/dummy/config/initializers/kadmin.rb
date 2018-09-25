@@ -15,7 +15,7 @@ Kadmin::Auth.config.user_store_class = Kadmin::Auth::UserStore
 Kadmin::Auth.config.enable!
 
 # seeding
-Kadmin::Organization.find_or_create_by(name: 'offerista') # default organization needed in ApplicationController
+#Kadmin::Organization.find_or_create_by(name: 'offerista') # default organization needed in ApplicationController
 
 Kadmin.config.handle_errors = !Rails.env.test? # rubocop: disable Barcoo/AvoidRailsEnv
 

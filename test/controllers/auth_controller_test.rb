@@ -4,7 +4,13 @@ require 'test_helper'
 
 module Kadmin
   class AuthControllerTest < ActionController::TestCase
+    def setup
+      super
+      Kadmin::Organization.find_or_create_by(name: 'offerista') # make sure default org exists
+    end
+    
     def test_login
+
       get :login
       assert_response :ok
       assert_template 'kadmin/auth/login'
