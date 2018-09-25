@@ -69,7 +69,7 @@ module Kadmin
         @organization ||= Kadmin::Organization.find_by!(name: authorized_user.organization)
       end
     rescue ActiveRecord::RecordNotFound
-      head :forbidden
+      render plain: "Forbidden - organization #{authorized_user.organization} not found in DB", status: :forbidden
     end
 
     # @!group Helpers
