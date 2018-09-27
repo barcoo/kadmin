@@ -20,7 +20,7 @@ module Kadmin
 
       def load_users!
         file = Rails.root.join('config', 'admin_users.yml')
-        if File.readable?(file)
+        if File.exists?(file) && File.readable?(file)
           definitions = YAML.load_file(file.to_s)
           definitions.each do |definition|
             email = definition['email']
@@ -32,6 +32,8 @@ module Kadmin
 
             set(email, Kadmin::Auth.config.user_class.new(email, **options))
           end
+        else
+          Rails.logger.warn("Can't read admin users auth file at #{file}. Auth might not work")
         end
       end
       private :load_users!
