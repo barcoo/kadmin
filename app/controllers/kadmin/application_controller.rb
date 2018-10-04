@@ -72,6 +72,17 @@ module Kadmin
       end
     end
 
+    # returns all organization_scoped_ar object(s) that are of the user's organization. admin user gets all.
+    # you can chain scopes, e.g. scoped_all(Segments.my_scope) is valid
+    # organization_scoped_ar is an ActiveRecord that has organization_scope(Organization) scope defined
+    def scoped_all(organization_scoped_ar)
+      if authorized_user.admin?
+        organization_scoped_ar.all
+      else
+        organization_scoped_ar.organization_scope(organization).all
+      end
+    end
+
     def organization
       if authorized_user.present?
         @organization ||= Kadmin::Organization.find_by!(name: authorized_user.organization)
