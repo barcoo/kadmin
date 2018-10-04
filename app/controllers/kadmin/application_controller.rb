@@ -9,7 +9,7 @@ module Kadmin
     helper Kadmin::AlertHelper
 
     include Kadmin::Concerns::AuthorizedUser
- 
+
     before_action :authorize
     before_action :set_default_format
     before_action :organization
@@ -52,20 +52,28 @@ module Kadmin
 
     # @!endgroup
 
-    # returns organization_scoped_ar object by id or throw RecordNotFound in case
-    # id does not exist or is not visible in scope
+    # returns organization_scoped_ar object(s) by id (or array of ids) or throw RecordNotFound in case
+    # id(s) does not exist or is not visible in scope
     #
     # organization_scoped_ar is an ActiveRecord that has organization_scope(Organization) scope defined
     def scoped_find_by!(organization_scoped_ar, id)
       if authorized_user.admin?
-        return organization_scoped_ar.find_by!(id: id)
+        if id.is_a?(Array)
+          return organization_scoped_ar.find(id)
+        else
+          return organization_scoped_ar.find_by!(id: id)
+        end
       else
-        return organization_scoped_ar.organization_scope(@organization).find_by!(id: id)
+        if id.is_a?(Array)
+          return organization_scoped_ar.organization_scope(@organization).find(id)
+        else
+          return organization_scoped_ar.organization_scope(@organization).find_by!(id: id)
+        end
       end
     end
 
     def organization
-      if (authorized_user.present?)
+      if authorized_user.present?
         @organization ||= Kadmin::Organization.find_by!(name: authorized_user.organization)
       end
     rescue ActiveRecord::RecordNotFound
