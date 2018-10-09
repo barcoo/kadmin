@@ -17,17 +17,17 @@ module Kadmin
       def test_authorize
         Kadmin::Auth.config.disable!
         get :index
-        #assert_template 'authorized/index'
+        assert_template 'authorized/index'
 
         Kadmin::Auth.config.enable!
         get :index
         assert_redirected_to Kadmin::Engine.routes.url_helpers.auth_login_path(origin: authorized_path)
 
-        session[Kadmin::AuthController::SESSION_KEY] = 'test'
+        session[Kadmin::AuthController::SESSION_KEY] = 'admin@admin.com'
         get :index
         assert_template 'authorized/index'
 
-        flexmock(Kadmin::Auth::User).new_instances.should_receive(:authorized?).and_return(false)
+        flexmock(Kadmin::Auth.users).should_receive(:get).with('admin@admin.com').and_return(flexmock(authorized?: false))
         get :index
         assert_redirected_to Kadmin::Engine.routes.url_helpers.auth_unauthorized_path
       end
@@ -43,11 +43,11 @@ module Kadmin
       end
 
       def test_authorized_user
-        session[Kadmin::AuthController::SESSION_KEY] = 'test'
+        session[Kadmin::AuthController::SESSION_KEY] = 'admin@admin.com'
         assert @controller.authorized_user.is_a?(Kadmin::Auth::User)
-        assert_equal 'test', @controller.authorized_user.email
+        assert_equal 'admin@admin.com', @controller.authorized_user.email
 
-        flexmock(Kadmin::Auth.users).should_receive(:get).with('test').and_return(nil)
+        flexmock(Kadmin::Auth.users).should_receive(:get).with('admin@admin.com').and_return(nil)
         assert_nil @controller.authorized_user
       end
 
@@ -59,10 +59,10 @@ module Kadmin
       end
 
       def test_authorized?
-        session[Kadmin::AuthController::SESSION_KEY] = 'test'
+        session[Kadmin::AuthController::SESSION_KEY] = 'admin@admin.com'
         assert @controller.authorized?
 
-        flexmock(Kadmin::Auth.users).should_receive(:get).with('test').and_return(nil)
+        flexmock(Kadmin::Auth.users).should_receive(:get).with('admin@admin.com').and_return(nil)
         assert !@controller.authorized?
       end
 
