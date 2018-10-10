@@ -1,4 +1,4 @@
 module Kadmin
-  class Organization < ApplicationRecord
+  class Organization < ActiveRecord::Base
   end
 end
