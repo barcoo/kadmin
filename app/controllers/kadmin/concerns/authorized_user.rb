@@ -37,7 +37,7 @@ module Kadmin
 
       # @return [String] the current user identifier. Historically called current_user
       def current_user
-        session[Kadmin::AuthController::SESSION_KEY]
+        Kadmin::Auth.test_user || session[Kadmin::AuthController::SESSION_KEY]
       end
 
       # @see Kadmin::Concerns::AuthorizedUser#current_user

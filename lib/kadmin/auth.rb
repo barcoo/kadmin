@@ -10,6 +10,8 @@ require 'kadmin/auth/user_store'
 module Kadmin
   module Auth
     class << self
+      attr_accessor :test_user
+
       def users
         @users ||= config.user_store_class.new
       end
