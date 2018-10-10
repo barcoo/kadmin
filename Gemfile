@@ -9,6 +9,7 @@ group :development do
   gem 'binding_of_caller' # for the above to get a console
   gem 'puma' # development webserver
   gem 'yard' # documentation generator, run rake yard
+  gem 'mysql2' # test database
 end
 
 group :development, :debug do
@@ -23,6 +24,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'factory_bot_rails'
   gem 'flexmock', '~> 2.1.0', require: 'flexmock/minitest'
   gem 'minitest-reporters', '~> 1.1.9'
   gem 'rails-controller-testing' # allows using assigns, assert_template

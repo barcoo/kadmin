@@ -14,7 +14,7 @@ en:
         create: Create
         filter: Filter
         out_of: out of %{total}
-    dash_message: See the top navigation bar for the different admin sections. If you are missing authorizations, or if there is any issue at all, contact the Apps & Services team!
+    dash_message: See the left navigation bar for the different admin sections. If you are missing authorizations, or if there is any issue at all, contact the Offerista Apps & Services team!
     error: Error
     errors:
       not_found: Requested object not found
