@@ -1,4 +1,7 @@
 ---
 - email: 'admin@admin.com'
   admin: true
+- email: 'restricted@admin.com'
+  admin: true
+  accept: [groups]
   

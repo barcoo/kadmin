@@ -6,6 +6,7 @@ module Kadmin
       def initialize(email, options = {})
         @email = email
         @organization = options[:organization]
+        @accept = options[:accept]
       end
 
       def authorized?(_request)
@@ -15,7 +16,6 @@ module Kadmin
       def admin?
         return true
       end
-
     end
   end
 end
