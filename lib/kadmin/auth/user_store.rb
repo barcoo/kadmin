@@ -20,7 +20,7 @@ module Kadmin
 
       def load_users!
         file = Rails.root.join('config', 'admin_users.yml')
-        if File.exists?(file) && File.readable?(file)
+        if File.exist?(file) && File.readable?(file)
           definitions = YAML.load_file(file.to_s)
           definitions.each do |definition|
             email = definition['email']
