@@ -33,7 +33,7 @@ module Kadmin
       return [] if user.blank? # no user, no links
       return @navbar_items if user.accept.blank? # no accept array -> everything is accepted
       return @navbar_items.select do |navbar_item|
-        user.accept.any? { |accept_string| navbar_item.text =~ /#{accept_string}/i }
+        user.accept.any? { |accept_string| navbar_item.text =~ /#{accept_string.to_s.split('_').first}/i }
       end
     end
   end
