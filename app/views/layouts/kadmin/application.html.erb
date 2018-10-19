@@ -22,7 +22,7 @@
 					<div class="header-block header-block-nav">
 						<ul class="nav-profile">
 						  <% if logged_in? %>
-								<li><%= authorized_user.organization %></li>
+								<li style="padding-right: 10px;"><%= authorized_user.organization %></li>
 								<li><%= link_to(t('kadmin.authorization.logout'), Kadmin::Engine.routes.url_helpers.auth_logout_path) %></li>
 							<% end %>
 						</ul>
