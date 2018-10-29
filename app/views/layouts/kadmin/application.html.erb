@@ -22,7 +22,13 @@
 					<div class="header-block header-block-nav">
 						<ul class="nav-profile">
 						  <% if logged_in? %>
-								<li style="padding-right: 10px;"><%= authorized_user.organization %></li>
+						  	<% if authorized_user.admin? %>
+						  		<%= form_tag(Kadmin::Engine.routes.url_helpers.auth_change_organization_path) do -%>
+						  		<%= select_tag('organization_id', options_from_collection_for_select(Kadmin::Organization.all, :id, :name, @organization.id), onchange: "this.form.submit();", class: 'form-control')%>
+						  		<% end -%>
+              	<% else %>
+									<li style="padding-right: 10px;"><%= authorized_user.organization %></li>
+								<% end %>
 								<li><%= link_to(t('kadmin.authorization.logout'), Kadmin::Engine.routes.url_helpers.auth_logout_path) %></li>
 							<% end %>
 						</ul>

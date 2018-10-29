@@ -7,3 +7,5 @@ users:
 - email: 'restricted@admin.com'
   admin: true
   accept: [groups]
+- email: 'non_admin@admin.com'
+  admin: false

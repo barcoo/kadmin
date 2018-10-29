@@ -7,6 +7,7 @@ module Kadmin
     def setup
       super
       Kadmin::Organization.find_or_create_by(name: 'offerista') # make sure default org exists
+      @profital_org = Kadmin::Organization.find_or_create_by(name: 'profital')
     end
 
     def test_login
@@ -59,6 +60,13 @@ module Kadmin
       get :failure, params: { message: 'failed' }
       assert_redirected_to auth_login_path(origin: 'origin')
       assert_equal 'failed', flash.alert
+    end
+
+    def test_change_organization
+      session[Kadmin::AuthController::SESSION_KEY] = 'admin@admin.com'
+      post :change_organization, params: { organization_id: @profital_org.id }
+
+      assert_redirected_to dash_path
     end
   end
 end

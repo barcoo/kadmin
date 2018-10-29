@@ -60,6 +60,14 @@ module Kadmin
       }
     end
 
+    # POST /change_organization
+    def change_organization
+      if authorized_user.admin?
+        authorized_user.organization = Kadmin::Organization.find(params[:organization_id]).name
+      end
+      redirect_to :dash
+    end
+
     # @!endgroup
 
     # @!group Helpers
