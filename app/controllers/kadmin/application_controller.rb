@@ -57,11 +57,7 @@ module Kadmin
     #
     # organization_scoped_ar is an ActiveRecord that has organization_scope(Organization) scope defined
     def scoped_find_by!(organization_scoped_ar, id)
-      if id.is_a?(Array)
-        return organization_scoped_ar.organization_scope(@organization).find(id)
-      else
-        return organization_scoped_ar.organization_scope(@organization).find_by!(id: id)
-      end  
+      return organization_scoped_ar.organization_scope(@organization).find(id)
     end
 
     # returns all organization_scoped_ar object(s) that are of the user's organization. admin user gets all.
