@@ -1,9 +1,17 @@
 module Kadmin
   module Auth
     class UserStore
-      def initialize
+      def initialize(path = nil)
         @store = {}
-        load_users!
+
+        path ||= Rails.root.join('config', 'admin_users.yml')
+        if File.exist?(path) && File.readable?(path)
+          definitions = YAML.load_file(path.to_s)
+          create_organizations(definitions['organizations'])
+          load_users(definitions['users'])
+        else
+          Rails.logger.warn("Can't read admin users auth file at #{file}. Auth might not work")
+        end
       end
 
       def get(email)
@@ -18,25 +26,26 @@ module Kadmin
         @store.key?(email.to_s.downcase)
       end
 
-      def load_users!
-        file = Rails.root.join('config', 'admin_users.yml')
-        if File.exist?(file) && File.readable?(file)
-          definitions = YAML.load_file(file.to_s)
-          definitions.each do |definition|
-            email = definition['email']
-            options = {
-              admin: definition.fetch('admin', false),
-              accept: Array.wrap(definition.fetch('accept', [])).map(&:to_sym),
-              organization: definition.fetch('organization', 'offerista') # default organization, needs to exist in DB
-            }
+      private
 
-            set(email, Kadmin::Auth.config.user_class.new(email, **options))
-          end
-        else
-          Rails.logger.warn("Can't read admin users auth file at #{file}. Auth might not work")
+      def load_users(users)
+        users.each do |user|
+          email = user['email']
+          options = {
+            admin: user.fetch('admin', false),
+            accept: Array.wrap(user.fetch('accept', [])).map(&:to_sym),
+            organization: user.fetch('organization', 'offerista') # default organization, needs to exist in DB
+          }
+
+          set(email, Kadmin::Auth.config.user_class.new(email, **options))
         end
       end
-      private :load_users!
+
+      def create_organizations(organizations)
+        organizations.each do |organization|
+          Kadmin::Organization.find_or_create_by(name: organization)
+        end
+      end
     end
   end
 end
