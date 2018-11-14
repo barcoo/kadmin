@@ -10,7 +10,7 @@ module Kadmin
           create_organizations(definitions['organizations'])
           load_users(definitions['users'])
         else
-          Rails.logger.warn("Can't read admin users auth file at #{file}. Auth might not work")
+          Rails.logger.warn("Can't read admin users auth file at #{path}. Auth might not work")
         end
       end
 
