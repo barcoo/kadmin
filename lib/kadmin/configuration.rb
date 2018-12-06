@@ -31,7 +31,7 @@ module Kadmin
     # filter available nav sections with the user's accept string
     def navbar_items_for_user(user)
       return [] if user.blank? # no user, no links
-      return @navbar_items if user.accept.blank? # no accept array -> everything is accepted
+      return @navbar_items if user.accept.blank? && user.admin? # no accept array and super admin -> everything is accepted
       return @navbar_items.select do |navbar_item|
         user.accept.any? { |accept_string| navbar_item.text =~ /#{accept_string.to_s.split('_').first}/i }
       end
