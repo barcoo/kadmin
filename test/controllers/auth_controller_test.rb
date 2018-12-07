@@ -68,6 +68,11 @@ module Kadmin
 
       assert_redirected_to dash_path
       assert_equal @profital_org.name, session[Kadmin::AuthController::SESSION_ORG_OVERWRITE_KEY]
+
+      # make sure new requests/controllers will take the changed session value into account
+      new_controller = @controller.class.new
+      new_controller.request = request
+      assert_equal @profital_org.id, new_controller.organization.id
     end
   end
 end
