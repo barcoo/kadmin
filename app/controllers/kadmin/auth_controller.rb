@@ -1,6 +1,7 @@
 module Kadmin
   class AuthController < Kadmin::ApplicationController
     SESSION_KEY = 'kadmin.user'.freeze
+    SESSION_ORG_OVERWRITE_KEY = 'kadmin.org_overwrite'.freeze
 
     # Don't try to authenticate user on the authentication controller...
     skip_before_action :authorize
@@ -63,7 +64,7 @@ module Kadmin
     # POST /change_organization
     def change_organization
       if authorized_user&.admin?
-        authorized_user.organization = Kadmin::Organization.find(params[:organization_id]).name
+        session[SESSION_ORG_OVERWRITE_KEY] = Kadmin::Organization.find(params[:organization_id]).name
       end
       redirect_to :dash
     end

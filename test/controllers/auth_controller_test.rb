@@ -67,6 +67,7 @@ module Kadmin
       post :change_organization, params: { organization_id: @profital_org.id }
 
       assert_redirected_to dash_path
+      assert_equal @profital_org.name, session[Kadmin::AuthController::SESSION_ORG_OVERWRITE_KEY]
     end
   end
 end
