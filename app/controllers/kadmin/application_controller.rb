@@ -68,15 +68,15 @@ module Kadmin
     end
 
     def organization
-      if authorized_user.present?
-        if !@organization 
-          if session[Kadmin::AuthController::SESSION_ORG_OVERWRITE_KEY] && authorized_user.admin?
-            @organization = Kadmin::Organization.find_by!(name: session[AuthController::SESSION_ORG_OVERWRITE_KEY])
-          else
-            @organization = Kadmin::Organization.find_by!(name: authorized_user.organization)
-          end
-        end
+      return @organization if authorized_user.blank?
+      return @organization if @organization.present?
+
+      if session[Kadmin::AuthController::SESSION_ORG_OVERWRITE_KEY] && authorized_user.admin?
+        @organization = Kadmin::Organization.find_by!(name: session[AuthController::SESSION_ORG_OVERWRITE_KEY])
+      else
+        @organization = Kadmin::Organization.find_by!(name: authorized_user.organization)
       end
+
       return @organization
     rescue ActiveRecord::RecordNotFound
       render plain: "Forbidden - organization #{authorized_user.organization} not found in DB", status: :forbidden
