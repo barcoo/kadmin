@@ -25,7 +25,7 @@ change Gemfile to:
 gem 'kadmin', git: 'https://github.com/barcoo/kadmin', branch: "master" # change branch to your working branch name
 ```
 ```bash
-bundle update
+bundle install
 ```
 you should see something similiar to: 
 'Using kadmin 1.0.8 from https://github.com/barcoo/kadmin (at $YOUR_LOCAL_KADMIN_PATH@9203125)'
