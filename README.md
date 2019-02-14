@@ -15,6 +15,24 @@ gem 'kadmin', git: 'git@github.com:barcoo/kadmin.git'
 
 ## Development
 
+### Use local gem 
+In case you want to test changes locally before commiting to the repository you can setup your environment to use the local version instead:
+```bash
+bundle config local.kadmin $YOUR_LOCAL_KADMIN_PATH/
+```
+change Gemfile to:
+```ruby
+gem 'kadmin', git: 'https://github.com/barcoo/kadmin', branch: "master" # change branch to your working branch name
+```
+```bash
+bundle update
+```
+you should see something similiar to: 
+'Using kadmin 1.0.8 from https://github.com/barcoo/kadmin (at $YOUR_LOCAL_KADMIN_PATH@9203125)'
+
+Source: [How to specify local Ruby gems in your Gemfile](https://rossta.net/blog/how-to-specify-local-ruby-gems-in-your-gemfile.html)
+
+### kadmin internals...
 Clone, bundle install, run migrations.
 
 Third-party libraries that are manually added should go in vendor/, including assets (e.g. `vendor/assets/stylesheets/modular`).
