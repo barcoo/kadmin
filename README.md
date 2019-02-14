@@ -30,6 +30,11 @@ bundle update
 you should see something similiar to: 
 'Using kadmin 1.0.8 from https://github.com/barcoo/kadmin (at $YOUR_LOCAL_KADMIN_PATH@9203125)'
 
+When you're finished remove the local setup by changing your Gemfile back and execute
+```bash
+bundle config --delete local.kadmin
+```
+
 Source: [How to specify local Ruby gems in your Gemfile](https://rossta.net/blog/how-to-specify-local-ruby-gems-in-your-gemfile.html)
 
 ### kadmin internals...
