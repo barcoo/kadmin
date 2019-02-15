@@ -43,13 +43,16 @@ module Kadmin
       # allowing you to reference joined tables as well.
       def resources_filter_matches(columns)
         return lambda do |v|
-          pattern = "%#{v}%"
           conditions = Array.wrap(columns).reduce(nil) do |acc, column|
             column = arel_table[column] unless column.is_a?(Arel::Attributes::Attribute)
-            matcher = column.matches(pattern)
+            matcher = if type_for_attribute(column.name).type == :integer
+              column.eq(v)
+            else
+              pattern = "%#{v}%"
+              column.matches(pattern)
+            end
             acc.nil? ? matcher : acc.or(matcher)
           end
-
           where(conditions)
         end
       end
