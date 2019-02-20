@@ -14,13 +14,18 @@ module Kadmin
       def resources_finder(scope, filters = [])
         filters = Array.wrap(filters)
         filter_params = filters.map { |hash| hash[:param] }
-        permitted = params.permit(:page_size, :page_offset, :format, *filter_params)
+        permitted = params.permit(:page_size, :page_offset, :format, *filter_params, :sort_column, :sort_asc)
 
         page_size = permitted.fetch(:page_size, DEFAULT_FINDER_PAGE_SIZE).to_i
         page_offset = permitted.fetch(:page_offset, 0).to_i
 
         finder = Finder.new(scope)
         finder.paginate(size: page_size, offset: page_offset)
+
+        if permitted[:sort_column].present?
+          finder.order(permitted[:sort_column], ActiveRecord::Type::Boolean.new.deserialize(permitted.fetch(:sort_asc, true)))
+        end
+
         filters.each do |hash|
           value = permitted[hash[:param]]
           filter = if hash[:filter].present?
