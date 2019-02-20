@@ -13,6 +13,12 @@ module Kadmin
     # @return [ActiveRecord::Relation] the base relation to find items from
     attr_reader :scope
 
+    # @return [String] name of column that is used in ORDER_BY clause
+    attr_reader :sort_column
+
+    # @return [bool] true if sort order is ASC, false if DESC
+    attr_reader :sort_asc
+
     # @param [ActiveRecord::Relation] scope base relation to page/filter on
     def initialize(scope)
       @scope = scope
@@ -20,6 +26,7 @@ module Kadmin
       @filters = {}
       @results = nil
       @filtering = false
+      @sort_asc = true
     end
 
     # @param [String] name the filter name (should be unique)
@@ -33,6 +40,16 @@ module Kadmin
       end
 
       return self
+    end
+
+    # sets sort order for scope, any existing order is overwritten
+    # @param [String] name of column to sort
+    # @param [bool] true for ASC sort, false otherwise
+    def order(sort_column, sort_asc)
+      @sort_column = sort_column
+      @sort_asc = sort_asc
+      puts @sort_column
+      @scope = @scope.reorder(sort_column.to_sym => sort_asc ? :asc : :desc)
     end
 
     def filtering?

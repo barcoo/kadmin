@@ -1,4 +1,6 @@
 <%= form_tag(request.fullpath, method: 'get', class: 'form-inline pull-right') do %>
+  <%= hidden_field_tag 'sort_column', finder&.sort_column %>
+  <%= hidden_field_tag 'sort_asc', finder&.sort_asc %>
   <div class='form-group'>
     <% unless local_assigns.fetch(:hide_create_button, false) %>
       <%= link_to(t('kadmin.components.finder.create'), url_for(action: :new), class: 'btn btn-primary', style: 'margin-right: 20px') %>
