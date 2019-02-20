@@ -33,6 +33,16 @@ module Kadmin
       assert_equal 'Jane', results.first.first_name
     end
 
+    def test_sort
+      @finder.order(:first_name, true)
+      results = @finder.find!
+      assert_equal 'Jane', results.first.first_name
+
+      @finder.order(:first_name, false)
+      results = @finder.find!
+      assert_equal 'John', results.first.first_name
+    end
+
     def test_paginate
       @finder.paginate(offset: 0, size: -1)
       assert_nil @finder.pager, 'Should not have created a pager'

@@ -48,8 +48,7 @@ module Kadmin
     def order(sort_column, sort_asc)
       @sort_column = sort_column
       @sort_asc = sort_asc
-      puts @sort_column
-      @scope = @scope.reorder(sort_column.to_sym => sort_asc ? :asc : :desc)
+      @scope = @scope.reorder("#{sort_column} #{sort_asc ? 'ASC' : 'DESC'}")
     end
 
     def filtering?
