@@ -20,7 +20,7 @@ group :development, :debug do
 end
 
 group :development, :test do
-  gem 'sqlite3' # test database
+  gem 'sqlite3', '~> 1.3.0' # test database
 end
 
 group :test do

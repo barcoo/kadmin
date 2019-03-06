@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   # Front-end stuff
   s.add_dependency 'sass-rails', '~> 5.0' # to use Sass files
-  s.add_dependency 'omniauth-google-oauth2', '~> 0.4' # for authentication
+  s.add_dependency 'omniauth-google-oauth2', '~> 0.6' # for authentication
 
   # Development
   s.add_development_dependency 'barcoop' # always pick up the latest one
