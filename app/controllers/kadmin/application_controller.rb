@@ -36,7 +36,6 @@ module Kadmin
     end
 
     def handle_unexpected_error(error)
-      Rails.logger.error(error)
       handle_error(error, title: I18n.t('kadmin.errors.unexpected'), message: I18n.t('kadmin.errors.unexpected_message'))
     end
 
