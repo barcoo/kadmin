@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Kadmin
   # Collection of Bootstrap helpers
   module BootstrapHelper
@@ -17,7 +19,13 @@ module Kadmin
     # @param [Hash, String] url_options anything accepted by link_to and image_tag
     # @param [Integer] max_height maximum height of the thumbnail
     def thumbnail_link(url_options, max_height)
-      return link_to(image_tag(url_options), url_options, class: 'thumbnail', style: "max-height: #{max_height}px", target: 'new')
+      return link_to(
+        image_tag(url_options),
+        url_options,
+        class: 'thumbnail',
+        style: "max-height: #{max_height}px",
+        target: 'new'
+      )
     end
 
     # Generates a navigation drop down for bootstrap
@@ -35,7 +43,7 @@ module Kadmin
       return content_tag(:div, button + list, class: 'dropdown', style: 'display: inline-block;')
     end
 
-    # Generates help assitance using bootstrap i.e. * for mendatory feilds, help icon and popover for help
+    # Custom label generator using bootstrap i.e. * for mendatory feilds, help icon and popover for help
     # @param [String] label text for the view
     # @param [String] label_for is ID of the html element for which we are displaying label.
     # @param [Boolean] Display the red asteric to indicate mendatory field.
@@ -43,15 +51,15 @@ module Kadmin
     # @param [String] Title of the popover
     # @param [String] Body text of popover
     # @param [String] classname for the label.
-    def help_assistance(label, label_for = "", required = false, display_help = true, title = "", message = "", label_class = 'control-label')
+    def create_custom_label(label, label_for = '', required = false, display_help = true, title = '', message = '', label_class = 'control-label')
       label = t(label)
       label = label.html_safe
 
-      require_html = required ? '<span class="required-field"><span>':''
+      require_html = required ? '<span class="required-field"><span>' : ''
       icon_html = "<i class='fa fa-question-circle' style='color:green'></i>"
 
-      display_message = ""
-      if  display_help
+      display_message = ''
+      if display_help
         message = t(message)
         message = message.gsub('"', '\"')
         message = message.gsub("'", "\'")
