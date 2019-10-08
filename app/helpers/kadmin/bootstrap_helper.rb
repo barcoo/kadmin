@@ -34,5 +34,41 @@ module Kadmin
 
       return content_tag(:div, button + list, class: 'dropdown', style: 'display: inline-block;')
     end
+
+    
+
+    def help_assitance(label, required, title, message)
+      # binding.pry
+      label = t(title)
+      label = label.html_safe
+      
+      message = t(message)
+      message = message.gsub('"', '\"')
+      message = message.gsub("'", "\'")
+      html_message = message.html_safe
+
+      title = t(title)
+      title = title.html_safe
+    
+      require_html = required ? '<span class="required-field"><span>':''      
+      icon_html = "<i class='fa fa-question-circle' style='color:green'></i>"
+      
+      display_message = "<span data-toggle='popover' title='#{title}' data-placement='top'
+      data-trigger='hover' data-content='#{html_message}'>
+       #{icon_html}
+      </span>"
+
+      display_message = "#{require_html}#{label} #{display_message}".html_safe
+
+    end
+
+    # todo : remove this function from if it's not required any more
+    def tooltip(content, options = {}, html_options = {}, *parameters_for_method_reference)
+      html_options[:title] = options[:tooltip]
+      html_options[:class] = html_options[:class] || 'tooltip'
+      content_tag("span", content, html_options)
+    end
+
+    
   end
 end

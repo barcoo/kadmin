@@ -1,10 +1,12 @@
 //*= require modular
 //*= require_self
+//*= require jquery.datetimepicker
 
 // sass-lint:disable no-color-literals
 
 // Wrap everything in a .kadmin class to ensure our styling always overrides everyone else
 .kadmin {
+
   a.titlelink { // sass-lint:disable-line no-qualifying-elements force-element-nesting
     color: #fff;
     font-weight: bold;
@@ -110,4 +112,19 @@
     background-color: #f0f3f6;
     padding: 10px;
   }
+
+  // custom css 
+.required-field::before {
+      content: " * ";
+      color: red;
+    }
+  .wrap { 
+     white-space: pre-wrap;      /* CSS3 */   
+     white-space: -moz-pre-wrap; /* Firefox */    
+     white-space: -pre-wrap;     /* Opera <7 */   
+     white-space: -o-pre-wrap;   /* Opera 7 */    
+     word-wrap: break-word;      /* IE */
+  }
+
 }
+
