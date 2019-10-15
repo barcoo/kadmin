@@ -63,4 +63,12 @@ en:
         label: "Subscribers"
         title: "Subscribers"
         message: "List of comma separated emails to notify about the notification workflow"
+    notification_target:
+        label: "Notification target"
+        title: "Notification target"
+        message: "Please! select a Notification target"
+    notification_template:
+        label: "Notification template"
+        title: "Notification template"
+        message: "Please! select a Notification template"
 
