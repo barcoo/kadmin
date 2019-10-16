@@ -35,8 +35,6 @@ module Kadmin
       return content_tag(:div, button + list, class: 'dropdown', style: 'display: inline-block;')
     end
 
-    
-
     def help_assitance(label, required, title, message)
       # binding.pry
       label = t(title)
@@ -59,16 +57,6 @@ module Kadmin
       </span>"
 
       display_message = "#{require_html}#{label} #{display_message}".html_safe
-
     end
-
-    # todo : remove this function from if it's not required any more
-    def tooltip(content, options = {}, html_options = {}, *parameters_for_method_reference)
-      html_options[:title] = options[:tooltip]
-      html_options[:class] = html_options[:class] || 'tooltip'
-      content_tag("span", content, html_options)
-    end
-
-    
   end
 end

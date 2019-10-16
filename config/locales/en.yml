@@ -29,7 +29,7 @@ en:
       text_id:
         label: "General/text_id"
         title: "General/text_id"
-        message: "Used for grouping notifications; set as term in relevant tracks.\n Space is not allowed."
+        message: "Used for grouping notifications; set as term in relevant tracks.\nSpace is not allowed."
       url:
         label: "General/URL"
         title: "General/URL"

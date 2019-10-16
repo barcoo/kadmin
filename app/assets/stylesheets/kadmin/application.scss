@@ -108,16 +108,18 @@
       top: 0;
     }
   }
+
   pre {
     background-color: #f0f3f6;
     padding: 10px;
   }
 
   // custom css 
-.required-field::before {
+  .required-field::before {
       content: " * ";
       color: red;
     }
+
   .wrap { 
      white-space: pre-wrap;      /* CSS3 */   
      white-space: -moz-pre-wrap; /* Firefox */    
