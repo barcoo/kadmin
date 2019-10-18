@@ -25,50 +25,5 @@ en:
       please_correct: "Please correct the following:"
     nothing_to_show: None
     welcome: Moin, moin %{user}!
-    nt_form:
-      text_id:
-        label: "General/text_id"
-        title: "General/text_id"
-        message: "Used for grouping notifications; set as term in relevant tracks.\nSpace is not allowed."
-      url:
-        label: "General/URL"
-        title: "General/URL"
-        message: "URL triggered when a user presses either the push or the inbox message.\n Must be valid URL e.g. [http/https]://www.myurl.com"
-      inbox_message_enable:
-        label: "Notification Center"
-        title: "Notification Center"
-        message: "Enable checkbox only, if you want to send inbox message to user and input text in appropriate feilds"
-      inbox_message:
-        label: "Message"
-        title: "Message"
-        message: "Main message body shown under the title in the Notification Center. \nMendatory only if Notification center is enabled."
-      push_message_enable:
-        label: "Push"
-        title: "Push"
-        message: "Enable checkbox only, if you want to send push to user and input text in appropriate feilds"
-      push_message:
-        label: "Message"
-        title: "Message"
-        message: "Main message body shown under the title. \nMendatory only if Notification center is enabled."
-    nt_target:
-      name:
-        label: "Notification target name"
-        title: "Notification target name"
-        message: "Unique name of the job, used for quick identification"
-      recipients:
-        label: "Recipients"
-        title: "Recipients"
-        message: "<b>Recipients type</b><br/> Select one type of recipients, either UUIDs or a segment. <br/> Then select a segment name, or a list of comma-separated UUIDs"
-      subscribers:
-        label: "Subscribers"
-        title: "Subscribers"
-        message: "List of comma separated emails to notify about the notification workflow"
-    notification_target:
-        label: "Notification target"
-        title: "Notification target"
-        message: "Please! select a Notification target"
-    notification_template:
-        label: "Notification template"
-        title: "Notification template"
-        message: "Please! select a Notification template"
+    
 
