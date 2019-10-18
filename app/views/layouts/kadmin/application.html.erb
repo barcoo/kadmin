@@ -97,12 +97,12 @@
     <%= javascript_include_tag "kadmin/application" %>
     <script type='text/javascript'>
       jQuery(document).ready(function () {
-          jQuery('#sidebar-menu').metisMenu({ activeClass: 'open' });
-          jQuery('[data-toggle="tooltip"]').tooltip(
-            {html:true, container:'body', trigger: 'hover', placement:"bottom"}
-          );
-          jQuery('[data-toggle="popover"]').popover({html:true});
-          jQuery('#scheduled_at').datetimepicker({ mask:'9999/19/39 29:59', minDate: 0});
+        jQuery('#sidebar-menu').metisMenu({ activeClass: 'open' });
+        jQuery('[data-toggle="tooltip"]').tooltip(
+          {html:true, container:'body', trigger: 'hover', placement:"bottom"}
+        );
+        jQuery('[data-toggle="popover"]').popover({html:true});
+        jQuery('#scheduled_at').datetimepicker({ mask:'9999/19/39 29:59', minDate: 0});
       });
     </script>
     <%= yield :javascripts %>

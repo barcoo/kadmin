@@ -35,7 +35,7 @@ module Kadmin
       return content_tag(:div, button + list, class: 'dropdown', style: 'display: inline-block;')
     end
 
-    # Generates help assitance for bootstrap i.e. * for mendatory feilds, help icon and popover if need help
+    # Generates help assitance using bootstrap i.e. * for mendatory feilds, help icon and popover for help
     # @param [String] label text for the view
     # @param [Boolean] Display the red asteric to indicate mendatory field.
     # @param [String] Title of the popover 
