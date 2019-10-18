@@ -35,11 +35,15 @@ module Kadmin
       return content_tag(:div, button + list, class: 'dropdown', style: 'display: inline-block;')
     end
 
-    def help_assitance(label, required, title, message)
-      # binding.pry
+    # Generates help assitance for bootstrap i.e. * for mendatory feilds, help icon and popover if need help
+    # @param [String] label text for the view
+    # @param [Boolean] Display the red asteric to indicate mendatory field.
+    # @param [String] Title of the popover 
+    # @param [String] Body text of popover 
+    def help_assistance(label, required, title, message)
       label = t(title)
       label = label.html_safe
-      
+
       message = t(message)
       message = message.gsub('"', '\"')
       message = message.gsub("'", "\'")
@@ -47,7 +51,7 @@ module Kadmin
 
       title = t(title)
       title = title.html_safe
-    
+
       require_html = required ? '<span class="required-field"><span>':''      
       icon_html = "<i class='fa fa-question-circle' style='color:green'></i>"
       
@@ -57,6 +61,7 @@ module Kadmin
       </span>"
 
       display_message = "#{require_html}#{label} #{display_message}".html_safe
+      return display_message
     end
   end
 end
