@@ -41,7 +41,7 @@ module Kadmin
     # @param [String] Title of the popover 
     # @param [String] Body text of popover 
     def help_assistance(label, required, title, message)
-      label = t(title)
+      label = t(label)
       label = label.html_safe
 
       message = t(message)
