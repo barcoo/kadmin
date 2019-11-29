@@ -41,13 +41,13 @@ module Kadmin
     # @param [Boolean] Display the red asteric to indicate mendatory field.
     # @param [Boolean] to decide weither we need to display the help iocn or not
     # @param [String] Title of the popover
-    # @param [String] Body text of popover 
+    # @param [String] Body text of popover
     # @param [String] classname for the label.
     def help_assistance(label, label_for = "", required = false, display_help = true, title = "", message = "", label_class = 'control-label')
       label = t(label)
       label = label.html_safe
 
-      require_html = required ? '<span class="required-field"><span>':''      
+      require_html = required ? '<span class="required-field"><span>':''
       icon_html = "<i class='fa fa-question-circle' style='color:green'></i>"
 
       display_message = ""
